@@ -1,0 +1,15 @@
+c:\users\пк\documents\visual studio 2012\Projects\WannaEat\WannaEat\bin\Microsoft.PythonTools.WebRole.dll
+c:\users\пк\documents\visual studio 2012\Projects\WannaEat\WannaEat\obj\Debug\attach_server.py
+c:\users\пк\documents\visual studio 2012\Projects\WannaEat\WannaEat\obj\Debug\visualstudio_py_debugger.py
+c:\users\пк\documents\visual studio 2012\Projects\WannaEat\WannaEat\obj\Debug\visualstudio_py_repl.py
+c:\users\пк\documents\visual studio 2012\Projects\WannaEat\WannaEat\obj\Debug\visualstudio_py_util.py
+c:\users\пк\documents\visual studio 2012\Projects\WannaEat\WannaEat\obj\Debug\__init__.py
+c:\users\пк\documents\visual studio 2012\Projects\WannaEat\WannaEat\obj\Debug\__main__.py
+c:\users\пк\documents\visual studio 2012\Projects\WannaEat\WannaEat\bin\AzureSetup.cfg
+c:\users\пк\documents\visual studio 2012\Projects\WannaEat\WannaEat\bin\Microsoft.PythonTools.AzureSetup.exe
+c:\users\пк\documents\visual studio 2012\Projects\WannaEat\WannaEat\bin\Microsoft.PythonTools.AzureSetup.exe.config
+c:\users\пк\documents\visual studio 2012\Projects\WannaEat\WannaEat\bin\wfastcgi.py
+c:\users\пк\documents\visual studio 2012\Projects\WannaEat\WannaEat\obj\Debug\deployment-updated-pyvenv.cfg
+c:\users\пк\documents\visual studio 2012\Projects\WannaEat\WannaEat\ptvs_virtualenv_proxy.py
+c:\users\пк\documents\visual studio 2012\Projects\WannaEat\WannaEat\obj\Debug\web.config
+c:\users\пк\documents\visual studio 2012\Projects\WannaEat\WannaEat\obj\Debug\web.debug.config
