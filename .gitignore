@@ -204,6 +204,7 @@ src/*.egg-info
 lib
 lib64
 *ptvs_virtualenv_proxy.py
+*web.debug.config
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
