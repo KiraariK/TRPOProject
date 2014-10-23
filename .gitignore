@@ -203,6 +203,7 @@ dist
 src/*.egg-info
 lib
 lib64
+*ptvs_virtualenv_proxy.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
