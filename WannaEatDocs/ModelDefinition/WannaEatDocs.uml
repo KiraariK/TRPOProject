@@ -819,17 +819,6 @@
             isDerivedUnion="false"
             aggregation="None"
             isComposite="false" />
-          <property
-            Id="832cd84e-37b1-4436-979c-93f18ef781e8"
-            name="списокЗаведений"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false" />
         </ownedAttributesInternal>
       </class>
     </packageHasNamedElement>
@@ -960,7 +949,7 @@
             isComposite="false" />
           <property
             Id="9c304b91-0306-46aa-9415-71b91357abb8"
-            name="изображение"
+            name="путьИзображения"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -981,8 +970,8 @@
             aggregation="None"
             isComposite="false" />
           <property
-            Id="dfff240a-97ac-42a9-82a7-371b15cc91ce"
-            name="блюдаЗаведения"
+            Id="2d73224c-18e6-49c1-8111-9c2d8728fcc9"
+            name="город"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -1196,17 +1185,6 @@
           </association>
         </targetEnds>
         <ownedAttributesInternal>
-          <property
-            Id="0babddda-6df9-491a-bad4-94799f9bd315"
-            name="номер"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false" />
           <property
             Id="a426b981-a7e1-48e9-b46a-3c714a30879b"
             name="тип"
@@ -1429,7 +1407,7 @@
             isComposite="false" />
           <property
             Id="d1691749-df28-403f-9091-fedb853d7205"
-            name="изображение"
+            name="путьИзображения"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -2070,6 +2048,47 @@
               LastKnownLocation="WannaEatDocs.uml" />
           </generalization>
         </generalsInternal>
+        <targetEnds>
+          <association
+            Id="ceb9873a-05b4-4cef-8fdf-ee83ef753732"
+            isDerived="false"
+            sourceEndRoleName="ЗаказСтолика"
+            targetEndRoleName="Столик"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="46fd890b-527c-4478-b712-fda3fe42b38b"
+              LastKnownName="Столик"
+              LastKnownLocation="WannaEatDocs.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="df0983e7-a1ba-4043-a1af-9e6371b07369"
+                  name="ЗаказСтолика"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="bcbcc2e2-b924-488a-b5f6-64cea79c0645"
+                  name="Столик"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
         <ownedAttributesInternal>
           <property
             Id="ca3298e8-688b-4dd9-bf4b-1bc1c18cc07d"
@@ -2120,6 +2139,47 @@
               LastKnownLocation="WannaEatDocs.uml" />
           </generalization>
         </generalsInternal>
+        <targetEnds>
+          <association
+            Id="6085e208-27ce-4d3a-990d-a90461b59bab"
+            isDerived="false"
+            sourceEndRoleName="ЗаказСамовывоза"
+            targetEndRoleName="ЗалЗаведения"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="2e889cae-cab7-4a89-b72c-b1454d959774"
+              LastKnownName="ЗалЗаведения"
+              LastKnownLocation="WannaEatDocs.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="9e19c04f-e19f-4875-8ec1-7f3a73e8fc79"
+                  name="ЗаказСамовывоза"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="12324825-479c-497b-a495-4db8398c80cf"
+                  name="ЗалЗаведения"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
         <ownedAttributesInternal>
           <property
             Id="7bad5f07-0f3f-4ad6-a379-541fab353f8d"
@@ -2307,17 +2367,6 @@
           <property
             Id="394ec055-0993-41c9-b8a6-a344278c9dd6"
             name="блюдо"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false" />
-          <property
-            Id="df447857-6d6b-4b0f-9ecc-67fe4686d0e9"
-            name="заведение"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"

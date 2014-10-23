@@ -131,7 +131,10 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #'app',
-    'OrderSystem',
+    'establishments',
+    'dishes',
+    'orders',
+    'resources',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:

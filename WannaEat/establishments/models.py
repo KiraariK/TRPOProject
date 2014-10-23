@@ -1,7 +1,6 @@
-# спросить про автоматически создаваемый __init__
-# нужны ли эти "типа" конструкторы и как поступать со свзяью 1:M
-
 #from django.db import models
+#from django.utils import timezone
+#from _datetime import timedelta
 
 
 #DISH_TYPE = (
@@ -23,23 +22,18 @@
 #    )
 
 
-#class City(models.Model):
-#    """Город, в котором могут находиться заведения"""
-
-#    name = models.CharField(max_length=30)
-
-
 #class Establishment(models.Model):
-#    """Заведение города: кафе, ресторан и т.д."""
+#    """"""
 
-#    city = models.ForeignKey(City)
 #    dish_list = models.ForeignKey(EstablishmentDishes)
+#    city = models.CharField(max_length=30)
+#    image_path = models.CharField(max_length=50)
 #    name = models.CharField(max_length=50)
 #    email = models.CharField(max_length=20)
 
     
 #class EstablishmentBranch(models.Model):
-#    """Филиал заведения"""
+#    """"""
 
 #    establishment = models.ForeignKey(Establishment)
 #    address = models.CharField(max_length=50)
@@ -48,14 +42,16 @@
 
 
 #class BranchHall(models.Model):
-#    """Зал в филиале заведения"""
+#    """"""
 
 #    branch = models.ForeignKey(EstablishmentBranch)
 #    type = models.CharField(max_lenght=1, choices=HALL_TYPE)
+#    tables = models.IntegerField()
+#    served_tables = models.IntegerField()
 
 
 #class DinnerWagon(models.Model):
-#    """Столик в зале филиала заведения"""
+#    """"""
 
 #    hall = models.ForeignKey(BranchHall)
 #    seats = models.IntegerField(default=2)
@@ -71,7 +67,7 @@
 
 
 #class Dish(models.Model):
-#    """Блюдо для заказа в заведениях"""
+#    """"""
 
 #    name = models.CharField(max_length=20)
 #    description = models.CharField(max_length=100, blank=true)
@@ -81,16 +77,16 @@
 #    category = models.CharField(max_length=1, choices=DISH_TYPE)
 
 
-## спросить про то, как организовать список блюд у заведения
 #class EstablishmentDishes(models.Model):
-#    """Список блюд конкретного заведения"""
+#    """"""
 
 #    dish = models.ForeignKey(Dish)
 
 
 #class OrderRow(models.Model):
-#    """Строка заказа"""
+#    """"""
 
+#    order = models.ForeignKey(Order, related_name='rows')
 #    dish = models.ForeignKey(Dish)
 #    count = models.IntegerField()
 
@@ -105,9 +101,8 @@
 
 
 #class Order(models.Model):
-#    """Заказ в заведении"""
+#    """"""
 
-#    order_rows = models.ForeignKey(OrderRow)
 #    price = models.FloatField()
 #    weight = models.IntegerField()
 #    clinet_phone = models.CharField(max_length=10)
@@ -115,20 +110,26 @@
 #    execution_datetime = models.DateTimeField()
 #    expire_date = models.DateField()
 
+#    def save(self, force_insert=False, force_update=False, using=None,
+#             update_fields=None):
+#        self.rows.all()
+#        self.expire_date = timezone.now().date() + timedelta(days=5)
+#        super().save(self, force_insert, force_update, using, update_fields)
+
 
 #class ServeDinnerWagon(Order):
-#    """Заказ столика в заведении"""
+#    """"""
 
 #    table = models.ForeignKey(DinnerWagon)
 
 
 #class Pickup(Order):
-#    """Заказ самовывоза"""
+#    """"""
 
 #    branch = models.ForeignKey(EstablishmentBranch)
 
 
 #class Delivery(Order):
-#    """Заказ доставки"""
+#    """"""
 
 #    address = models.CharField(max_length=50)

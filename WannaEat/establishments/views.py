@@ -1,15 +1,15 @@
-from django.http import HttpRequest
+# Create your views here.
+from django.http.request import HttpRequest
+from django.template.context import RequestContext
 from django.shortcuts import render
-from django.template import RequestContext
 
 def home(request):
-    """Render home page"""
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'OrderSystem/index.html',
+        'establishments/home.html',
         context_instance = RequestContext(request,
         {
-            'title':'Home Page',
+            'title':'Home page'
         })
     )
