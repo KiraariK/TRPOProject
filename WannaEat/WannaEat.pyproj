@@ -50,6 +50,9 @@
     <Compile Include="orders\tests.py" />
     <Compile Include="orders\views.py" />
     <Compile Include="orders\__init__.py" />
+    <Compile Include="resources\admin.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="resources\models.py" />
     <Compile Include="resources\tests.py" />
     <Compile Include="resources\views.py" />
