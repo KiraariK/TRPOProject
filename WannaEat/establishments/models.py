@@ -7,11 +7,18 @@ HALL_TYPE = (
     )
 
 
+class City(models.Model):
+    name = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.name
+
+
 class Establishment(models.Model):
     """"""
 
     dish_list = models.ForeignKey(EstablishmentDishes)
-    city = models.CharField(max_length=30)
+    city = models.ForeignKey(City)
     image_path = models.CharField(max_length=50)
     name = models.CharField(max_length=50)
     email = models.CharField(max_length=20)

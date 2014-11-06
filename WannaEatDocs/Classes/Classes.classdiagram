@@ -615,11 +615,6 @@
             <elementDefinition Id="85f521ad-79b4-44ae-a8af-eb19a91b5450" />
           </association>
         </targetEnds>
-        <ownedAttributesInternal>
-          <property Id="89dfdf70-3e76-4dd0-ad23-14d955cf3bb7" name="блюдо" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-            <elementDefinition Id="394ec055-0993-41c9-b8a6-a344278c9dd6" />
-          </property>
-        </ownedAttributesInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
   </packagedElements>

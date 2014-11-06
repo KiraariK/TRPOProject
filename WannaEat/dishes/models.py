@@ -17,9 +17,9 @@ class Dish(models.Model):
     """"""
 
     name = models.CharField(max_length=20)
-    description = models.CharField(max_length=100, blank=True)
-    composition = models.CharField(max_length=50, blank=True)
-    weight = models.IntegerField(blank=True)
+    description = models.CharField(max_length=100, blank=True, null=True)
+    composition = models.CharField(max_length=50, blank=True, null=True)
+    weight = models.IntegerField(blank=True, null=True)
     price = models.FloatField()
     category = models.CharField(max_length=1, choices=DISH_TYPE)
 

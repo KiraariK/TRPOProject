@@ -11,13 +11,13 @@ urlpatterns = patterns('',
     #url(r'^$', include('OrderSystem.urls', namespace="OrderSystem")),
     #url(r'city/(?P<city_id>\d+)', include('establishments.urls', namespace="establishments")),
     url(r'^$', RedirectView.as_view(url=r'city/')), # redirect to /city/
-    url(r'city/', include('establishments.urls', namespace="establishments")),
+    url(r'^city/', include('establishments.urls', namespace="establishments")),
     #url(r'establishment/(?P<establishment_id>\d+)', include('dishes.urls', namespace="dishes")),
     #url(r'dish/(?P<dish_id>\d+)', include('dishes.urls', namespace="dishes")),
     # TODO do something with the following urls
     #url(r'cart/', include('orders.urls', namespace="orders")),
     #url(r'order/', include('orders.urls', namespace="orders")),
-    url(r'admin/', include(admin.site.urls)),
+    url(r'^admin/', include(admin.site.urls)),
 )
 
 #from datetime import datetime
