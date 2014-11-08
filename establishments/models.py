@@ -3,8 +3,9 @@ from dishes.models import Dish
 
 HALL_TYPE = \
     (
-    ('0', 'smoking'),
-    ('1', 'nonsmoking'),
+    ('0', 'nothing'),
+    ('1', 'smoking'),
+    ('2', 'nonsmoking'),
     )
 
 
