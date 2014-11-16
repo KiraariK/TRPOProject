@@ -5,6 +5,7 @@
 Проект создан для PyCharm. В нем просто открываем папку проекта.
 
 Лабы: http://portal.tpu.ru:7777/SHARED/i/I/study/trpo/lab
+
 ===========
 Запуск проекта (при использовании PyCharm Community version):
 - если вы внесли измение в модели, то выполняем в терминале, находясь в папке проекта: python manage.py makemigrations
