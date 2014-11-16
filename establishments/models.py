@@ -1,12 +1,5 @@
 from django.db import models
 
-HALL_TYPE = \
-    (
-    ('0', 'none'),
-    ('1', 'smoking'),
-    ('2', 'nonsmoking'),
-    )
-
 
 class City(models.Model):
     name = models.CharField(max_length=30, primary_key=True, unique=True, verbose_name='Название')
@@ -17,7 +10,7 @@ class City(models.Model):
 
 class Establishment(models.Model):
     name = models.CharField(max_length=50, primary_key=True, unique=True, verbose_name='Название')
-    city = models.ForeignKey(City, related_name='+', verbose_name='Город')
+    city = models.ForeignKey(City, related_name='establishments', verbose_name='Город')
     # establishment_image = models.ImageField(upload_to='establishments_images', verbose_name='Логотип')
     description = models.CharField(max_length=300, blank=True, null=True, verbose_name='Описание')
     email = models.CharField(max_length=30, unique=True, verbose_name='Электронная почта')
@@ -55,21 +48,28 @@ class EstablishmentBranch(models.Model):
 
 
 class BranchHall(models.Model):
+    HALL_TYPE_SMOKING = '0'
+    HALL_TYPE_NONSMOKING = '1'
+
+    HALL_TYPE = (
+        (HALL_TYPE_SMOKING, 'Курящий'),
+        (HALL_TYPE_NONSMOKING, 'Не курящий'),
+    )
+
     branch = models.ForeignKey(EstablishmentBranch, related_name='halls', verbose_name='Филиал заведения')
     type = models.CharField(max_length=1, choices=HALL_TYPE, verbose_name='Тип зала')
-    free_tables_count = models.IntegerField(default=0, verbose_name='Количество свободных столиков')
+
+    @property
+    def free_tables_count(self):
+        return self.dinner_wagons.filter(
+            is_served=1
+        ).len()
 
     def __str__(self):
         return '{0} - {1}'.format(
             self.branch,
             self.type,
         )
-
-    def calculate_free_tables(self):
-        self.free_tables_count = 0
-        for table in self.dinner_wagons.all():
-            if table.is_served == 1:
-                self.free_tables_count += 1
 
     # arguments: table, from_date, to_datetime
     def reserve_table(self, **kwargs):
@@ -92,9 +92,7 @@ class DinnerWagon(models.Model):
     hall = models.ForeignKey(BranchHall, related_name='dinner_wagons', blank=True, null=True,
                              verbose_name='Зал заведения')
     seats = models.IntegerField(default=2, verbose_name='Количество мест')
-    is_served = models.BooleanField(default=False, verbose_name='Занят')
-    serve_from_date = models.DateField(auto_now_add=True, blank=True, null=True, verbose_name='Когда бронируем')
-    serve_to_datetime = models.DateTimeField(blank=True, null=True, verbose_name='На какое время')
+    is_reserved = models.BooleanField(default=False, verbose_name='Занят')
 
     def __str__(self):
         return '{0}: {1}'.format(
@@ -102,13 +100,8 @@ class DinnerWagon(models.Model):
             self.seats,
         )
 
-    # arguments: from_date, to_datetime
-    def reserve(self, **kwargs):
-        self.is_served = 1
-        self.serve_from_date = kwargs.get('from_date')
-        self.serve_to_datetime = kwargs.get('to_datetime')
+    def reserve(self):
+        self.is_reserved = 1
 
     def free(self):
-        self.is_served = 0
-        self.serve_from_date = None
-        self.serve_to_datetime = None
+        self.is_reserved = 0

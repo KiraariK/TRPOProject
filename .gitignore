@@ -262,3 +262,5 @@ docs/_build/
 target/
 
 .idea/
+
+db.sqlite3

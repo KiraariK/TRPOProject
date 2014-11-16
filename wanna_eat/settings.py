@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'establishments',
     'dishes',
     'orders',
+    'employees',
 )
 
 MIDDLEWARE_CLASSES = (

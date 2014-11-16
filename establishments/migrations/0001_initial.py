@@ -7,17 +7,14 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('dishes', '0001_initial'),
     ]
 
     operations = [
         migrations.CreateModel(
             name='BranchHall',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', primary_key=True, serialize=False, auto_created=True)),
-                ('type', models.CharField(max_length=1, choices=[('0', 'smoking'), ('1', 'nonsmoking')])),
-                ('tables_count', models.IntegerField(default=1)),
-                ('served_tables_count', models.IntegerField(default=0)),
+                ('id', models.AutoField(serialize=False, primary_key=True, verbose_name='ID', auto_created=True)),
+                ('type', models.CharField(choices=[('0', 'Курящий'), ('1', 'Не курящий')], verbose_name='Тип зала', max_length=1)),
             ],
             options={
             },
@@ -26,7 +23,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='City',
             fields=[
-                ('name', models.CharField(max_length=30, primary_key=True, unique=True, serialize=False)),
+                ('name', models.CharField(serialize=False, primary_key=True, verbose_name='Название', unique=True, max_length=30)),
             ],
             options={
             },
@@ -35,12 +32,10 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='DinnerWagon',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', primary_key=True, serialize=False, auto_created=True)),
-                ('seats', models.IntegerField(default=2)),
-                ('is_served', models.BooleanField(default=False)),
-                ('serve_to_datetime', models.DateTimeField(null=True, blank=True)),
-                ('serve_from_date', models.DateField(null=True, blank=True)),
-                ('hall', models.ForeignKey(to='establishments.BranchHall', related_name='dinner_wagons')),
+                ('id', models.AutoField(serialize=False, primary_key=True, verbose_name='ID', auto_created=True)),
+                ('seats', models.IntegerField(default=2, verbose_name='Количество мест')),
+                ('is_reserved', models.BooleanField(default=False, verbose_name='Занят')),
+                ('hall', models.ForeignKey(to='establishments.BranchHall', verbose_name='Зал заведения', null=True, related_name='dinner_wagons', blank=True)),
             ],
             options={
             },
@@ -49,11 +44,10 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Establishment',
             fields=[
-                ('name', models.CharField(max_length=50, primary_key=True, unique=True, serialize=False)),
-                ('description', models.CharField(null=True, max_length=300, blank=True)),
-                ('email', models.CharField(max_length=30, unique=True)),
-                ('city', models.ForeignKey(to='establishments.City', related_name='establishments')),
-                ('dish_list', models.ManyToManyField(to='dishes.Dish')),
+                ('name', models.CharField(serialize=False, primary_key=True, verbose_name='Название', unique=True, max_length=50)),
+                ('description', models.CharField(null=True, blank=True, verbose_name='Описание', max_length=300)),
+                ('email', models.CharField(verbose_name='Электронная почта', unique=True, max_length=30)),
+                ('city', models.ForeignKey(to='establishments.City', verbose_name='Город', related_name='establishments')),
             ],
             options={
             },
@@ -62,11 +56,11 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='EstablishmentBranch',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', primary_key=True, serialize=False, auto_created=True)),
-                ('address', models.CharField(max_length=50)),
-                ('order_phone_number', models.CharField(max_length=10)),
-                ('help_phone_number', models.CharField(max_length=10)),
-                ('establishment', models.ForeignKey(to='establishments.Establishment', related_name='branches')),
+                ('id', models.AutoField(serialize=False, primary_key=True, verbose_name='ID', auto_created=True)),
+                ('address', models.CharField(verbose_name='Адресс', max_length=50)),
+                ('order_phone_number', models.CharField(verbose_name='Телефон заказов', max_length=10)),
+                ('help_phone_number', models.CharField(verbose_name='Телефон для справок', max_length=10)),
+                ('establishment', models.ForeignKey(to='establishments.Establishment', verbose_name='Заведение', related_name='branches')),
             ],
             options={
             },
@@ -75,7 +69,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='branchhall',
             name='branch',
-            field=models.ForeignKey(to='establishments.EstablishmentBranch', related_name='halls'),
+            field=models.ForeignKey(to='establishments.EstablishmentBranch', verbose_name='Филиал заведения', related_name='halls'),
             preserve_default=True,
         ),
     ]

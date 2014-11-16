@@ -3,7 +3,7 @@ from django.db import models
 from establishments.models import Establishment
 
 
-class EstablishmentAccount(models.Model):
+class Employee(models.Model):
     user = models.ForeignKey(User, related_name='establishments_accounts', verbose_name='Пользователь')
     establishment = models.OneToOneField(Establishment, related_name='account', verbose_name='Заведение')
 
@@ -13,11 +13,11 @@ class EstablishmentAccount(models.Model):
         )
 
     # arguments: order
-    def ack_order(self, **kwargs):
+    def acc_order(self, **kwargs):
         if kwargs.get('order') is not None:
             for order in self.orders.all():
                 if order == kwargs.get('order'):
-                    order.acknowledge()
+                    order.accept()
 
     def dec_order(self, **kwargs):
         if kwargs.get('order') is not None:
