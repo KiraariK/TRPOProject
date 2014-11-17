@@ -5,35 +5,7 @@ from employees.models import Employee
 from establishments.models import EstablishmentBranch, DinnerWagon
 
 
-# class OrdersCart(models.Model):
-#     weight = models.IntegerField(default=0, verbose_name='Вес')
-#     price = models.FloatField(default=0.0, verbose_name='Цена')
-#
-#     def recalculate(self):
-#         self.weight = 0
-#         self.price = 0.0
-#         for row in self.rows.all():
-#             self.weight += row.establishment_dish.dish.weight * row.dishes_count
-#             self.price += row.establishment_dish.dish.price * row.dishes_count
-#
-#     # arguments: row
-#     def add_row(self, **kwargs):
-#         if kwargs.get('row') is not None:
-#             self.rows.append(kwargs.get('row'))
-#             self.recalculate()
-#
-#     #arguments: row
-#     def delete_row(self, **kwargs):
-#         if kwargs.get('row') is not None:
-#             for row in self.rows.all():
-#                 if row == kwargs.get('row'):
-#                     self.rows.remove(kwargs.get('row'))
-#                     self.recalculate()
-
-
 class Order(models.Model):
-    class Meta:
-        abstract = True
 
     STATE_NONE = '0'
     STATE_UNDER_CONSIDERATION = '1'
@@ -59,7 +31,6 @@ class Order(models.Model):
         (TYPE_DELIVERY, 'Доставка'),
     )
 
-    # orders_cart = models.ForeignKey(OrdersCart, related_name='orders', verbose_name='Корзина заказов')
     client_phone = models.CharField(max_length=10, verbose_name='Телефон клиента')
     type = models.CharField(max_length=1, choices=ORDER_TYPE, verbose_name='Тип заказа')
     state = models.CharField(max_length=1, choices=ORDER_STATE, default=STATE_NONE, verbose_name='Состояние заказа')
@@ -71,25 +42,17 @@ class Order(models.Model):
         if self.state == self.STATE_DONE:
             return self.execute_datetime.date() + timedelta(days=30)
 
-    delivery_address = models.CharField(max_length=50, blank=True, null=True, verbose_name='Адрес доставки')
-    # contact_account = models.ForeignKey(Employee, related_name='orders',
-    #                                     verbose_name='Контактное лицо организации')
+    contact_account = models.ForeignKey(Employee, related_name='orders',
+                                        verbose_name='Контактное лицо организации')
     # особенные поля, необходимые для определенных видов заказов
 
     # для заказа самовывоза
-    # establishment_branch = models.ForeignKey(EstablishmentBranch, blank=True, null=True, related_name='+',
-    #                                          verbose_name='Филиал заведения')
-    # для заказа столика
-    # dinner_wagon = models.ForeignKey(DinnerWagon, blank=True, null=True, related_name='orders', verbose_name='Столик')
-    # для доставки
-
-
-class EstablishmentOrder(Order):
-    contact_account = models.ForeignKey(Employee, related_name='orders', verbose_name='Заведение')
-    dinner_wagon = models.ForeignKey(DinnerWagon, blank=True, null=True, related_name='orders',
-                                     verbose_name='Столик')
     establishment_branch = models.ForeignKey(EstablishmentBranch, blank=True, null=True, related_name='+',
                                              verbose_name='Филиал заведения')
+    # для заказа столика
+    dinner_wagon = models.ForeignKey(DinnerWagon, blank=True, null=True, related_name='orders', verbose_name='Столик')
+    # для доставки
+    delivery_address = models.CharField(max_length=50, blank=True, null=True, verbose_name='Адрес доставки')
 
     # arguments: type=table or type=pickup or type=delivery
     def make(self, **kwargs):
@@ -122,16 +85,13 @@ class EstablishmentOrder(Order):
 class OrdersCartRow(models.Model):
     establishment_dish = models.OneToOneField(EstablishmentDish, related_name='+', verbose_name='Блюдо заведения')
     dishes_count = models.IntegerField(default=1, verbose_name='Количество блюд')
-    order = models.ForeignKey(EstablishmentOrder, related_name='rows', verbose_name='Строка заказа')
-    # orders_cart = models.ForeignKey(OrdersCart, related_name='rows', verbose_name='Корзина заказов')
+    order = models.ForeignKey(Order, related_name='rows', verbose_name='Строка заказа')
 
     def increment(self):
         self.dishes_count += 1
-        # self.orders_cart.recalculate()
 
     def decrement(self):
         if self.dishes_count > 1:
             self.dishes_count -= 1
         else:
             self.clean()
-        # self.orders_cart.recalculate()
