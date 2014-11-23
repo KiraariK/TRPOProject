@@ -31,13 +31,12 @@ class EstablishmentBranch(models.Model):
             self.address,
         )
 
-    # arguments: hall, table, from_date, to_datetime
+    # arguments: hall, table
     def reserve_hall_table(self, **kwargs):
         if kwargs.get('hall') is not None and kwargs.get('table') is not None:
             for hall in self.halls.all():
                 if hall == kwargs.get('hall'):
-                    hall.reserve_table(table=kwargs.get('table'), from_date=kwargs.get('from_date'),
-                                       to_datetime=kwargs.get('to_datetime'))
+                    hall.reserve_table(table=kwargs.get('table'))
 
     # arguments: hall, table
     def free_hall_table(self, **kwargs):
@@ -71,12 +70,12 @@ class BranchHall(models.Model):
             self.type,
         )
 
-    # arguments: table, from_date, to_datetime
+    # arguments: table
     def reserve_table(self, **kwargs):
         if kwargs.get('table') is not None:
             for table in self.dinner_wagons.all():
                 if table == kwargs.get('table'):
-                    table.reserve(from_date=kwargs.get('from'), to_datetime=kwargs.get('to'))
+                    table.reserve()
                     self.calculate_free_tables()
 
     # arguments: table
