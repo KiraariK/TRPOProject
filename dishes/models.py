@@ -12,6 +12,7 @@ class Dish(models.Model):
     DISH_TYPE_SALAD = '6'
     DISH_TYPE_PIZZA = '7'
     DISH_TYPE_ROLL = '8'
+    DISH_TYPE_SOUP = '9'
 
     DISH_TYPE = (
         (DISH_TYPE_ALCOHOL, 'Алкогольные напитки'),
@@ -23,6 +24,7 @@ class Dish(models.Model):
         (DISH_TYPE_SALAD, 'Салаты'),
         (DISH_TYPE_PIZZA, 'Пицы'),
         (DISH_TYPE_ROLL, 'Роллы'),
+        (DISH_TYPE_SOUP, 'Супы'),
     )
 
     name = models.CharField(max_length=30, verbose_name='Название')
