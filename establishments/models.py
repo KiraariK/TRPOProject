@@ -2,28 +2,67 @@ from django.db import models
 
 
 class City(models.Model):
-    name = models.CharField(max_length=30, primary_key=True, unique=True, verbose_name='Название')
+    name = models.CharField(
+        max_length=30,
+        primary_key=True,
+        unique=True,
+        verbose_name='Название'
+    )
 
     def __str__(self):
         return self.name
 
 
 class Establishment(models.Model):
-    name = models.CharField(max_length=50, primary_key=True, unique=True, verbose_name='Название')
-    city = models.ForeignKey(City, related_name='establishments', verbose_name='Город')
-    # establishment_image = models.ImageField(upload_to='establishments_images', verbose_name='Логотип')
-    description = models.CharField(max_length=300, blank=True, null=True, verbose_name='Описание')
-    email = models.CharField(max_length=30, unique=True, verbose_name='Электронная почта')
+    name = models.CharField(
+        max_length=50,
+        primary_key=True,
+        unique=True,
+        verbose_name='Название'
+    )
+    city = models.ForeignKey(
+        City,
+        related_name='establishments',
+        verbose_name='Город'
+    )
+    establishment_image = models.ImageField(
+        upload_to='establishments_images',
+        verbose_name='Логотип'
+    )
+    description = models.CharField(
+        max_length=300,
+        blank=True,
+        null=True,
+        verbose_name='Описание'
+    )
+    email = models.CharField(
+        max_length=30,
+        unique=True,
+        verbose_name='Электронная почта'
+    )
 
     def __str__(self):
         return self.name
 
 
 class EstablishmentBranch(models.Model):
-    establishment = models.ForeignKey(Establishment, related_name='branches', verbose_name='Заведение')
-    address = models.CharField(max_length=50, verbose_name='Адресс')
-    order_phone_number = models.CharField(max_length=10, verbose_name='Телефон заказов')
-    help_phone_number = models.CharField(max_length=10, verbose_name='Телефон для справок')
+    establishment = models.ForeignKey(
+        Establishment,
+        related_name='branches',
+        verbose_name='Заведение'
+    )
+    address = models.CharField(
+        max_length=50,
+        verbose_name='Адресс'
+    )
+    order_phone_number = models.CharField(
+        max_length=10,
+        verbose_name='Телефон заказов'
+    )
+    help_phone_number = models.CharField(
+        max_length=10,
+        verbose_name='Телефон для справок'
+    )
 
     def __str__(self):
         return '{0}, {1}'.format(
@@ -55,8 +94,15 @@ class BranchHall(models.Model):
         (HALL_TYPE_NONSMOKING, 'Не курящий'),
     )
 
-    branch = models.ForeignKey(EstablishmentBranch, related_name='halls', verbose_name='Филиал заведения')
-    type = models.CharField(max_length=1, choices=HALL_TYPE, verbose_name='Тип зала')
+    branch = models.ForeignKey(
+        EstablishmentBranch, related_name='halls',
+        verbose_name='Филиал заведения'
+    )
+    type = models.CharField(
+        max_length=1,
+        choices=HALL_TYPE,
+        verbose_name='Тип зала'
+    )
 
     @property
     def free_tables_count(self):
@@ -88,10 +134,21 @@ class BranchHall(models.Model):
 
 
 class DinnerWagon(models.Model):
-    hall = models.ForeignKey(BranchHall, related_name='dinner_wagons', blank=True, null=True,
-                             verbose_name='Зал заведения')
-    seats = models.IntegerField(default=2, verbose_name='Количество мест')
-    is_reserved = models.BooleanField(default=False, verbose_name='Занят')
+    hall = models.ForeignKey(
+        BranchHall,
+        related_name='dinner_wagons',
+        blank=True,
+        null=True,
+        verbose_name='Зал заведения'
+    )
+    seats = models.IntegerField(
+        default=2,
+        verbose_name='Количество мест'
+    )
+    is_reserved = models.BooleanField(
+        default=False,
+        verbose_name='Занят'
+    )
 
     def __str__(self):
         return '{0}: {1}'.format(
