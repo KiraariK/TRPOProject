@@ -25,10 +25,10 @@ class Establishment(models.Model):
         related_name='establishments',
         verbose_name='Город'
     )
-    establishment_image = models.ImageField(
-        upload_to='establishments_images',
-        verbose_name='Логотип'
-    )
+    # establishment_image = models.ImageField(
+    #     upload_to='establishments_images',
+    #     verbose_name='Логотип'
+    # )
     description = models.CharField(
         max_length=300,
         blank=True,
