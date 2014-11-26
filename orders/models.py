@@ -65,8 +65,13 @@ class Order(models.Model):
     # особенные поля, необходимые для определенных видов заказов
 
     # для заказа самовывоза
-    establishment_branch = models.ForeignKey(EstablishmentBranch, blank=True, null=True, related_name='+', verbose_name='Филиал заведения')
-    
+    establishment_branch = models.ForeignKey(
+        EstablishmentBranch,
+        blank=True,
+        null=True,
+        related_name='+',
+        verbose_name='Филиал заведения'
+    )
     # для заказа столика
     dinner_wagon = models.ForeignKey(
         DinnerWagon,
