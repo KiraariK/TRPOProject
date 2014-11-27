@@ -85,4 +85,3 @@ class OrdersCartRowTest(TestCase):
                                             order=order_test)
         order_card_row_test.decrement()
         self.assertEqual(order_card_row_test.dishes_count, 2, "Numbers of dishes in cart is not equal")
-

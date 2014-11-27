@@ -12,6 +12,7 @@ class DishTest(TestCase):
         )
         self.assertEqual(dish.__str__(), 'Гречка', "Имя класса неверно")
 
+
 class EstablishmentDishTest(TestCase):
     def test_establishment_dish_class_name(self):
         dish = Dish(
@@ -34,5 +35,3 @@ class EstablishmentDishTest(TestCase):
         )
         self.assertEqual(establishment_dish.__str__(), 'Пельмени Project: Паста с курицей',
                          "Имя класса неверно")
-
-

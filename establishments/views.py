@@ -8,7 +8,8 @@ def cities(request):
     return render(
         request,
         'establishments/cities.html',
-        context_instance=RequestContext(request,
+        context_instance=RequestContext(
+            request,
             {
                 'title': 'Home page'
             })

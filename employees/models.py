@@ -4,8 +4,16 @@ from establishments.models import Establishment
 
 
 class Employee(models.Model):
-    user = models.ForeignKey(User, related_name='establishments_accounts', verbose_name='Пользователь')
-    establishment = models.OneToOneField(Establishment, related_name='account', verbose_name='Заведение')
+    user = models.ForeignKey(
+        User,
+        related_name='establishments_accounts',
+        verbose_name='Пользователь'
+    )
+    establishment = models.OneToOneField(
+        Establishment,
+        related_name='account',
+        verbose_name='Заведение'
+    )
 
     def __str__(self):
         return 'Аккаунт {0}'.format(

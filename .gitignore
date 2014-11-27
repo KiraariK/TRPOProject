@@ -261,6 +261,12 @@ docs/_build/
 # PyBuilder
 target/
 
+# idea files
 .idea/
 
+# data base
 db.sqlite3
+
+# coverage reports
+.coverage
+htmlcov/

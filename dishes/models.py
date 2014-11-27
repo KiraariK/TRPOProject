@@ -27,21 +27,56 @@ class Dish(models.Model):
         (DISH_TYPE_SOUP, 'Супы'),
     )
 
-    name = models.CharField(max_length=30, verbose_name='Название')
-    description = models.CharField(max_length=100, blank=True, null=True, verbose_name='Описание')
-    composition = models.CharField(max_length=50, blank=True, null=True, verbose_name='Состав')
-    # dish_image = models.ImageField(upload_to='dishes_images', verbose_name='Картинка')
-    weight = models.IntegerField(blank=True, null=True, verbose_name='Вес')
-    price = models.FloatField(default=100.0, verbose_name='Цена')
-    category = models.CharField(max_length=1, choices=DISH_TYPE, verbose_name='Категория блюда')
+    name = models.CharField(
+        max_length=30,
+        verbose_name='Название'
+    )
+    description = models.CharField(
+        max_length=100,
+        blank=True,
+        null=True,
+        verbose_name='Описание'
+    )
+    composition = models.CharField(
+        max_length=50,
+        blank=True,
+        null=True,
+        verbose_name='Состав'
+    )
+    # dish_image = models.ImageField(
+    #     upload_to='dishes_images',
+    #     verbose_name='Картинка'
+    # )
+    weight = models.IntegerField(
+        blank=True,
+        null=True,
+        verbose_name='Вес'
+    )
+    price = models.FloatField(
+        default=100.0,
+        verbose_name='Цена'
+    )
+    category = models.CharField(
+        max_length=1,
+        choices=DISH_TYPE,
+        verbose_name='Категория блюда'
+    )
 
     def __str__(self):
         return self.name
 
 
 class EstablishmentDish(models.Model):
-    dish = models.OneToOneField(Dish, related_name='+', verbose_name='Блюдо')
-    establishment = models.ForeignKey(Establishment, related_name='dishes', verbose_name='Заведение')
+    dish = models.OneToOneField(
+        Dish,
+        related_name='+',
+        verbose_name='Блюдо'
+    )
+    establishment = models.ForeignKey(
+        Establishment,
+        related_name='dishes',
+        verbose_name='Заведение'
+    )
 
     def __str__(self):
         return '{0}: {1}'.format(
