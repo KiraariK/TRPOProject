@@ -72,12 +72,12 @@ class Order(models.Model):
         self.state = self.STATE_IN_PROGRESS
 
     def decline(self):
-        if self.type == super().TYPE_DINNER_WAGON:
+        if self.type == Order.TYPE_DINNER_WAGON:
             self.dinner_wagon.free()
         self.state = self.STATE_CANCELED
 
     def perform(self):
-        if self.type == super().TYPE_DINNER_WAGON:
+        if self.type == Order.TYPE_DINNER_WAGON:
             self.dinner_wagon.free()
         self.state = self.STATE_DONE
 
