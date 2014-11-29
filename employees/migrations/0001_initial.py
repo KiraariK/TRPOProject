@@ -16,9 +16,9 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Employee',
             fields=[
-                ('id', models.AutoField(serialize=False, primary_key=True, verbose_name='ID', auto_created=True)),
-                ('establishment', models.OneToOneField(to='establishments.Establishment', verbose_name='Заведение', related_name='account')),
-                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL, verbose_name='Пользователь', related_name='establishments_accounts')),
+                ('id', models.AutoField(verbose_name='ID', auto_created=True, primary_key=True, serialize=False)),
+                ('establishment', models.OneToOneField(related_name='account', to='establishments.Establishment', verbose_name='Заведение')),
+                ('user', models.ForeignKey(related_name='establishments_accounts', to=settings.AUTH_USER_MODEL, verbose_name='Пользователь')),
             ],
             options={
             },

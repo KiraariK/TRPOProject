@@ -4,7 +4,6 @@ from django.db import models
 class City(models.Model):
     name = models.CharField(
         max_length=30,
-        primary_key=True,
         unique=True,
         verbose_name='Название'
     )
@@ -16,7 +15,6 @@ class City(models.Model):
 class Establishment(models.Model):
     name = models.CharField(
         max_length=50,
-        primary_key=True,
         unique=True,
         verbose_name='Название'
     )
