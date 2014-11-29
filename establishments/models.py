@@ -124,7 +124,6 @@ class BranchHall(models.Model):
             for table in self.dinner_wagons.all():
                 if table == kwargs.get('table'):
                     table.reserve()
-                    self.calculate_free_tables()
 
     # arguments: table
     def free_table(self, **kwargs):
@@ -132,7 +131,6 @@ class BranchHall(models.Model):
             for table in self.dinner_wagons.all():
                 if table == kwargs.get('table'):
                     table.free()
-                    self.calculate_free_tables()
 
 
 class DinnerWagon(models.Model):
