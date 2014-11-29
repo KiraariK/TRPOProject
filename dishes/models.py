@@ -32,21 +32,23 @@ class Dish(models.Model):
         verbose_name='Название'
     )
     description = models.CharField(
-        max_length=100,
+        max_length=250,
         blank=True,
         null=True,
         verbose_name='Описание'
     )
     composition = models.CharField(
-        max_length=50,
+        max_length=120,
         blank=True,
         null=True,
         verbose_name='Состав'
     )
-    # dish_image = models.ImageField(
-    #     upload_to='dishes_images',
-    #     verbose_name='Картинка'
-    # )
+    dish_image = models.ImageField(
+        upload_to='dishes/',
+        blank=True,
+        null=True,
+        verbose_name='Картинка блюда',
+    )
     weight = models.IntegerField(
         blank=True,
         null=True,

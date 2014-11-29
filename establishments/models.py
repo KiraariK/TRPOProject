@@ -25,10 +25,12 @@ class Establishment(models.Model):
         related_name='establishments',
         verbose_name='Город'
     )
-    # establishment_image = models.ImageField(
-    #     upload_to='establishments_images',
-    #     verbose_name='Логотип'
-    # )
+    establishment_image = models.ImageField(
+        upload_to='establishments/',
+        blank=True,
+        null=True,
+        verbose_name='Логотип',
+    )
     description = models.CharField(
         max_length=300,
         blank=True,
@@ -52,7 +54,7 @@ class EstablishmentBranch(models.Model):
         verbose_name='Заведение'
     )
     address = models.CharField(
-        max_length=50,
+        max_length=80,
         verbose_name='Адресс'
     )
     order_phone_number = models.CharField(

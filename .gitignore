@@ -216,7 +216,6 @@ __pycache__/
 # Distribution / packaging
 .Python
 env/
-build/
 develop-eggs/
 dist/
 downloads/
@@ -227,7 +226,6 @@ parts/
 sdist/
 var/
 *.egg-info/
-.installed.cfg
 *.egg
 
 # PyInstaller
@@ -252,9 +250,6 @@ coverage.xml
 *.mo
 *.pot
 
-# Django stuff:
-*.log
-
 # Sphinx documentation
 docs/_build/
 
@@ -267,6 +262,5 @@ target/
 # data base
 db.sqlite3
 
-# coverage reports
-.coverage
-htmlcov/
+# static images files
+static/images/
