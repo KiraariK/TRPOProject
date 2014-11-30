@@ -12,7 +12,7 @@ urlpatterns = patterns(
     url(r'^city/', include('establishments.urls', namespace="establishments")),
 
     # редирект на файл urls в приложении establishments
-    # url(r'^establishment/', include('establishments.urls', namespace="establishments")),
+    url(r'^establishment/', include('dishes.urls', namespace="dishes")),
 
     # редирект на файл urls в приложении dishes
     # url(r'^dish/', include('dishes.urls', namespace="dishes")),

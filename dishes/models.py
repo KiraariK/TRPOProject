@@ -24,7 +24,6 @@ class Dish(models.Model):
         (DISH_TYPE_SALAD, 'Салаты'),
         (DISH_TYPE_PIZZA, 'Пицы'),
         (DISH_TYPE_ROLL, 'Роллы'),
-        (DISH_TYPE_SOUP, 'Супы'),
     )
 
     name = models.CharField(
