@@ -10,10 +10,7 @@ class EstablishmentsList(ListView):
         context = super().get_context_data(**kwargs)
         city_id = self.kwargs.get('city_id')
         if city_id is not None:
-            if City.objects.filter(id=city_id).exists():
-                default_city = City.objects.get(id=city_id)
-            else:
-                default_city = City.objects.first()
+            default_city = City.objects.filter(id=city_id)[0] or City.objects.first()
         else:
             default_city = City.objects.first()
         context['default_city'] = default_city
