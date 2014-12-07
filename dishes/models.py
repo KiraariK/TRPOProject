@@ -84,6 +84,3 @@ class EstablishmentDish(models.Model):
             self.establishment,
             self.dish,
         )
-
-    def return_name(self):
-        return self.dish
