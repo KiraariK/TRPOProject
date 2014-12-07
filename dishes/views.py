@@ -29,6 +29,18 @@ class DishesList(ListView):
             establishmentdish__establishment=establishment_id,
             category=default_dish_category,
         )
+        context['dish_name'] = EstablishmentDish.return_name
+        return context
+
+
+class DishAbout(ListView):
+    model = EstablishmentDish
+    template_name = 'dishes/dish_about.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        dish_id = self.kwargs.get('dish_id')
+        context['dish'] = Dish.objects.get(id=dish_id)
         return context
 
 

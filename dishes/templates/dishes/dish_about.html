@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<style>
+    h1 {
+    font-family: Geneva, Arial, Helvetica, sans-serif;}
+     p {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+   }
+</style>
+ <div class="row">
+     <div class="col-xs-11">
+         <h1>{{dish.name}}</h1>
+         <div class="row">
+         <div class="col-xs-4" >
+             <div>
+             <img src="{% static 'images/'|add:dish.dish_image.name %}" class="img-rounded" ;>
+             </div>
+             <div>
+                 <p>{{dish.composition}}</p>
+                 <p>Вес: {{dish.weight}}</p>
+                 <p>Цена: {{dish.price}}</p>
+             </div>
+         </div>
+         <div class="col-xs-8"></div>
+             <p>{{dish.description}}</p>
+
+         </div>
+     </div>
+ </div>
+
+
+
+{% endblock %}

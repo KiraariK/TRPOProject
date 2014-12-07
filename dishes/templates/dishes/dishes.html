@@ -24,7 +24,7 @@
               <img src="{% static 'images/'|add:dish.dish_image.name %}" class="img-thumbnail">
               <p><a class="btn btn-default" onClick="addDish({{ dish.id }}, {{ dish.price }}, {{ dish.weight }})" role="button">+</a></p>
               <p>{{ dish.composition }}</p>
-              <p><a class="btn btn-default" href="#" role="button">Подробнее</a></p>
+              <p><a class="btn btn-default" href="/establishment/dish/{{ dish.id }}"  role="button">Подробнее</a></p>
             </div><!--/.col-xs-6.col-lg-4-->
               {% endfor %}
           </div><!--/row-->
