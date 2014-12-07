@@ -21,7 +21,7 @@ urlpatterns = patterns(
     # url(r'^employee/', include('employees.urls', namespace="employees")),
 
     # релирект на файл urls в приложении orders
-    # url(r'^chart/', include('orders.urls', namespace="orders")),
+    # url(r'^cart/', include('orders.urls', namespace="orders")),
 
     # админка сайта
     url(r'^admin/', include(admin.site.urls)),
