@@ -22,7 +22,7 @@ class Dish(models.Model):
         (DISH_TYPE_DESSERT, 'Дессерты'),
         (DISH_TYPE_SNAKE, 'Закуски'),
         (DISH_TYPE_SALAD, 'Салаты'),
-        (DISH_TYPE_PIZZA, 'Пицы'),
+        (DISH_TYPE_PIZZA, 'Пиццы'),
         (DISH_TYPE_ROLL, 'Роллы'),
         (DISH_TYPE_SOUP, 'Супы'),
     )

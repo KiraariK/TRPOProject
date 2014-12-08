@@ -25,4 +25,7 @@ urlpatterns = patterns(
 
     # админка сайта
     url(r'^admin/', include(admin.site.urls)),
+
+    # страница пользователя организации
+    url(r'^employees/', include('employees.urls')),
 )

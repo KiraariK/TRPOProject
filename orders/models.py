@@ -6,7 +6,6 @@ from establishments.models import EstablishmentBranch, DinnerWagon
 
 
 class Order(models.Model):
-
     STATE_NONE = '0'
     STATE_UNDER_CONSIDERATION = '1'
     STATE_IN_PROGRESS = '2'
@@ -114,6 +113,10 @@ class Order(models.Model):
         if self.type == Order.TYPE_DINNER_WAGON:
             self.dinner_wagon.free()
         self.state = self.STATE_DONE
+
+    def __str__(self):
+        return self.client_phone.__str__() + " " + self.execute_datetime.__str__() + " " + self.get_type_display() + " " + \
+            self.contact_account.__str__()
 
 
 class OrdersCartRow(models.Model):
