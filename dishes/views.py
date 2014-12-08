@@ -1,6 +1,4 @@
-from django.http import HttpResponseNotAllowed, HttpResponse
 from django.views.generic import ListView
-from django_ajax.decorators import ajax
 from dishes.models import EstablishmentDish, Dish
 
 
@@ -41,11 +39,3 @@ class DishAbout(ListView):
         dish_id = self.kwargs.get('dish_id')
         context['dish'] = Dish.objects.get(id=dish_id)
         return context
-
-
-@ajax
-def add_dish(request):
-    if not request.is_ajax() or not request.method == 'POST':
-        return HttpResponseNotAllowed(['POST'])
-    request.session['dish_id'] = 1
-    return HttpResponse('ok')

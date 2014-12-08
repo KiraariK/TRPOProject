@@ -15,7 +15,7 @@
           </div>
           <div class="row">
             <img src="{% static 'images/cart/cart_icon.png' %}" class="img-thumbnail">
-            <p id="cart_value">0 р. /0 г.</p>
+            <p id="cart_value">0 рублей</p>
           </div>
           <div class="row">
               {% for dish in dishes_list %}
@@ -49,14 +49,9 @@
     <script type="text/javascript">
         function addDish(dish_id, dish_price, dish_weight) {
             var strings = $('#cart_value').text().split("/");
-            var cart_price = Number(strings[0].split(" ")[0]);
-            var cart_weight = Number(strings[1].split(" ")[0]);
+            var cart_price = Number($('#cart_value').text().split(" ")[0]);
             var new_cart_price = cart_price + dish_price;
-            var new_cart_weight = cart_weight + dish_weight;
-            $('#cart_value').text(new_cart_price + " р./" + new_cart_weight + " г.");
-            $.post('', {'dish_id': dish_id}, function(data) {
-                alert(data);
-            });
+            $('#cart_value').text(new_cart_price + " рублей");
         }
     </script>
 
