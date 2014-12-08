@@ -37,3 +37,13 @@
         </div><!--/.sidebar-offcanvas-->
       </div><!--/row-->
 {% endblock %}
+
+{% block scripts %}
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $.get("{% url 'session_cleaning' %}");
+        })
+    </script>
+
+{% endblock %}

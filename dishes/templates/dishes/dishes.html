@@ -15,7 +15,7 @@
           </div>
           <div class="row">
             <img src="{% static 'images/cart/cart_icon.png' %}" class="img-thumbnail">
-            <p id="cart_value">0 рублей</p>
+            <p id="cart_value">0 р.</p>
           </div>
           <div class="row">
               {% for dish in dishes_list %}
@@ -47,11 +47,26 @@
 {% block scripts %}
 
     <script type="text/javascript">
+        // TODO функция не вызывается, если на страницу попадаем с помощью клавиши 'назад' в боаузере
+        $(document).ready(function() {
+            $.get("{% url 'cart_loading' %}", function(data) {
+                var cart_value = Number(data);
+                var cart_value_str = String(cart_value) + " р.";
+                $("#cart_value").text(cart_value_str);
+            });
+        })
+
         function addDish(dish_id, dish_price) {
+            $.get("{% url 'cart_updating' %}", {"id" : dish_id}, function(data) {
+               updateCart(dish_id, dish_price);
+            });
+        }
+
+        function updateCart(dish_id, dish_price) {
             var strings = $('#cart_value').text().split(" ");
             var cart_price = Number($('#cart_value').text().split(" ")[0]);
             var new_cart_price = cart_price + dish_price;
-            $('#cart_value').text(new_cart_price + " рублей");
+            $('#cart_value').text(new_cart_price + " р.");
         }
     </script>
 
