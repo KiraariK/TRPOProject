@@ -4,7 +4,7 @@ from establishments.views import EstablishmentsList
 urlpatterns = patterns(
     '',
 
-    url(r'^$', EstablishmentsList.as_view(), name='establishments'),
+    url(r'^$', EstablishmentsList.as_view(), name='home'),
 
     url(r'(?P<city_id>\d+)/$', EstablishmentsList.as_view(), name='establishments')
 )
