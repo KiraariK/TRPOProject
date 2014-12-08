@@ -22,7 +22,7 @@
             <div class="col-xs-6 col-lg-4">
               <h2>{{ dish.name }}</h2>
               <img src="{% static 'images/'|add:dish.dish_image.name %}" class="img-thumbnail">
-              <p><a class="btn btn-default" onClick="addDish({{ dish.id }}, {{ dish.price }}, {{ dish.weight }})" role="button">+</a></p>
+              <p><a class="btn btn-default" onClick="addDish({{ dish.id }}, {{ dish.price }})" role="button">+</a></p>
               <p>{{ dish.composition }}</p>
               <p><a class="btn btn-default" href="{% url 'dish_about' dish_id=dish.id %}"  role="button">Подробнее</a></p>
             </div><!--/.col-xs-6.col-lg-4-->
@@ -47,8 +47,8 @@
 {% block scripts %}
 
     <script type="text/javascript">
-        function addDish(dish_id, dish_price, dish_weight) {
-            var strings = $('#cart_value').text().split("/");
+        function addDish(dish_id, dish_price) {
+            var strings = $('#cart_value').text().split(" ");
             var cart_price = Number($('#cart_value').text().split(" ")[0]);
             var new_cart_price = cart_price + dish_price;
             $('#cart_value').text(new_cart_price + " рублей");
