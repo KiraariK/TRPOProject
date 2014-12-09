@@ -1,6 +1,5 @@
 from django.views.generic import ListView
 from employees.models import Employee
-from orders.models import Order
 
 
 class EmployeePage(ListView):

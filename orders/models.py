@@ -115,8 +115,11 @@ class Order(models.Model):
         self.state = self.STATE_DONE
 
     def __str__(self):
-        return self.client_phone.__str__() + " " + self.execute_datetime.__str__() + " " + self.get_type_display() + " " + \
-            self.contact_account.__str__()
+        return \
+            self.client_phone.__str__() + \
+            " " + self.execute_datetime.__str__() + \
+            " " + self.get_type_display() + \
+            " " + self.contact_account.__str__()
 
 
 class OrdersCartRow(models.Model):

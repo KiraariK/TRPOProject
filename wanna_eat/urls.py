@@ -14,18 +14,11 @@ urlpatterns = patterns(
     # редирект на файл urls в приложении establishments
     url(r'^establishment/', include('dishes.urls')),
 
-    # редирект на файл urls в приложении dishes
-    # url(r'^dish/', include('dishes.urls', namespace="dishes")),
-
-    # редирект на файл urls в приложении employees
-    # url(r'^employee/', include('employees.urls', namespace="employees")),
-
-    # релирект на файл urls в приложении orders
     # url(r'^cart/', include('orders.urls', namespace="orders")),
-
-    # админка сайта
-    url(r'^admin/', include(admin.site.urls)),
 
     # страница пользователя организации
     url(r'^employees/', include('employees.urls')),
+
+    # админка сайта
+    url(r'^admin/', include(admin.site.urls)),
 )
