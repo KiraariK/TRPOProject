@@ -59,7 +59,7 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 SESSION_COOKIE_HTTPONLY = False
 
 # set cookie age
-SESSION_COOKIE_AGE = 120
+SESSION_COOKIE_AGE = 86400
 
 # cookies expires after the browser close
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True

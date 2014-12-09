@@ -13,7 +13,6 @@
 
         {% if cart_price != 0 %}
         <div class="container-fluid">
-            <p>
                 {% for key, val in cart_dishes %}
                 <div class="panel-inner">
                     <div class="row">
@@ -21,14 +20,13 @@
                             "{{ key.dish.name }}" от "{{ key.establishment.name }}" Количество: <span id="dish_count{{ key.dish.id }}">{{ val }}</span>
                         </div>
                         <div class="col-md-4">
-                            <a class="btn btn btn-success add_button{{ key.dish.id }}" onclick="addCount({{ key.dish.id }})">Увеличить</a>
-                            <a class="btn btn btn-primary dec_button{{ key.dish.id }}" onclick="decCount({{ key.dish.id }})">Уменьшить</a>
-                            <a class="btn btn btn-default del_button{{ key.dish.id }}" onclick="delCount({{ key.dish.id }})">Удалить</a>
+                            <a class="btn btn btn-success add_button{{ key.dish.id }}" onclick="addCount({{ key.dish.id }}, {{ key.dish.price }})">Увеличить</a>
+                            <a class="btn btn btn-primary dec_button{{ key.dish.id }}" onclick="decCount({{ key.dish.id }}, 1, {{ key.dish.price }})">Уменьшить</a>
+                            <a class="btn btn btn-default del_button{{ key.dish.id }}" onclick="delCount({{ key.dish.id }}, {{ key.dish.price }})">Удалить</a>
                         </div>
                     </div>
                 </div>
                 {% endfor %}
-            </p>
         </div>
         {% endif %}
 
@@ -39,19 +37,50 @@
 {% block scripts %}
 
         <script type="text/javascript">
-            function addCount(dish_id) {
-                $.get("{% url 'dish_incrementation' %}", {"id" : dish_id}, function(data) {
+            function addCount(dish_id, dish_price) {
+                $.get("{% url 'dish_incrementation' %}", {"id" : dish_id, "price": dish_price}, function(data) {
                     var span_name = "#dish_count" + dish_id;
                     $(span_name).text(data);
+                    updateCartView(dish_price, "increase");
                 });
             }
 
-            function decCount(dish_id) {
-
+            function decCount(dish_id, count, dish_price) {
+                var dish_count = Number(count);
+                $.get("{% url 'dish_decrementation' %}", {"id": dish_id, "count": dish_count}, function(data) {
+                    var returned_value = Number(data);
+                    if (returned_value == 0) {
+                        // узнаем, осталось ли еще что-то в корзине
+                        var cart_price = Number($("#cart_value").text().split(" ")[0]);
+                        var dec_dish_price = dish_count * dish_price;
+                        if ((cart_price - dec_dish_price) <= 0) {
+                            document.location.href = "{% url 'cart' cart_state=0 %}"
+                        } else {
+                            document.location.href = "{% url 'cart' cart_state=1 %}"
+                        }
+                    } else {
+                        var span_name = "#dish_count" + dish_id;
+                        $(span_name).text(data);
+                        updateCartView(dish_price, "decrease");
+                    }
+                });
             }
 
-            function delCount(dish_id) {
+            function delCount(dish_id, dish_price) {
+                var span_name = "#dish_count" + dish_id;
+                var count = Number($(span_name).text());
+                decCount(dish_id, count, dish_price);
+            }
 
+            function updateCartView(price, update_type) {
+                var cart_price = Number($("#cart_value").text().split(" ")[0]);
+                if (update_type == "increase") {
+                    var new_cart_price = cart_price + Number(price);
+                    $("#cart_value").text(new_cart_price + " р.");
+                } else if (update_type == "decrease") {
+                    var new_cart_price = cart_price - Number(price);
+                    $("#cart_value").text(new_cart_price + " р.");
+                }
             }
         </script>
 
