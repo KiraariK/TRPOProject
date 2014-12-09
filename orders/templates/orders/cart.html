@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+    <div class="row row-offcanvas row-offcanvas-right">
+
+        <div class="row">
+            <img src="{% static 'images/cart/cart_icon.png' %}" class="img-thumbnail">
+            <p id="cart_value">{{ cart_price }} р.</p>
+            <a class="btn btn-default" href="{% url 'cart' cart_state=0 %}" role="button">Очистить корзину заказа</a>
+        </div>
+
+        {% if cart_price != 0 %}
+        <div class="container-fluid">
+            <p>
+                {% for key, val in cart_dishes %}
+                <div class="panel-inner">
+                    <div class="row">
+                        <div class="col-md-8">
+                            "{{ key.dish.name }}" от "{{ key.establishment.name }}" Количество: <span id="dish_count{{ key.dish.id }}">{{ val }}</span>
+                        </div>
+                        <div class="col-md-4">
+                            <a class="btn btn btn-success add_button{{ key.dish.id }}" onclick="addCount({{ key.dish.id }})">Увеличить</a>
+                            <a class="btn btn btn-primary dec_button{{ key.dish.id }}" onclick="decCount({{ key.dish.id }})">Уменьшить</a>
+                            <a class="btn btn btn-default del_button{{ key.dish.id }}" onclick="delCount({{ key.dish.id }})">Удалить</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </p>
+        </div>
+        {% endif %}
+
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+
+        <script type="text/javascript">
+            function addCount(dish_id) {
+                $.get("{% url 'dish_incrementation' %}", {"id" : dish_id}, function(data) {
+                    var span_name = "#dish_count" + dish_id;
+                    $(span_name).text(data);
+                });
+            }
+
+            function decCount(dish_id) {
+
+            }
+
+            function delCount(dish_id) {
+
+            }
+        </script>
+
+{% endblock %}

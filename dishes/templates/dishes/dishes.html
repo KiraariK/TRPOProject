@@ -14,7 +14,9 @@
             <p>Добавляйте в корзину заказа понравившиеся Вам блюда или просто закажите столик</p>
           </div>
           <div class="row">
-            <img src="{% static 'images/cart/cart_icon.png' %}" class="img-thumbnail">
+            <a href="{% url 'cart' cart_state=1 %}">
+                <img src="{% static 'images/cart/cart_icon.png' %}" class="img-thumbnail">
+            </a>
             <p id="cart_value">0 р.</p>
           </div>
           <div class="row">
@@ -63,7 +65,6 @@
         }
 
         function updateCart(dish_id, dish_price) {
-            var strings = $('#cart_value').text().split(" ");
             var cart_price = Number($('#cart_value').text().split(" ")[0]);
             var new_cart_price = cart_price + dish_price;
             $('#cart_value').text(new_cart_price + " р.");

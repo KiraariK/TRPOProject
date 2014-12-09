@@ -46,10 +46,10 @@ def load_cart(request):
     """Загружает сохраненное состояние корзины"""
     if request.is_ajax():
         if request.session.get('cart_price') is not None:
-            cart_value = request.session.get('cart_price')
+            cart_price = request.session.get('cart_price')
         else:
-            cart_value = 0
-        message = cart_value
+            cart_price = 0
+        message = cart_price
     else:
         message = 'error'
     return HttpResponse(message)
