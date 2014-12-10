@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.views.generic import ListView
 from establishments.models import City, Establishment
 
@@ -16,3 +17,14 @@ class EstablishmentsList(ListView):
         context['default_city'] = default_city
         context['establishment_list'] = Establishment.objects.filter(city=default_city)
         return context
+
+
+def delete_expired_session_data(request):
+    """Очищает истекшие ключи сессии"""
+    if request.is_ajax():
+        # TODO очищать только, когда пользователь заходит первый раз в сессию на эту страницу
+        request.session.flush()
+        message = 'ok'
+    else:
+        message = 'error'
+    return HttpResponse(message)

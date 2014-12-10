@@ -263,4 +263,5 @@ target/
 db.sqlite3
 
 # static images files
-static/images/
+static/images/dishes
+static/images/establishments

@@ -1,6 +1,5 @@
-from django.http import HttpResponseNotAllowed, HttpResponse
+from django.http import HttpResponse
 from django.views.generic import ListView
-from django_ajax.decorators import ajax
 from dishes.models import EstablishmentDish, Dish
 
 
@@ -43,9 +42,35 @@ class DishAbout(ListView):
         return context
 
 
-@ajax
+def load_cart(request):
+    """Загружает сохраненное состояние корзины"""
+    if request.is_ajax():
+        if request.session.get('cart_price') is not None:
+            cart_price = request.session.get('cart_price')
+        else:
+            cart_price = 0
+        message = cart_price
+    else:
+        message = 'error'
+    return HttpResponse(message)
+
+
 def add_dish(request):
-    if not request.is_ajax() or not request.method == 'POST':
-        return HttpResponseNotAllowed(['POST'])
-    request.session['dish_id'] = 1
-    return HttpResponse('ok')
+    """Добавляет в сессию блюдо, обновляет значение корзины в сессии"""
+    if request.is_ajax():
+        dish_id = request.GET.get('id')
+        if request.session.get(dish_id) is not None:
+            request.session[dish_id] += 1
+        else:
+            request.session[dish_id] = 1
+
+        dish = Dish.objects.get(id=dish_id)
+        if request.session.get('cart_price') is not None:
+            request.session['cart_price'] += dish.price
+        else:
+            request.session['cart_price'] = dish.price
+
+        message = 'ok'
+    else:
+        message = 'error'
+    return HttpResponse(message)

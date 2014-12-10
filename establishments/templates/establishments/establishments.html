@@ -18,7 +18,7 @@
               <h2>{{ establishment.name }}</h2>
                 <img src="{% static 'images/'|add:establishment.establishment_image.name %}" class="img-thumbnail">
               <p>{{ establishment.description }}</p>
-                <p><a class="btn btn-default" href="{% url 'dishes' establishment_id=establishment.id %}" role="button">Подробнее</a></p>
+                <p><a class="btn btn-default" href="{% url 'dishes_without_category' establishment_id=establishment.id %}" role="button">Подробнее</a></p>
             </div><!--/.col-xs-6.col-lg-4-->
               {% endfor %}
           </div><!--/row-->
@@ -36,4 +36,14 @@
           </div>
         </div><!--/.sidebar-offcanvas-->
       </div><!--/row-->
+{% endblock %}
+
+{% block scripts %}
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $.get("{% url 'session_cleaning' %}");
+        })
+    </script>
+
 {% endblock %}
