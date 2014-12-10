@@ -29,7 +29,6 @@ class DishesList(ListView):
             establishmentdish__establishment=establishment_id,
             category=default_dish_category,
         )
-        context['dish_name'] = EstablishmentDish.return_name
         return context
 
 

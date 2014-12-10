@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+        <div class="row row-offcanvas row-offcanvas-right">
+
+        <div class="col-xs-12 col-sm-9">
+          <p class="pull-right visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+          </p>
+          <div class="jumbotron">
+            <h1>{{ current_establishment.name }}</h1>
+            <p> Выберите способ заказа</p>
+          </div>
+          <div class="row">
+            <img src="{% static 'images/cart/cart_icon.png' %}" class="img-thumbnail">
+            <p id="cart_value">0 р. /0 г.</p>
+          </div>
+          <div class="row">
+              {% for dish in dishes_list %}
+            <div class="col-xs-6 col-lg-4">
+              <h2>{{ dish.name }}</h2>
+              <img src="{% static 'images/'|add:dish.dish_image.name %}" class="img-thumbnail">
+              <p><a class="btn btn-default" onClick="addDish({{ dish.id }}, {{ dish.price }}, {{ dish.weight }})" role="button">+</a></p>
+              <p>{{ dish.composition }}</p>
+              <p><a class="btn btn-default" href="/establishment/dish/{{ dish.id }}"  role="button">Подробнее</a></p>
+            </div><!--/.col-xs-6.col-lg-4-->
+              {% endfor %}
+          </div><!--/row-->
+        </div><!--/.col-xs-12.col-sm-9-->
+
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+          <div class="list-group">
+              {% for category, name in dish_categories_list %}
+                <a href="{% url 'dishes' establishment_id=current_establishment.id dish_category=category %}"
+                        class="list-group-item {% if category == default_dish_category %} active {% endif %}">
+                    {{ name }}
+                </a>
+              {% endfor %}
+          </div>
+        </div><!--/.sidebar-offcanvas-->
+      </div><!--/row-->
+
+{% endblock %}
