@@ -4,13 +4,11 @@
 {% block content %}
 
         <div class="row row-offcanvas row-offcanvas-right">
-     <form action="/order/order/1" method="post" >
-{{ form.as_table }}
-<input type="submit" value="Submit" />
-</form>
+    {{ form }}
+    <button type="submit">Submit</button>
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
           <div class="list-group">
-              {% for order, name in order_type_list %}
+              {% for order, name in order_type %}
                 <a href=""
                         class="list-group-item ">
                     {{ name }}
