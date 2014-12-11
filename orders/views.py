@@ -147,9 +147,6 @@ class OrderForm(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-
-       # oreder_type = self.kwargs.get('order_type')
-
         context['order_type_list'] = Order.ORDER_TYPE
         #  if oreder_type == 0:
         #      # render form with order type 0
