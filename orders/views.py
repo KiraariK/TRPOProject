@@ -1,7 +1,9 @@
 import json
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.views.generic.list import ListView
 from dishes.models import EstablishmentDish, Dish
+from orders.models import Order
 
 
 def view_cart(request, cart_state):
@@ -136,3 +138,26 @@ def decrement_dish(request):
             return HttpResponse(0)
     else:
         return HttpResponse('error')
+
+
+class OrderForm(ListView):
+    model = Order
+    template_name = 'orders/orders.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+
+       # oreder_type = self.kwargs.get('order_type')
+
+        context['order_type_list'] = Order.ORDER_TYPE
+        #  if oreder_type == 0:
+        #      # render form with order type 0
+        #
+        #  if oreder_type == 1
+        #      # render form with order type 1
+        # # else
+        # #     # render form with order type 2
+        #
+        # # мои переменные
+        return context

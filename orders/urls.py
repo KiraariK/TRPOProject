@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, url
 from orders import views
+from orders.views import OrderForm
 
 urlpatterns = patterns(
     '',
@@ -16,4 +17,6 @@ urlpatterns = patterns(
 
     # url for ajax
     url(r'cart_decrement_dish/$', views.decrement_dish, name='cart_dish_decrementation'),
+
+    url(r'order/(?P<order_type>\d+)/$', OrderForm.as_view(), name='order'),
 )
