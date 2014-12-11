@@ -1,5 +1,4 @@
 from django import forms
-from orders.models import Order
 
 
 class TableForm(forms.Form):
@@ -18,4 +17,3 @@ class DeliveryForm(forms.Form):
 
 class PickUpForm(forms.Form):
     phone = forms.CharField(label='Телефон', max_length=128)
-

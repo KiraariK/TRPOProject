@@ -152,7 +152,6 @@ class OrderForm(ListView):
 
         context['order_type'] = Order.ORDER_TYPE
 
-
         #  if oreder_type == 0:
         #      # render form with order type 0
         #
@@ -165,18 +164,26 @@ class OrderForm(ListView):
         return context
 
 
-
 # def order(request):
-    # form = TableForm()
-    # if request.method == 'POST':
-     #   form = TableForm(request.POST)
+#     form = TableForm()
+#     if request.method == 'POST':
+#         form = TableForm(request.POST)
+#
+#     return render(
+#         request,
+#         'orders.html',
+#         {
+#             'form': form,
+#         }
+#     )
 
-    # return render(request, 'orders.html', {
-     #   'form': form,
-   # })
 
 def login(request):
     form = TableForm()
-    return render(request, 'orders.html', {
-      'form': form,
-   })
+    return render(
+        request,
+        'orders.html',
+        {
+            'form': form,
+        }
+    )
