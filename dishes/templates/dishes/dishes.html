@@ -1,6 +1,8 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 
 {% block content %}
+
         <div class="row row-offcanvas row-offcanvas-right">
 
         <div class="col-xs-12 col-sm-9">
@@ -12,12 +14,19 @@
             <p>Добавляйте в корзину заказа понравившиеся Вам блюда или просто закажите столик</p>
           </div>
           <div class="row">
+            <a href="{% url 'cart' cart_state=1 %}">
+                <img src="{% static 'images/cart/cart_icon.png' %}" class="img-thumbnail">
+            </a>
+            <p id="cart_value">0 р.</p>
+          </div>
+          <div class="row">
               {% for dish in dishes_list %}
             <div class="col-xs-6 col-lg-4">
-              <h2>{{ dish.dish.name }}</h2>
-              <img src="/static/images/{{ dish.dish.dish_image.name }}" class="img-thumbnail">
-              <p>{{ dish.dish.description }}</p>
-              <p><a class="btn btn-default" href="#" role="button">Подробнее</a></p>
+              <h2>{{ dish.name }}</h2>
+              <img src="{% static 'images/'|add:dish.dish_image.name %}" class="img-thumbnail">
+              <p><a class="btn btn-default" onClick="addDish({{ dish.id }}, {{ dish.price }})" role="button">+</a></p>
+              <p>{{ dish.composition }}</p>
+              <p><a class="btn btn-default" href="{% url 'dish_about' dish_id=dish.id %}"  role="button">Подробнее</a></p>
             </div><!--/.col-xs-6.col-lg-4-->
               {% endfor %}
           </div><!--/row-->
@@ -25,15 +34,40 @@
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
           <div class="list-group">
-              {% for category in dish_categories_list %}
-                {% if category == default_dish_category %}
-                    <a href="/dishes/{{ current_establishment.id }}/{{ category }}" class="list-group-item active">{{ category }}</a>
-                {% else %}
-                    <a href="/dishes/{{ current_establishment.id }}/{{ category }}" class="list-group-item">{{ category }}</a>
-                {% endif %}
+              {% for category, name in dish_categories_list %}
+                <a href="{% url 'dishes_with_category' establishment_id=current_establishment.id dish_category=category %}"
+                        class="list-group-item {% if category == default_dish_category %} active {% endif %}">
+                    {{ name }}
+                </a>
               {% endfor %}
           </div>
         </div><!--/.sidebar-offcanvas-->
       </div><!--/row-->
+
+{% endblock %}
+
+{% block scripts %}
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $.get("{% url 'cart_loading' %}", function(data) {
+                var cart_value = Number(data);
+                var cart_value_str = String(cart_value) + " р.";
+                $("#cart_value").text(cart_value_str);
+            });
+        })
+
+        function addDish(dish_id, dish_price) {
+            $.get("{% url 'cart_updating' %}", {"id" : dish_id}, function(data) {
+               updateCart(dish_id, dish_price);
+            });
+        }
+
+        function updateCart(dish_id, dish_price) {
+            var cart_price = Number($('#cart_value').text().split(" ")[0]);
+            var new_cart_price = cart_price + dish_price;
+            $('#cart_value').text(new_cart_price + " р.");
+        }
+    </script>
 
 {% endblock %}

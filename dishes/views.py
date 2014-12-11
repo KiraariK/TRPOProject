@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.views.generic import ListView
 from dishes.models import EstablishmentDish, Dish
 
@@ -19,22 +20,57 @@ class DishesList(ListView):
             current_establishment = EstablishmentDish.objects.first()
 
         dish_category = self.kwargs.get('dish_category')
-        if dish_category is not None:
-            if EstablishmentDish.objects.filter(dish__category=dish_category).exists():
-                default_dish_category = dish_category
-            else:
-                default_dish_category = Dish.DISH_TYPE_SOUP
-        else:
-            default_dish_category = Dish.DISH_TYPE_SOUP
+        default_dish_category = dish_category or Dish.DISH_TYPE_SOUP
         context['current_establishment'] = current_establishment.establishment
-        # context['dish_categories_list'] = EstablishmentDish.dish.DISH_TYPE
+        context['dish_categories_list'] = Dish.DISH_TYPE
         context['default_dish_category'] = default_dish_category
-        # TODO Доделать запись в контекст списка блюд выбранного заведения и выбранной категории + список категорий
-        # establishment_dishes = EstablishmentDish.objects.filter(establishment=current_establishment)
-        # dish = establishment_dishes.filter(dish__category=default_dish_category)[0]
-
-        # context['dishes_list'] = EstablishmentDish.objects.filter(
-        #     establishment=current_establishment,
-        #     dish__category=default_dish_category
-        # )
+        context['dishes_list'] = Dish.objects.filter(
+            establishmentdish__establishment=establishment_id,
+            category=default_dish_category,
+        )
         return context
+
+
+class DishAbout(ListView):
+    model = EstablishmentDish
+    template_name = 'dishes/dish_about.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        dish_id = self.kwargs.get('dish_id')
+        context['dish'] = Dish.objects.get(id=dish_id)
+        return context
+
+
+def load_cart(request):
+    """Загружает сохраненное состояние корзины"""
+    if request.is_ajax():
+        if request.session.get('cart_price') is not None:
+            cart_price = request.session.get('cart_price')
+        else:
+            cart_price = 0
+        message = cart_price
+    else:
+        message = 'error'
+    return HttpResponse(message)
+
+
+def add_dish(request):
+    """Добавляет в сессию блюдо, обновляет значение корзины в сессии"""
+    if request.is_ajax():
+        dish_id = request.GET.get('id')
+        if request.session.get(dish_id) is not None:
+            request.session[dish_id] += 1
+        else:
+            request.session[dish_id] = 1
+
+        dish = Dish.objects.get(id=dish_id)
+        if request.session.get('cart_price') is not None:
+            request.session['cart_price'] += dish.price
+        else:
+            request.session['cart_price'] = dish.price
+
+        message = 'ok'
+    else:
+        message = 'error'
+    return HttpResponse(message)

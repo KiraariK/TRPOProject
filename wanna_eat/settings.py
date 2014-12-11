@@ -52,6 +52,18 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
+# set the session store type: cookies
+SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
+
+# allow access to session from JavaScript
+SESSION_COOKIE_HTTPONLY = False
+
+# set cookie age
+SESSION_COOKIE_AGE = 86400
+
+# cookies expires after the browser close
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
 ROOT_URLCONF = 'wanna_eat.urls'
 
 WSGI_APPLICATION = 'wanna_eat.wsgi.application'

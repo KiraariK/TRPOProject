@@ -9,19 +9,16 @@ urlpatterns = patterns(
     url(r'^$', RedirectView.as_view(url=r'city/')),
 
     # редирект на файл urls в приложении establishments
-    url(r'^city/', include('establishments.urls', namespace="establishments")),
+    url(r'^city/', include('establishments.urls')),
 
     # редирект на файл urls в приложении establishments
-    url(r'^establishment/', include('dishes.urls', namespace="dishes")),
+    url(r'^establishment/', include('dishes.urls')),
 
-    # редирект на файл urls в приложении dishes
-    # url(r'^dish/', include('dishes.urls', namespace="dishes")),
+    # редирект на файл urls в приложении orders
+    url(r'^order/', include('orders.urls')),
 
-    # редирект на файл urls в приложении employees
-    # url(r'^employee/', include('employees.urls', namespace="employees")),
-
-    # релирект на файл urls в приложении orders
-    # url(r'^chart/', include('orders.urls', namespace="orders")),
+    # страница пользователя организации
+    url(r'^employee/', include('employees.urls')),
 
     # админка сайта
     url(r'^admin/', include(admin.site.urls)),
