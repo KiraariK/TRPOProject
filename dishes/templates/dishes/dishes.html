@@ -49,7 +49,6 @@
 {% block scripts %}
 
     <script type="text/javascript">
-        // TODO функция не вызывается, если на страницу попадаем с помощью клавиши 'назад' в боаузере
         $(document).ready(function() {
             $.get("{% url 'cart_loading' %}", function(data) {
                 var cart_value = Number(data);

@@ -1,3 +1,4 @@
+import json
 from django.http import HttpResponse
 from django.shortcuts import render
 from dishes.models import EstablishmentDish, Dish
@@ -5,8 +6,8 @@ from dishes.models import EstablishmentDish, Dish
 
 def view_cart(request, cart_state):
     """Отображает страницу корзины заказа"""
-    # cart_state == '1' - загружаем из сессии параметры корзины
-    # cart_state == '0' - очищаем ключи сессии, загружаем пустую корзину
+    """cart_state == '1' - загружаем из сессии параметры корзины"""
+    """cart_state == '0' - очищаем ключи сессии, загружаем пустую корзину"""
     if cart_state == '0':
         request.session.flush()
         cart_price = 0
@@ -45,6 +46,58 @@ def view_cart(request, cart_state):
                     'cart_dishes': cart_dishes,
                 }
             )
+
+
+def view_orders(request):
+    """Отображает страницу подготовленных заказов"""
+    order_establishments = []
+    for key in request.session.keys():
+        if key != 'cart_price':
+            first_establishment_for_key = EstablishmentDish.objects.filter(dish__id=int(key))[0].establishment
+            if order_establishments.count(first_establishment_for_key) == 0:
+                order_establishments.append(first_establishment_for_key)
+
+    orders_in_cart = {}
+    for establishment in order_establishments:
+        establishment_order_price = 0
+        for key in request.session.keys():
+            if key != 'cart_price':
+                if EstablishmentDish.objects.filter(dish__id=int(key))[0].establishment.name == establishment.name:
+                    establishment_order_price += \
+                        request.session[key] *\
+                        EstablishmentDish.objects.get(dish__id=int(key)).dish.price
+        orders_in_cart[establishment] = establishment_order_price
+
+    orders = orders_in_cart.items()
+
+    return render(
+        request,
+        'orders/cart_orders.html',
+        {
+            'orders': orders
+        }
+    )
+
+
+def view_establishment_dish_list(request):
+    if request.is_ajax():
+        establishment_id = request.GET.get('id')
+        establishment = EstablishmentDish.objects.filter(establishment__id=int(establishment_id))[0].establishment
+        establishment_dishes_in_order = {}
+        for key in request.session.keys():
+            if key != 'cart_price':
+                if EstablishmentDish.objects.filter(dish__id=int(key))[0].establishment.name == establishment.name:
+                    establishment_dishes_in_order[Dish.objects.get(id=int(key))] = request.session[key]
+
+        dish_list = []
+        for key, val in establishment_dishes_in_order.items():
+            dish_specification = {'dish_name': key.name, 'dish_price': key.price, 'dish_count': val}
+            dish_list.append(dish_specification)
+
+        json_string = json.dumps(dish_list, ensure_ascii=False).encode('utf8')
+        return HttpResponse(json_string)
+    else:
+        return HttpResponse('error')
 
 
 def increment_dish(request):
