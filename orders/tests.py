@@ -57,31 +57,3 @@ class OrderTest(TestCase):
         order_test.perform()
         self.assertEqual(order_test.state, Order.STATE_DONE)
         self.assertEqual(order_test.dinner_wagon.is_reserved, False)
-
-
-class OrdersCartRowTest(TestCase):
-    def test_increment(self):
-        order_test = Order(client_phone=8432424,
-                           type=Order.TYPE_DINNER_WAGON,
-                           state=Order.STATE_DONE,
-                           order_date=date(2014, 12, 12),
-                           execute_datetime=datetime(2014, 12, 12, 18),
-                           dinner_wagon=DinnerWagon(is_reserved=1, seats=2))
-        establishment_dish_test = EstablishmentDish()
-        order_card_row_test = OrdersCartRow(dishes_count=1, establishment_dish=establishment_dish_test,
-                                            order=order_test)
-        order_card_row_test.increment()
-        self.assertEqual(order_card_row_test.dishes_count, 2, "Numbers of dishes in cart is not equal")
-
-    def test_decrement(self):
-        order_test = Order(client_phone=8432424,
-                           type=Order.TYPE_DINNER_WAGON,
-                           state=Order.STATE_DONE,
-                           order_date=date(2014, 12, 12),
-                           execute_datetime=datetime(2014, 12, 12, 18),
-                           dinner_wagon=DinnerWagon(is_reserved=1, seats=2))
-        establishment_dish_test = EstablishmentDish()
-        order_card_row_test = OrdersCartRow(dishes_count=3, establishment_dish=establishment_dish_test,
-                                            order=order_test)
-        order_card_row_test.decrement()
-        self.assertEqual(order_card_row_test.dishes_count, 2, "Numbers of dishes in cart is not equal")

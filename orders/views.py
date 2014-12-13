@@ -4,6 +4,9 @@ from django.shortcuts import render
 from django.views.generic.list import ListView
 from dishes.models import EstablishmentDish, Dish
 from orders.models import Order
+from orders.forms import DeliveryForm
+from orders.forms import PickUpForm
+from orders.forms import TableForm
 
 
 def view_cart(request, cart_state):
@@ -147,7 +150,8 @@ class OrderForm(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        context['order_type_list'] = Order.ORDER_TYPE
+        context['order_type'] = Order.ORDER_TYPE
+
         #  if oreder_type == 0:
         #      # render form with order type 0
         #
@@ -158,3 +162,28 @@ class OrderForm(ListView):
         #
         # # мои переменные
         return context
+
+
+# def order(request):
+#     form = TableForm()
+#     if request.method == 'POST':
+#         form = TableForm(request.POST)
+#
+#     return render(
+#         request,
+#         'orders.html',
+#         {
+#             'form': form,
+#         }
+#     )
+
+
+def login(request):
+    form = TableForm()
+    return render(
+        request,
+        'orders.html',
+        {
+            'form': form,
+        }
+    )

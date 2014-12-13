@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
+from django.contrib import auth
+from django.http import HttpResponse
 from django.views.generic import ListView
 from employees.models import Employee
-from django.contrib import auth
+from orders.models import Order
 
 
 class EmployeePage(ListView):
@@ -12,6 +14,8 @@ class EmployeePage(ListView):
         context = super().get_context_data(**kwargs)
         employees_id = self.kwargs.get('employees_id')
         context['employees'] = Employee.objects.get(id=employees_id)
+        context['order_list'] = Order.objects.filter(contact_account_id=employees_id)
+
         return context
 
 
@@ -49,3 +53,13 @@ def ban_view(request):
             'title': 'Sorry'
         }
     )
+
+
+def acc_state(request):
+    if request.is_ajax():
+        # order_id = request.GET.get('id')
+        # order = Order.objects.get(id=int(order_id))
+        # Employee.acc_order(order_id)
+        return HttpResponse('1')
+    else:
+        return HttpResponse('0')

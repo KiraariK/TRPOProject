@@ -39,6 +39,7 @@ class Order(models.Model):
         choices=ORDER_TYPE,
         verbose_name='Тип заказа'
     )
+
     state = models.CharField(
         max_length=1,
         choices=ORDER_STATE,
@@ -87,7 +88,7 @@ class Order(models.Model):
         verbose_name='Адрес доставки'
     )
 
-    # arguments: type=table or type=pickup or type=delivery
+    # arguments: type='table' or type='pickup 'or type='delivery'
     def make(self, **kwargs):
         if kwargs.get('type') is not None:
             if kwargs.get('type') == 'table':
@@ -119,7 +120,8 @@ class Order(models.Model):
             self.client_phone.__str__() + \
             " " + self.execute_datetime.__str__() + \
             " " + self.get_type_display() + \
-            " " + self.contact_account.__str__()
+            " " + self.contact_account.__str__() + \
+            " " + self.get_state_display()
 
 
 class OrdersCartRow(models.Model):
@@ -137,12 +139,3 @@ class OrdersCartRow(models.Model):
         related_name='rows',
         verbose_name='Строка заказа'
     )
-
-    def increment(self):
-        self.dishes_count += 1
-
-    def decrement(self):
-        if self.dishes_count > 1:
-            self.dishes_count -= 1
-        else:
-            self.clean()
