@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+        <div class="row row-offcanvas row-offcanvas-right">
+    {{ form }}
+    <button type="submit">Submit</button>
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+          <div class="list-group">
+              {% for order, name in order_type %}
+                <a href=""
+                        class="list-group-item ">
+                    {{ name }}
+                </a>
+              {% endfor %}
+          </div>
+        </div><!--/.sidebar-offcanvas-->
+      </div><!--/row-->
+{% endblock %}

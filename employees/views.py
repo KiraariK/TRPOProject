@@ -19,12 +19,10 @@ class EmployeePage(ListView):
 
 
 def acc_state(request):
-     if request.is_ajax():
-       # order_id = request.GET.get('id')
-       # order = Order.objects.get(id=int(order_id))
-       # Employee.acc_order(order_id)
+    if request.is_ajax():
+        # order_id = request.GET.get('id')
+        # order = Order.objects.get(id=int(order_id))
+        # Employee.acc_order(order_id)
         return HttpResponse('1')
-     else: return HttpResponse('0')
-
-
-
+    else:
+        return HttpResponse('0')
