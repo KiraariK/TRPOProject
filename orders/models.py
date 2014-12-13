@@ -87,7 +87,7 @@ class Order(models.Model):
         verbose_name='Адрес доставки'
     )
 
-    # arguments: type=table or type=pickup or type=delivery
+    # arguments: type='table' or type='pickup 'or type='delivery'
     def make(self, **kwargs):
         if kwargs.get('type') is not None:
             if kwargs.get('type') == 'table':
@@ -137,12 +137,3 @@ class OrdersCartRow(models.Model):
         related_name='rows',
         verbose_name='Строка заказа'
     )
-
-    def increment(self):
-        self.dishes_count += 1
-
-    def decrement(self):
-        if self.dishes_count > 1:
-            self.dishes_count -= 1
-        else:
-            self.clean()
