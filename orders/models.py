@@ -39,6 +39,7 @@ class Order(models.Model):
         choices=ORDER_TYPE,
         verbose_name='Тип заказа'
     )
+
     state = models.CharField(
         max_length=1,
         choices=ORDER_STATE,
@@ -119,7 +120,8 @@ class Order(models.Model):
             self.client_phone.__str__() + \
             " " + self.execute_datetime.__str__() + \
             " " + self.get_type_display() + \
-            " " + self.contact_account.__str__()
+            " " + self.contact_account.__str__() + \
+            " " + self.get_state_display()
 
 
 class OrdersCartRow(models.Model):
