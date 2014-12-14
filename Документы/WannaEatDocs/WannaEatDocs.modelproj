@@ -67,12 +67,19 @@
     <Content Include="Sequences\Description\Описание диаграмм последовательностей.docx">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Sequences\Test.sequencediagram">
+    <Content Include="Sequences\Establishments.sequencediagram">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Sequences\Test.sequencediagram.layout">
+    <Content Include="Sequences\Establishments.sequencediagram.layout">
       <SubType>Content</SubType>
-      <DependentUpon>Sequences\Test.sequencediagram</DependentUpon>
+      <DependentUpon>Sequences\Establishments.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="Sequences\Orders.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Sequences\Orders.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Sequences\Orders.sequencediagram</DependentUpon>
     </Content>
     <Content Include="States\Description\Описание диаграммы состояний.docx">
       <SubType>Content</SubType>

@@ -4,8 +4,6 @@ from django.shortcuts import render
 from django.views.generic.list import ListView
 from dishes.models import EstablishmentDish, Dish
 from orders.models import Order
-from orders.forms import DeliveryForm
-from orders.forms import PickUpForm
 from orders.forms import TableForm
 
 
