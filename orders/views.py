@@ -145,6 +145,8 @@ def decrement_dish(request):
 
 def get_table_form(request):
     order_type = Order.ORDER_TYPE
+    establishment_id = request.GET.get('id')
+   # establishment_branch = Order.establishment_branch.objects.filter(establishment__id=int(establishment_id))[0]
    # branch = Order.establishment_branch(request.session['establishment_branch'])
     # if this is a POST request we need to process the form data
     if request.method == 'GET':
