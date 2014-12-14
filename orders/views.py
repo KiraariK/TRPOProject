@@ -1,13 +1,12 @@
 import json
 from django.http import HttpResponse
 from django.shortcuts import render
-from django.views.generic.list import ListView
 from dishes.models import EstablishmentDish, Dish
 from orders.models import Order
 from orders.forms import TableForm
 from orders.forms import DeliveryForm
 from orders.forms import PickUpForm
-from django.http import HttpResponseRedirect
+
 
 def view_cart(request, cart_state):
     """Отображает страницу корзины заказа"""
@@ -146,68 +145,74 @@ def decrement_dish(request):
 def get_table_form(request):
     order_type = Order.ORDER_TYPE
     # establishment_id = request.GET.get('id')
-   # establishment_branch = Order.establishment_branch.objects.filter(establishment__id=int(establishment_id))[0]
-   # branch = Order.establishment_branch(request.session['establishment_branch'])
+    # establishment_branch = Order.establishment_branch.objects.filter(establishment__id=int(establishment_id))[0]
+    # branch = Order.establishment_branch(request.session['establishment_branch'])
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
         form = TableForm(request.POST)
         # check whether it's valid:
         # if form.is_valid():
-            # process the data in form.cleaned_data as required
-            # ...
-            # redirect to a new URL:
-            # return HttpResponseRedirect('/thanks/')
+        # process the data in form.cleaned_data as required
+        # ...
+        # redirect to a new URL:
+        # return HttpResponseRedirect('/thanks/')
 
     # if a GET (or any other method) we'll create a blank form
     else:
         form = TableForm()
 
-    return render(request, 'orders/orders.html', {'form': form, 'order_type':order_type})
+    return render(request, 'orders/orders.html', {'form': form, 'order_type': order_type})
+
 
 def get_delivery_form(request):
     order_type = Order.ORDER_TYPE
-   # branch = Order.establishment_branch(request.session['establishment_branch'])
+    # branch = Order.establishment_branch(request.session['establishment_branch'])
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
         form = DeliveryForm(request.POST)
         # check whether it's valid:
         # if form.is_valid():
-            # process the data in form.cleaned_data as required
-            # ...
-            # redirect to a new URL:
-            # return HttpResponseRedirect('/thanks/')
+        # process the data in form.cleaned_data as required
+        # ...
+        # redirect to a new URL:
+        # return HttpResponseRedirect('/thanks/')
 
     # if a GET (or any other method) we'll create a blank form
     else:
         form = DeliveryForm()
 
-    return render(request, 'orders/orders.html', {'form': form, 'order_type':order_type})
+    return render(request, 'orders/orders.html', {'form': form, 'order_type': order_type})
+
 
 def get_pickup_form(request):
     order_type = Order.ORDER_TYPE
-   # branch = Order.establishment_branch(request.session['establishment_branch'])
+    # branch = Order.establishment_branch(request.session['establishment_branch'])
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
         form = PickUpForm(request.POST)
         # check whether it's valid:
         # if form.is_valid():
-            # process the data in form.cleaned_data as required
-            # ...
-            # redirect to a new URL:
-            # return HttpResponseRedirect('/thanks/')
+        # process the data in form.cleaned_data as required
+        # ...
+        # redirect to a new URL:
+        # return HttpResponseRedirect('/thanks/')
 
     # if a GET (or any other method) we'll create a blank form
     else:
         form = PickUpForm()
 
-    return render(request, 'orders/orders.html', {'form': form, 'order_type':order_type})
+    return render(request, 'orders/orders.html', {'form': form, 'order_type': order_type})
 
 
 def login(request):
     form = TableForm()
-    return render(request, 'orders.html', {
-      'form': form,
-   })
+    return render(
+        request,
+        'orders.html',
+        {
+            'form': form,
+        }
+    )
