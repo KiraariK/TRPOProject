@@ -4,9 +4,9 @@ from django.shortcuts import render
 from django.views.generic.list import ListView
 from dishes.models import EstablishmentDish, Dish
 from orders.models import Order
+from orders.forms import TableForm
 from orders.forms import DeliveryForm
 from orders.forms import PickUpForm
-from orders.forms import TableForm
 from django.http import HttpResponseRedirect
 
 def view_cart(request, cart_state):
@@ -145,7 +145,7 @@ def decrement_dish(request):
 
 def get_table_form(request):
     order_type = Order.ORDER_TYPE
-    establishment_id = request.GET.get('id')
+    # establishment_id = request.GET.get('id')
    # establishment_branch = Order.establishment_branch.objects.filter(establishment__id=int(establishment_id))[0]
    # branch = Order.establishment_branch(request.session['establishment_branch'])
     # if this is a POST request we need to process the form data
@@ -204,3 +204,10 @@ def get_pickup_form(request):
         form = PickUpForm()
 
     return render(request, 'orders/orders.html', {'form': form, 'order_type':order_type})
+
+
+def login(request):
+    form = TableForm()
+    return render(request, 'orders.html', {
+      'form': form,
+   })

@@ -19,15 +19,27 @@ class EmployeePage(ListView):
         return context
 
 
-def login_view(request):
+def login_view(request, login_state):
     # здесь проверить зареган или нет. или хз где
-    return render(
-        request,
-        'employees/authentication.html',
-        {
-            'title': 'вход'
-        }
-    )
+    state = login_state
+    if state == 1:
+        return render(
+            request,
+            'employees/authentication.html',
+            {
+                'title': 'вход',
+                'state': 1
+            }
+        )
+    else:
+        return render(
+            request,
+            'employees/authentication.html',
+            {
+                'title': 'вход',
+                'state': 0
+            }
+        )
 
 
 def auth_view(request):
@@ -35,14 +47,16 @@ def auth_view(request):
     password = request.POST['password']
     user = auth.authenticate(username=username, password=password)
     if user is not None:
+        employee = Employee.objects.get(user__id=user.id)
+        emp_id = employee.id
         if user.is_active:
-            user123 = Employee.objects.filter(user=user)[0]
             auth.login(request, user)
-            return redirect('employees', user123.id)
+            return redirect('employees', emp_id)
         else:
             return redirect('ban_employee')
     else:
-        return redirect('login_employee')
+
+        return redirect('login_employee', 1)
 
 
 def ban_view(request):
