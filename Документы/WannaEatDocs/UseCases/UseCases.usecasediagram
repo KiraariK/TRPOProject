@@ -1,19 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="bfef01e8-8333-49dd-bf47-aa32d12da7c6" name="UseCases" linkedPackageId="f3bd88b8-1d61-45d1-b6ea-c4b7b1edc701" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
-  <profileInstances>
-    <packageHasProfileInstances Id="294672cb-c596-40d6-a0cb-217eb3a08852">
-      <profileInstance Id="33abe8c4-7814-4588-bced-d1060def6af5" name="StandardProfileL2">
-        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
-      </profileInstance>
-      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
-    </packageHasProfileInstances>
-    <packageHasProfileInstances Id="e2df22a1-805b-46b6-a2d7-2a0b99c4ac8e">
-      <profileInstance Id="4357f444-ef9e-4eab-bce5-d4b37f5fe41f" name="StandardProfileL3">
-        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
-      </profileInstance>
-      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
-    </packageHasProfileInstances>
-  </profileInstances>
   <packagedElements>
     <useCaseModelRootHasTypes>
       <actor Id="38d67f77-9dc4-4056-9753-36a213c2f4e8" name="Клиент" isAbstract="false" isLeaf="false">
@@ -322,7 +308,7 @@
       </useCase>
     </useCaseModelRootHasTypes>
     <useCaseModelRootHasTypes>
-      <useCase Id="e5f0bfba-822b-4788-a103-f5d014579fac" name="Удалить пункт из корзины" isAbstract="false" isLeaf="false">
+      <useCase Id="e5f0bfba-822b-4788-a103-f5d014579fac" name="Удалить блюдо из корзины" isAbstract="false" isLeaf="false">
         <elementDefinition Id="b762430c-774a-49dd-84f9-52798e6751f8" />
         <extendedCases>
           <extend Id="67681c5b-d600-4240-9c66-be3f22d3a8b3">
@@ -394,7 +380,7 @@
       </useCase>
     </useCaseModelRootHasTypes>
     <useCaseModelRootHasTypes>
-      <useCase Id="4fd10a84-6cd3-44fe-8300-c78da3bf8cbe" name="Добавить количество для пункта" isAbstract="false" isLeaf="false">
+      <useCase Id="4fd10a84-6cd3-44fe-8300-c78da3bf8cbe" name="Добавить количество для блюда" isAbstract="false" isLeaf="false">
         <elementDefinition Id="5bd281df-613a-4938-a0d5-e12e19cfe824" />
         <extendedCases>
           <extend Id="4df7eb09-ff07-43d4-9cc0-b1f451e316b2">
@@ -408,7 +394,7 @@
       </useCase>
     </useCaseModelRootHasTypes>
     <useCaseModelRootHasTypes>
-      <useCase Id="bbec6e21-8266-43b7-8ff9-4da3f7d89e58" name="Уменьшить количество для пункта" isAbstract="false" isLeaf="false">
+      <useCase Id="bbec6e21-8266-43b7-8ff9-4da3f7d89e58" name="Уменьшить количество для блюда" isAbstract="false" isLeaf="false">
         <elementDefinition Id="857dc922-c2cd-490a-8b98-e7f0d3113001" />
         <extendedCases>
           <extend Id="2665913b-198e-4898-8522-0e8b1f18e5d4">
@@ -448,5 +434,19 @@
   </packagedElements>
   <package Id="f3bd88b8-1d61-45d1-b6ea-c4b7b1edc701" name="WannaEatDocs">
     <elementDefinition Id="13823d4d-dd9e-44e2-b8d5-1d57eb6dd29f" />
+    <profileInstances>
+      <packageHasProfileInstances Id="294672cb-c596-40d6-a0cb-217eb3a08852">
+        <profileInstance Id="33abe8c4-7814-4588-bced-d1060def6af5" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="e2df22a1-805b-46b6-a2d7-2a0b99c4ac8e">
+        <profileInstance Id="4357f444-ef9e-4eab-bce5-d4b37f5fe41f" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
   </package>
 </useCaseModelRoot>

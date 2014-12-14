@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm9="http://schemas.microsoft.com/dsltools/UseCaseModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm9="http://schemas.microsoft.com/dsltools/UseCaseModel"
   dslVersion="1.0.0.0"
   Id="13823d4d-dd9e-44e2-b8d5-1d57eb6dd29f"
   name="WannaEatDocs" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
@@ -650,7 +650,7 @@
     <packageHasNamedElement>
       <useCase
         Id="b762430c-774a-49dd-84f9-52798e6751f8"
-        name="Удалить пункт из корзины"
+        name="Удалить блюдо из корзины"
         isAbstract="false"
         isLeaf="false">
         <extendedCases>
@@ -770,7 +770,7 @@
     <packageHasNamedElement>
       <useCase
         Id="5bd281df-613a-4938-a0d5-e12e19cfe824"
-        name="Добавить количество для пункта"
+        name="Добавить количество для блюда"
         isAbstract="false"
         isLeaf="false">
         <extendedCases>
@@ -793,7 +793,7 @@
     <packageHasNamedElement>
       <useCase
         Id="857dc922-c2cd-490a-8b98-e7f0d3113001"
-        name="Уменьшить количество для пункта"
+        name="Уменьшить количество для блюда"
         isAbstract="false"
         isLeaf="false">
         <extendedCases>
