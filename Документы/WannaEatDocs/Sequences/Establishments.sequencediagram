@@ -1,19 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<SequenceDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/UseCaseModel" xmlns:dm11="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" dslVersion="1.0.0.0" Id="8a2af4ef-f928-4d26-b7a3-5831f6a7f125" name="Establishments" linkedPackageId="3e4621d4-e66f-4e11-b763-d181341a3aa8" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner">
-  <profileInstances>
-    <packageHasProfileInstances Id="e93c5ee5-efbc-4e16-b403-cb3e1962eb56">
-      <profileInstance Id="5534e986-8cff-4d49-ae17-577fd9b94b7e" name="StandardProfileL2">
-        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
-      </profileInstance>
-      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
-    </packageHasProfileInstances>
-    <packageHasProfileInstances Id="aa1141f2-dcff-4ed3-8dd3-dfe5096b2c29">
-      <profileInstance Id="ce28742f-5ea4-4b36-ba6f-a55edae8ded4" name="StandardProfileL3">
-        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
-      </profileInstance>
-      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
-    </packageHasProfileInstances>
-  </profileInstances>
+<SequenceDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/dsltools/UseCaseModel" dslVersion="1.0.0.0" Id="8a2af4ef-f928-4d26-b7a3-5831f6a7f125" name="Establishments" linkedPackageId="3e4621d4-e66f-4e11-b763-d181341a3aa8" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner">
   <packagedElements>
     <packageHasNamedElement>
       <interaction Id="6b5c378a-d024-4cd0-87e5-0e6412ca43c8" name="Establishments" collapseFragmentsFlag="false" isActiveClass="false" isAbstract="false" isLeaf="false" isReentrant="false">
@@ -476,16 +462,16 @@
               <lifelineMoniker Id="3d8d7400-eec1-4c90-bcb3-51f7e527e328" LastKnownName="Objects : City" />
             </covered>
           </executionOccurrenceSpecification>
-          <messageOccurrenceSpecification Id="bb87f2cd-d7d3-4bdc-b6a0-a9d30b4a04a2" name="MessageOccurrenceSpecification14">
-            <elementDefinition Id="84efa880-9ada-4a45-bb69-e99ce40d4a03" />
-            <covered>
-              <lifelineMoniker Id="2e132b25-3aef-42a3-a8ab-c31194561eed" LastKnownName="EstablishmentsList : ListView" />
-            </covered>
-          </messageOccurrenceSpecification>
           <messageOccurrenceSpecification Id="83b1ab77-e52a-4f2b-8d79-33049f6139a4" name="MessageOccurrenceSpecification15">
             <elementDefinition Id="14eccac8-612b-4ab0-bc44-5c765bacb637" />
             <covered>
               <lifelineMoniker Id="3d8d7400-eec1-4c90-bcb3-51f7e527e328" LastKnownName="Objects : City" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="bb87f2cd-d7d3-4bdc-b6a0-a9d30b4a04a2" name="MessageOccurrenceSpecification14">
+            <elementDefinition Id="84efa880-9ada-4a45-bb69-e99ce40d4a03" />
+            <covered>
+              <lifelineMoniker Id="2e132b25-3aef-42a3-a8ab-c31194561eed" LastKnownName="EstablishmentsList : ListView" />
             </covered>
           </messageOccurrenceSpecification>
           <messageOccurrenceSpecification Id="d75f7fa7-f95f-4c4b-aed4-e9a0ecfdb862" name="MessageOccurrenceSpecification16">
@@ -661,7 +647,7 @@
               <messageOccurrenceSpecificationMoniker Id="ed01146e-cf60-494d-9e84-0c719e6c923e" LastKnownName="MessageOccurrenceSpecification5" />
             </receiveEvent>
           </message>
-          <message Id="c5e3c003-7571-445c-a4cb-72306ea74c86" name="kwargs.get('city_id)'" messageKind="Complete" messageSort="SynchCall" createSelfMessage="true">
+          <message Id="c5e3c003-7571-445c-a4cb-72306ea74c86" name="kwargs.get('city_id')" messageKind="Complete" messageSort="SynchCall" createSelfMessage="true">
             <elementDefinition Id="66a50686-bf96-4d66-be91-a4023a4cc73a" />
             <sendEvent>
               <messageOccurrenceSpecificationMoniker Id="5cc06b57-1903-4937-8445-e20733e1c934" LastKnownName="MessageOccurrenceSpecification6" />
@@ -809,5 +795,19 @@
   </packagedElements>
   <package Id="3e4621d4-e66f-4e11-b763-d181341a3aa8" name="WannaEatDocs">
     <elementDefinition Id="13823d4d-dd9e-44e2-b8d5-1d57eb6dd29f" />
+    <profileInstances>
+      <packageHasProfileInstances Id="e93c5ee5-efbc-4e16-b403-cb3e1962eb56">
+        <profileInstance Id="5534e986-8cff-4d49-ae17-577fd9b94b7e" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="aa1141f2-dcff-4ed3-8dd3-dfe5096b2c29">
+        <profileInstance Id="ce28742f-5ea4-4b36-ba6f-a55edae8ded4" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
   </package>
 </SequenceDesignerModel>

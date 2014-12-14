@@ -74,8 +74,36 @@
       <SubType>Content</SubType>
       <DependentUpon>Sequences\Dishes.sequencediagram</DependentUpon>
     </Content>
+    <Content Include="Sequences\Employees.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Sequences\Employees.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Sequences\Employees.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="Sequences\Establishments.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Sequences\Establishments.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Sequences\Establishments.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="Sequences\Orders.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Sequences\Orders.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Sequences\Orders.sequencediagram</DependentUpon>
+    </Content>
     <Content Include="States\Description\Описание диаграммы состояний.docx">
       <SubType>Content</SubType>
+    </Content>
+    <Content Include="UseCases.usecasediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="UseCases.usecasediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>UseCases.usecasediagram</DependentUpon>
     </Content>
     <Content Include="UseCases\Detalization\Детализация вариантов использования.docx">
       <SubType>Content</SubType>
