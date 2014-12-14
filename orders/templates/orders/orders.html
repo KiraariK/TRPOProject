@@ -2,10 +2,15 @@
 {% load staticfiles %}
 
 {% block content %}
-
-        <div class="row row-offcanvas row-offcanvas-right">
-    {{ form }}
-    <button type="submit">Submit</button>
+         <div class="col-xs-6 col-lg-8">
+ <form action="" method="get">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div>
+    <input type="submit" value="Отправить" />
+        </div>
+</form>
+             </div>
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
           <div class="list-group">
               {% for order, name in order_type %}
@@ -17,4 +22,10 @@
           </div>
         </div><!--/.sidebar-offcanvas-->
       </div><!--/row-->
+{% endblock %}
+
+ {% block scripts %}
+        <script type="text/javascript">
+
+</script>
 {% endblock %}
