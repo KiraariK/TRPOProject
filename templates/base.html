@@ -35,7 +35,9 @@
                     <div class="form-group">
                         <input type="password" placeholder="Password" class="form-control">
                     </div>
-                    <button type="submit" class="btn btn-success">Sign in</button>
+                    <button type="submit" class="btn btn-success" url="">Sign in</button>
+                    <div class="form-group">
+                    </div>
                 </form>
             </div><!-- /.nav-collapse -->
         </div><!-- /.container -->
@@ -46,6 +48,9 @@
         <hr>
         <footer>
          <p>Company 2014</p>
+            <div class="col-md-4">
+               <a class="btn btn-default" href="{% url 'login_employee'%}"></a>
+            </div>
         </footer>
     </div><!--/.container-->
 
