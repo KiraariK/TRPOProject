@@ -4,6 +4,7 @@ from django.test import TestCase
 from employees.models import Employee
 from establishments.models import Establishment
 from orders.models import Order
+from django.test.client import Client
 
 
 class EmployeeTest(TestCase):
@@ -17,3 +18,9 @@ class EmployeeTest(TestCase):
         # order_test=Order(state=Order.STATE_UNDER_CONSIDERATION)
         #  emp_test.acc_order(order=order_test)
         # self.assertEqual(order_test.state, Order.STATE_IN_PROGRESS)
+
+
+class AuthenticateTest(TestCase):
+    def test_index(self):
+        resp = self.client.get('/employee/accounts/login/')
+        self.assertEqual(resp.status_code, 200)

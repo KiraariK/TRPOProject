@@ -7,6 +7,12 @@
     <p class="error">Sorry, that's not a valid username or password</p>
     {% endif %}
 <div class="row">
+    {% if state == 1 %}
+    <div class="alert alert-danger">Неверный логин/пароль</div>
+    {% endif %}
+</div>
+<div class="row">
+
     <form action="{% url 'after_login' %}" method="post">
         {% csrf_token %}
         <label for="username">User name:</label>
