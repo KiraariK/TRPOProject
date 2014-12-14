@@ -149,9 +149,9 @@ def get_table_form(request):
    # establishment_branch = Order.establishment_branch.objects.filter(establishment__id=int(establishment_id))[0]
    # branch = Order.establishment_branch(request.session['establishment_branch'])
     # if this is a POST request we need to process the form data
-    if request.method == 'GET':
+    if request.method == 'POST':
         # create a form instance and populate it with data from the request:
-        form = TableForm(request.GET)
+        form = TableForm(request.POST)
         # check whether it's valid:
         # if form.is_valid():
             # process the data in form.cleaned_data as required
@@ -169,9 +169,9 @@ def get_delivery_form(request):
     order_type = Order.ORDER_TYPE
    # branch = Order.establishment_branch(request.session['establishment_branch'])
     # if this is a POST request we need to process the form data
-    if request.method == 'GET':
+    if request.method == 'POST':
         # create a form instance and populate it with data from the request:
-        form = DeliveryForm(request.GET)
+        form = DeliveryForm(request.POST)
         # check whether it's valid:
         # if form.is_valid():
             # process the data in form.cleaned_data as required
@@ -189,9 +189,9 @@ def get_pickup_form(request):
     order_type = Order.ORDER_TYPE
    # branch = Order.establishment_branch(request.session['establishment_branch'])
     # if this is a POST request we need to process the form data
-    if request.method == 'GET':
+    if request.method == 'POST':
         # create a form instance and populate it with data from the request:
-        form = PickUpForm(request.GET)
+        form = PickUpForm(request.POST)
         # check whether it's valid:
         # if form.is_valid():
             # process the data in form.cleaned_data as required
