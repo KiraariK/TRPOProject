@@ -22,7 +22,7 @@ class EmployeePage(ListView):
 def login_view(request, login_state):
     # здесь проверить зареган или нет. или хз где
     state = login_state
-    if state == 1:
+    if state == '1':
         return render(
             request,
             'employees/authentication.html',
