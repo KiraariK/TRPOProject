@@ -113,7 +113,7 @@ class BranchHall(models.Model):
     def __str__(self):
         return '{0} - {1}'.format(
             self.branch,
-            self.type,
+            self.get_type_display(),
         )
 
     # arguments: table

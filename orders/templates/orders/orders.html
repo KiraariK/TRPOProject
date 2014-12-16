@@ -3,6 +3,7 @@
 
 {% block content %}
          <div class="col-xs-6 col-lg-8">
+             {% if show_form == 1 %}
  <form action="" method="post">
     {% csrf_token %}
     {{ form.as_p }}
@@ -13,14 +14,14 @@
              </div>
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
           <div class="list-group">
-              {% for order, name in order_type %}
-                <a href=""
-                        class="list-group-item ">
+              {% for type, name in order_types_list %}
+                <a href="{% url 'get_form' order_type=type %}" class="list-group-item {% if type == current_order_type %} active {% endif %}">
                     {{ name }}
                 </a>
               {% endfor %}
           </div>
         </div><!--/.sidebar-offcanvas-->
+        {% endif %}
       </div><!--/row-->
 {% endblock %}
 

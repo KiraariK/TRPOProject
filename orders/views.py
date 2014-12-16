@@ -215,3 +215,87 @@ def login(request):
             'form': form,
         }
     )
+
+
+def get_form(request, order_type):
+    """Возвращает на страницу соответствующую форму, тип зависит от order_type:
+    0 - заказ столика
+    1 - заказ самовывоза
+    2 - заказ доставки"""
+    # проверям, нужно ли вообще пользщователю показывать форму (вдруг он ничего не заказал?)
+    if request.session.get('cart_price') is not None:
+        order_types = Order.ORDER_TYPE
+        if order_type == '0':
+            if request.method == 'POST':
+                form = TableForm(request.POST)
+            else:
+                form = TableForm()
+            return render(
+                request,
+                'orders/orders.html',
+                {
+                    # show_form определяет, нужно ли показывать форму пользователю
+                    'show_form': 1,
+                    'form': form,
+                    'order_types_list': order_types,
+                    'current_order_type': order_type
+                }
+            )
+        elif order_type == '1':
+            if request.method == 'POST':
+                form = PickUpForm(request.POST)
+            else:
+                form = PickUpForm()
+            return render(
+                request,
+                'orders/orders.html',
+                {
+                    # show_form определяет, нужно ли показывать форму пользователю
+                    'show_form': 1,
+                    'form': form,
+                    'order_types_list': order_types,
+                    'current_order_type': order_type
+                }
+            )
+        elif order_type == '2':
+            if request.method == 'POST':
+                form = DeliveryForm(request.POST)
+            else:
+                form = DeliveryForm()
+            return render(
+                request,
+                'orders/orders.html',
+                {
+                    # show_form определяет, нужно ли показывать форму пользователю
+                    'show_form': 1,
+                    'form': form,
+                    'order_types_list': order_types,
+                    'current_order_type': order_type
+                }
+            )
+        else:
+            # по-умолчанию - форма для заказа столика
+            if request.method == 'POST':
+                form = TableForm(request.POST)
+            else:
+                form = TableForm()
+            return render(
+                request,
+                'orders/orders.html',
+                {
+                    # show_form определяет, нужно ли показывать форму пользователю
+                    'show_form': 1,
+                    'form': form,
+                    'order_types_list': order_types,
+                    'current_order_type': order_type
+                }
+            )
+    else:
+        return render(
+            request,
+            'orders/orders.html',
+            {
+                # show_form определяет, нужно ли показывать форму пользователю
+                'show_form': 0
+            }
+        )
