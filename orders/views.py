@@ -122,9 +122,9 @@ def decrement_dish(request):
         dish_id = request.GET.get('id')
         dish_count = request.GET.get('count')
         old_count = request.session.get(dish_id)
+        dec_price = Dish.objects.get(id=dish_id).price * int(dish_count)
         if old_count - int(dish_count) <= 0:
             del request.session[dish_id]
-            dec_price = Dish.objects.get(id=dish_id).price * int(dish_count)
             old_cart_price = request.session.get('cart_price')
             if old_cart_price - dec_price <= 0:
                 del request.session['cart_price']
@@ -132,7 +132,6 @@ def decrement_dish(request):
                 request.session['cart_price'] -= dec_price
         else:
             request.session[dish_id] -= int(dish_count)
-            dec_price = Dish.objects.get(id=dish_id).price * int(dish_count)
             request.session['cart_price'] -= dec_price
         if request.session.get(dish_id) is not None:
             return HttpResponse(request.session[dish_id])
