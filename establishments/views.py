@@ -23,7 +23,8 @@ def delete_expired_session_data(request):
     """Очищает истекшие ключи сессии"""
     if request.is_ajax():
         # TODO очищать только, когда пользователь заходит первый раз в сессию на эту страницу
-        request.session.flush()
+        # request.session.flush()
+        request.session.clear_expired()
         message = 'ok'
     else:
         message = 'error'

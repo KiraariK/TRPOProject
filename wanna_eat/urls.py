@@ -6,7 +6,7 @@ urlpatterns = patterns(
     '',
 
     # редирект с корня сайта на страницу выбора заведения для города
-    url(r'^$', RedirectView.as_view(url=r'city/')),
+    url(r'^$', RedirectView.as_view(url=r'city/'), name="home_page"),
 
     # редирект на файл urls в приложении establishments
     url(r'^city/', include('establishments.urls')),
