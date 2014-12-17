@@ -173,12 +173,12 @@ def get_form(request, establishment_id, order_type):
                             request,
                             'orders/orders.html',
                             {
-                            # show_form определяет, нужно ли показывать форму пользователю
-                            'show_form': 0,
-                            'establishment_id': establishment_id,
-                            'form': form,
-                            'order_types_list': order_types,
-                            'current_order_type': order_type
+                                # show_form определяет, нужно ли показывать форму пользователю
+                                'show_form': 0,
+                                'establishment_id': establishment_id,
+                                'form': form,
+                                'order_types_list': order_types,
+                                'current_order_type': order_type
                             }
                         )
             else:
@@ -246,12 +246,12 @@ def get_form(request, establishment_id, order_type):
                             request,
                             'orders/orders.html',
                             {
-                            # show_form определяет, нужно ли показывать форму пользователю
-                            'show_form': 0,
-                            'establishment_id': establishment_id,
-                            'form': form,
-                            'order_types_list': order_types,
-                            'current_order_type': order_type
+                                # show_form определяет, нужно ли показывать форму пользователю
+                                'show_form': 0,
+                                'establishment_id': establishment_id,
+                                'form': form,
+                                'order_types_list': order_types,
+                                'current_order_type': order_type
                             }
                         )
             else:
