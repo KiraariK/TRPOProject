@@ -10,4 +10,5 @@ urlpatterns = patterns(
     url(r'^accounts/after_login/$', views.auth_view, name='after_login'),
     # url for ajax requests
     url(r'accept_order/$', views.acc_state, name='accept_order'),
+    url(r'^$', views.acc_state, name='decline_order'),
 )
