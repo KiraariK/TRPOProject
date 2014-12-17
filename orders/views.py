@@ -160,6 +160,7 @@ def get_form(request, establishment_id, order_type):
         if order_type == '0':
             if request.method == 'POST':
                 if request.POST.get('fields_changed') == '1':
+                    # TODO fix bug: добавить еще одно поле input type=hidden для разделения изменений address и hall
                     branch_id = request.POST.get('address')
                     hall_type = request.POST.get('hall')
                     form = TableForm(establishment_id, branch_id, hall_type, request.POST)
