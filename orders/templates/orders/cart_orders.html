@@ -27,7 +27,7 @@
                             Сумма заказа: {{ val }} р.
                         </div>
                         <div class="col-md-4 col-md-push-2">
-                            <button id="create_order" type="button" class="btn btn-lg btn-default">Оформить заказ</button>
+                            <a class="btn btn-lg btn-default" href="{% url 'get_form' establishment_id=key.id order_type=0 %}">Оформить заказ</a>
                         </div>
                     </div>
                 </div>
@@ -82,10 +82,6 @@
                 hidePopUp();
             }
         })
-        $('#create_order ').click(function() {
-  $.get("{% url 'get_table_form' %}");
-});
-
     </script>
 
 {% endblock %}

@@ -4,29 +4,59 @@
 {% block content %}
          <div class="col-xs-6 col-lg-8">
              {% if show_form == 1 %}
- <form action="" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <div>
-    <input type="submit" value="Отправить" />
-        </div>
-</form>
-             </div>
-        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-          <div class="list-group">
-              {% for type, name in order_types_list %}
-                <a href="{% url 'get_form' order_type=type %}" class="list-group-item {% if type == current_order_type %} active {% endif %}">
-                    {{ name }}
-                </a>
-              {% endfor %}
-          </div>
-        </div><!--/.sidebar-offcanvas-->
+                <form name="make_order_form" id="order_form" action="{% url 'get_form' establishment_id=establishment_id order_type=current_order_type %}" method="post">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div>
+                            {{ field.label }}
+                        </div>
+                        <div>
+                            {{ field }}
+                            {% if field.field.required %}
+                                <span>*</span>
+                            {% endif %}
+                            {% for error in field.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                        <div>
+                            {{ field.help_text }}
+                        </div>
+                        <div><p></p></div> <!-- Исключительно для пропуска строки в текущем шаблоне верстки -->
+                    {% endfor %}
+                    <input id="id_changed" type="hidden" name="fields_changed" value="0" />
+                    <input type="submit" value="Оформить заказ" />
+                </form>
+         </div>
+         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+            <div class="list-group">
+                {% for type, name in order_types_list %}
+                    <a href="{% url 'get_form' establishment_id=establishment_id order_type=type %}" class="list-group-item {% if type == current_order_type %} active {% endif %}">
+                        {{ name }}
+                    </a>
+                {% endfor %}
+            </div>
+         </div><!--/.sidebar-offcanvas-->
         {% endif %}
       </div><!--/row-->
 {% endblock %}
 
- {% block scripts %}
-        <script type="text/javascript">
+{% block scripts %}
+    <script type="text/javascript">
+        $(document).keydown(function(eventObject) {
+            if (eventObject.which == 13) { // нажата клавиша Enter
+                document.forms["make_order_form"].submit();
+            }
+        })
 
-</script>
+        $("#id_address").change(function() {
+            $("#id_changed").val("1");
+            document.forms["make_order_form"].submit();
+        })
+
+        $("#id_hall").change(function() {
+            $("#id_changed").val("1");
+            document.forms["make_order_form"].submit();
+        })
+    </script>
 {% endblock %}

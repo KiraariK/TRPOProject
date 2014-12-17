@@ -141,101 +141,55 @@ def decrement_dish(request):
         return HttpResponse('error')
 
 
-def get_table_form(request):
-    order_type = Order.ORDER_TYPE
-    # establishment_id = request.GET.get('id')
-    # establishment_branch = Order.establishment_branch.objects.filter(establishment__id=int(establishment_id))[0]
-    # branch = Order.establishment_branch(request.session['establishment_branch'])
-    # if this is a POST request we need to process the form data
-    if request.method == 'POST':
-        # create a form instance and populate it with data from the request:
-        form = TableForm(request.POST)
-        # check whether it's valid:
-        # if form.is_valid():
-        # process the data in form.cleaned_data as required
-        # ...
-        # redirect to a new URL:
-        # return HttpResponseRedirect('/thanks/')
-
-    # if a GET (or any other method) we'll create a blank form
-    else:
-        form = TableForm()
-
-    return render(request, 'orders/orders.html', {'form': form, 'order_type': order_type})
-
-
-def get_delivery_form(request):
-    order_type = Order.ORDER_TYPE
-    # branch = Order.establishment_branch(request.session['establishment_branch'])
-    # if this is a POST request we need to process the form data
-    if request.method == 'POST':
-        # create a form instance and populate it with data from the request:
-        form = DeliveryForm(request.POST)
-        # check whether it's valid:
-        # if form.is_valid():
-        # process the data in form.cleaned_data as required
-        # ...
-        # redirect to a new URL:
-        # return HttpResponseRedirect('/thanks/')
-
-    # if a GET (or any other method) we'll create a blank form
-    else:
-        form = DeliveryForm()
-
-    return render(request, 'orders/orders.html', {'form': form, 'order_type': order_type})
-
-
-def get_pickup_form(request):
-    order_type = Order.ORDER_TYPE
-    # branch = Order.establishment_branch(request.session['establishment_branch'])
-    # if this is a POST request we need to process the form data
-    if request.method == 'POST':
-        # create a form instance and populate it with data from the request:
-        form = PickUpForm(request.POST)
-        # check whether it's valid:
-        # if form.is_valid():
-        # process the data in form.cleaned_data as required
-        # ...
-        # redirect to a new URL:
-        # return HttpResponseRedirect('/thanks/')
-
-    # if a GET (or any other method) we'll create a blank form
-    else:
-        form = PickUpForm()
-
-    return render(request, 'orders/orders.html', {'form': form, 'order_type': order_type})
-
-
-def login(request):
-    form = TableForm()
-    return render(
-        request,
-        'orders.html',
-        {
-            'form': form,
-        }
-    )
-
-
-def get_form(request, order_type):
+def get_form(request, establishment_id, order_type):
     """Возвращает на страницу соответствующую форму, тип зависит от order_type:
     0 - заказ столика
     1 - заказ самовывоза
     2 - заказ доставки"""
-    # проверям, нужно ли вообще пользщователю показывать форму (вдруг он ничего не заказал?)
-    if request.session.get('cart_price') is not None:
+    # проверям, нужно ли вообще пользователю показывать форму (вдруг он ничего не заказал?)
+    # проверяем, есть ли в сессии ключи, соответствующие блюдам выбранного заведения
+    establishment_dishes = Dish.objects.filter(establishmentdish__establishment__id=establishment_id)
+    is_valid_request = False
+    for key in request.session.keys():
+        if key != 'cart_price':
+            if establishment_dishes.get(id=key) is not None:
+                is_valid_request = True
+
+    if is_valid_request:
         order_types = Order.ORDER_TYPE
         if order_type == '0':
             if request.method == 'POST':
-                form = TableForm(request.POST)
+                if request.POST.get('fields_changed') == '1':
+                    branch_id = request.POST.get('address')
+                    hall_type = request.POST.get('hall')
+                    form = TableForm(establishment_id, branch_id, hall_type, request.POST)
+                else:
+                    branch_id = request.POST.get('address')
+                    hall_type = request.POST.get('hall')
+                    form = TableForm(establishment_id, branch_id, hall_type, request.POST)
+                    # TODO validation: дата не раньше, чем текущая + 2 часа; телефонный номер - полож. число, 10 цифр
+                    if form.is_valid():
+                        return render(
+                            request,
+                            'orders/orders.html',
+                            {
+                            # show_form определяет, нужно ли показывать форму пользователю
+                            'show_form': 0,
+                            'establishment_id': establishment_id,
+                            'form': form,
+                            'order_types_list': order_types,
+                            'current_order_type': order_type
+                            }
+                        )
             else:
-                form = TableForm()
+                form = TableForm(establishment_id, -1, -1)
             return render(
                 request,
                 'orders/orders.html',
                 {
                     # show_form определяет, нужно ли показывать форму пользователю
                     'show_form': 1,
+                    'establishment_id': establishment_id,
                     'form': form,
                     'order_types_list': order_types,
                     'current_order_type': order_type
@@ -252,6 +206,7 @@ def get_form(request, order_type):
                 {
                     # show_form определяет, нужно ли показывать форму пользователю
                     'show_form': 1,
+                    'establishment_id': establishment_id,
                     'form': form,
                     'order_types_list': order_types,
                     'current_order_type': order_type
@@ -268,6 +223,7 @@ def get_form(request, order_type):
                 {
                     # show_form определяет, нужно ли показывать форму пользователю
                     'show_form': 1,
+                    'establishment_id': establishment_id,
                     'form': form,
                     'order_types_list': order_types,
                     'current_order_type': order_type
@@ -276,15 +232,37 @@ def get_form(request, order_type):
         else:
             # по-умолчанию - форма для заказа столика
             if request.method == 'POST':
-                form = TableForm(request.POST)
+                if request.POST.get('fields_changed') == '1':
+                    branch_id = request.POST.get('address')
+                    hall_type = request.POST.get('hall')
+                    form = TableForm(establishment_id, branch_id, hall_type, request.POST)
+                else:
+                    branch_id = request.POST.get('address')
+                    hall_type = request.POST.get('hall')
+                    # TODO validation: дата не раньше, чем текущая + 2 часа; телефонный номер - полож. число, 10 цифр
+                    form = TableForm(establishment_id, branch_id, hall_type, request.POST)
+                    if form.is_valid():
+                        return render(
+                            request,
+                            'orders/orders.html',
+                            {
+                            # show_form определяет, нужно ли показывать форму пользователю
+                            'show_form': 0,
+                            'establishment_id': establishment_id,
+                            'form': form,
+                            'order_types_list': order_types,
+                            'current_order_type': order_type
+                            }
+                        )
             else:
-                form = TableForm()
+                form = TableForm(establishment_id, -1, -1)
             return render(
                 request,
                 'orders/orders.html',
                 {
                     # show_form определяет, нужно ли показывать форму пользователю
                     'show_form': 1,
+                    'establishment_id': establishment_id,
                     'form': form,
                     'order_types_list': order_types,
                     'current_order_type': order_type
@@ -296,6 +274,7 @@ def get_form(request, order_type):
             'orders/orders.html',
             {
                 # show_form определяет, нужно ли показывать форму пользователю
-                'show_form': 0
+                'show_form': 0,
+                'establishment_id': establishment_id
             }
         )
