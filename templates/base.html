@@ -7,6 +7,8 @@
     <title>{{ title }}</title>
     {% load staticfiles %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
+
     {% block styles %}{% endblock %}
     <script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
 </head>
@@ -36,10 +38,10 @@
         {% block content %}{% endblock %}
         <hr>
         <footer>
-         <div class="col-md-4">Company 2014 </div>
-             <div class="col-md-4">  </div>
-            <div class="col-md-4">
-               <a class="btn btn-xs btn-default" href="{% url 'login_employee' %}">Войти</a>
+         <div class="col-xs-4">Company 2014 </div>
+             <div class="col-xs-6">  </div>
+            <div class="col-xs-2">
+               <a href="{% url 'login_employee' %}">Войти</a>
             </div>
         </footer>
     </div><!--/.container-->

@@ -17,24 +17,26 @@
                     <span id="order_rows{{ key.id }}"></span>
                     <button type="button" class="btn btn-primary" onclick="hidePopUp()">Закрыть</button>
                 </div>
-                <div class="jumbotron">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <button type="button" class="btn btn-lg btn-link" id="order{{ key.id }}" onclick="viewOrderList({{ key.id }})">Заказ</button>
+
+             <div  class="panel" method="post" style="border-color:#eeeeee" style="width:100%">
+                  <div class="panel-body" style="background:#f1f1f1">
+                  <div class="col-xs-4" >
+                      <p></p>
+                       <button type="button" class="btn btn-lg btn-link" id="order{{ key.id }}" onclick="viewOrderList({{ key.id }})">Заказ</button>
                             в "{{ key.name }}"
-                        </div>
-                        <div class="col-md-4 col-md-push-1">
-                            Сумма заказа: {{ val }} р.
-                        </div>
-                        <div class="col-md-4 col-md-push-2">
-                            <button id="create_order" type="button" class="btn btn-lg btn-default">Оформить заказ</button>
-                        </div>
-                    </div>
-                </div>
+                      </div>
+                      <div class="col-xs-4">
+                          <p></p>
+                          Сумма заказа: {{ val }} р.
+                      </div>
+                       <div class="col-xs-2">
+                             <button id="create_order" type="button" class="btn btn-lg btn-default">Оформить заказ</button>
+                      </div>
+</div>
                 {% endfor %}
         </div>
 
-    </div>
+
 
 {% endblock %}
 

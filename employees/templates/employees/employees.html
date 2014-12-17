@@ -1,28 +1,30 @@
 {% extends "base.html" %}
 {% load static %}
-
 {% block content %}
-<div>
+<div class="container">
     <h1>{{employees.establishment}}</h1>
-
-    <div class="col-xs-9 col-sm-8 sidebar-offcanvas" >
-          <div class="list-group">
-              {% for order in order_list %}
-              <form method="post">
-                <p >{{ order.id }} {{order.contact_account }} {{ order.get_type_display }} {{ order.get_state_display }}
-                {{ order.client_phone }} {{ order.execute_datetime }}</p>
-               <p>
-                  <a class="btn btn-default" name="accept" id="accept"  onclick="accept_order({{ order.id }})" role="button">Принять</a>
-              </p>
+<div class="col-xs-11" >
+    {% for order in order_list %}
+              <form  class="panel" method="post" style="border-color:#eeeeee">
+                  <div class="panel-body" style="background:#f1f1f1">
+                  <div class="col-xs-10" >
+                      <p></p>
+                    <p >Заказ номер: {{ order.id }}</p>
+                       <p >Номер заказа: {{ order.id }}</p>
+                      <p >Заказа для: {{order.contact_account }} </p>
+                      <p >Тип заказа: {{ order.get_type_display }} </p>
+                      <p >Статус заказа: {{ order.get_state_display }}</p>
+                      <p >Контактный номер: {{ order.client_phone }}</p>
+                      <p >Дата выполнения: {{ order.execute_datetime }}</p>
+                  </div>
+                 <div class="col-xs-2">
+                     <p></p>
+                  <p><a class="btn btn-default" name="accept" id="accept"  onclick="accept_order({{ order.id }})" role="button" style="width:100%;background-color: #C9F4BE;">Принять</a>
+                   <p></p><a class="btn btn-default" name="decline" id="decline"  onclick="decline_order({{ order.id }})" role="button" style="width:100%;background-color: #F4C9BE">Отменить</a></p>
+                  </div></div>
               </form>
-
-
               {% endfor %}
-          </div>
-
-
-</div>
-</div>
+</div></div>
 
 
 {% endblock %}

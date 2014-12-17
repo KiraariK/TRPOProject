@@ -11,27 +11,49 @@
    }
 </style>
 
-    <div class="row">
-        <img src="{% static 'images/cart/cart_icon.png' %}" class="img-thumbnail">
-        <p id="cart_value">0 р.</p>
-    </div>
- <div class="row">
-     <div class="col-xs-11">
-         <h1>{{dish.name}}</h1>
-         <div class="row">
-         <div class="col-xs-4">
-             <div>
-                <img src="{% static 'images/'|add:dish.dish_image.name %}" class="img-rounded">
-             </div>
-             <p><a class="btn btn-default" onClick="addDish({{ dish.id }}, {{ dish.price }})" role="button">+</a></p>
-             <div>
-                 <p>{{dish.composition}}</p>
-                 <p>Вес: {{dish.weight}}</p>
-                 <p>Цена: {{dish.price}}</p>
-             </div>
-         </div>
-         <div class="col-xs-8"></div>
-             <p>{{dish.description}}</p>
+     <div class="row row-offcanvas row-offcanvas-right">
+
+        <div class="col-xs-12 col-sm-9">
+          <p class="pull-right visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+          </p>
+          <div class="jumbotron">
+             <h1>{{dish.name}}</h1>
+            <p>Узнайте все об этом блюде</p>
+          </div>
+
+          <div class="container">
+            <div class="col-xs-7">
+            </div>
+            <div class="col-xs-2">
+                <a href="{% url 'cart' cart_state=1 %}">
+                <img src="{% static 'images/cart/basket.png' %}" class="img-thumbnail"> </a>
+                <a href="{% url 'cart' cart_state=1 %}"> Корзина:
+                </a>
+                <b id="cart_value">0 р.
+                </b>
+                <p></p>
+            </div>
+          </div>
+          <div class="container">
+            <div class="col-xs-2">
+                     <img src="{% static 'images/'|add:dish.dish_image.name %}" class="img-rounded">
+            </div>
+            <div class="col-xs-7">
+                <p align="justify">{{dish.description}}</p>
+                <p align="justify">Состав: {{dish.composition}}</p>
+                <p align="justify">Вес: {{dish.weight}}</p>
+            </div>
+            <div class="col-xs-11">
+                <div>
+                    <p></p>
+                    <p>Цена: {{dish.price}}
+                    <a> <img src="{% static 'images/cart/add_to_basket.png' %}" class="btn btn-default" onClick="addDish({{ dish.id }}, {{ dish.price }})" role="button">
+                    </a>
+                    </p>
+                </div>
+            </div>
+
 
          </div>
      </div>
