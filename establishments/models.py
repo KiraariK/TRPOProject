@@ -156,6 +156,8 @@ class DinnerWagon(models.Model):
 
     def reserve(self):
         self.is_reserved = 1
+        self.save()
 
     def free(self):
         self.is_reserved = 0
+        self.save()

@@ -1,7 +1,10 @@
+from datetime import datetime
 import json
 from django.http import HttpResponse
 from django.shortcuts import render
 from dishes.models import EstablishmentDish, Dish
+from employees.models import Employee
+from establishments.models import EstablishmentBranch, DinnerWagon, Establishment
 from orders.models import Order
 from orders.forms import TableForm
 from orders.forms import DeliveryForm
@@ -157,60 +160,14 @@ def get_form(request, establishment_id, order_type):
 
     if is_valid_request:
         order_types = Order.ORDER_TYPE
-        if order_type == '0':
-            if request.method == 'POST':
-                if request.POST.get('address_changed') == '1':
-                    branch_id = request.POST.get('address')
-                    form = TableForm(establishment_id, branch_id, -1, request.POST)
-                    show_errors = 0
-                elif request.POST.get('hall_changed') == '1':
-                    branch_id = request.POST.get('address')
-                    hall_type = request.POST.get('hall')
-                    form = TableForm(establishment_id, branch_id, hall_type, request.POST)
-                    show_errors = 0
-                else:
-                    branch_id = request.POST.get('address')
-                    hall_type = request.POST.get('hall')
-                    form = TableForm(establishment_id, branch_id, hall_type, request.POST)
-                    show_errors = 1
-                    if form.is_valid():
-                        return render(
-                            request,
-                            'orders/orders.html',
-                            {
-                                # show_form определяет, нужно ли показывать форму пользователю
-                                'show_form': 0,
-                                'show_errors': show_errors,
-                                'establishment_id': establishment_id,
-                                'form': form,
-                                'order_types_list': order_types,
-                                'current_order_type': order_type
-                            }
-                        )
-            else:
-                form = TableForm(establishment_id, -1, -1)
-                show_errors = 0
-            return render(
-                request,
-                'orders/orders.html',
-                {
-                    # show_form определяет, нужно ли показывать форму пользователю
-                    'show_form': 1,
-                    'show_errors': show_errors,
-                    'establishment_id': establishment_id,
-                    'form': form,
-                    'order_types_list': order_types,
-                    'current_order_type': order_type
-                }
-            )
-        elif order_type == '1':
+        if order_type == '1':
             if request.method == 'POST':
                 form = PickUpForm(request.POST)
             else:
                 form = PickUpForm()
             return render(
                 request,
-                'orders/orders.html',
+                'orders/make_order_form.html',
                 {
                     # show_form определяет, нужно ли показывать форму пользователю
                     'show_form': 1,
@@ -227,7 +184,7 @@ def get_form(request, establishment_id, order_type):
                 form = DeliveryForm()
             return render(
                 request,
-                'orders/orders.html',
+                'orders/make_order_form.html',
                 {
                     # show_form определяет, нужно ли показывать форму пользователю
                     'show_form': 1,
@@ -238,7 +195,6 @@ def get_form(request, establishment_id, order_type):
                 }
             )
         else:
-            # по-умолчанию - форма для заказа столика
             if request.method == 'POST':
                 if request.POST.get('address_changed') == '1':
                     branch_id = request.POST.get('address')
@@ -255,17 +211,71 @@ def get_form(request, establishment_id, order_type):
                     form = TableForm(establishment_id, branch_id, hall_type, request.POST)
                     show_errors = 1
                     if form.is_valid():
+
+                        # создание и запись в БД заказа
+                        order_client_phone = form.cleaned_data['phone']
+                        order_order_type = order_type
+                        date_time_data = form.cleaned_data['datetime']
+                        order_execute_datetime = datetime(
+                            date_time_data.year,
+                            date_time_data.month,
+                            date_time_data.day,
+                            date_time_data.hour,
+                            date_time_data.minute
+                        )
+                        order_contact_account = Employee.objects.filter(
+                            establishment__id=establishment_id
+                        ).first()
+                        order_branch_id = int(request.POST.get('address'))
+                        order_establishment_branch = EstablishmentBranch.objects.filter(
+                            id=order_branch_id
+                        ).first()
+                        order_table_seats = int(request.POST.get('table'))
+                        order_hall_type = request.POST.get('hall')
+                        order_dinner_wagon = DinnerWagon.objects.filter(
+                            is_reserved=False,
+                            seats=order_table_seats,
+                            hall__type=order_hall_type,
+                            hall__branch=order_establishment_branch
+                        ).first()
+                        new_order = Order(
+                            client_phone=order_client_phone,
+                            type=order_order_type,
+                            execute_datetime=order_execute_datetime,
+                            contact_account=order_contact_account,
+                            establishment_branch=order_establishment_branch,
+                            dinner_wagon=order_dinner_wagon
+                        )
+                        new_order.make(type='table')
+                        new_order.save()
+
+                        # удаление из сессии оформленных в заказе блюд и корзины, при необходимости
+                        keys_for_delete = []
+                        for key in request.session.keys():
+                            if key != 'cart_price':
+                                if establishment_dishes.get(id=key) is not None:
+                                    keys_for_delete.append(key)
+                        for key in keys_for_delete:
+                            del request.session[key]
+                        is_cart_empty = True
+                        for key in request.session.keys():
+                            if key != 'cart_price':
+                                is_cart_empty = False
+                        if is_cart_empty:
+                            del request.session['cart_price']
+
+                        # TODO редирект на страницу успешного оформления заказа
+                        establishment = Establishment.objects.get(id=establishment_id)
                         return render(
                             request,
-                            'orders/orders.html',
+                            'orders/order_created.html',
                             {
-                                # show_form определяет, нужно ли показывать форму пользователю
-                                'show_form': 0,
-                                'show_errors': show_errors,
+                                'order_type': order_type,
                                 'establishment_id': establishment_id,
-                                'form': form,
-                                'order_types_list': order_types,
-                                'current_order_type': order_type
+                                'establishment_name': establishment.name,
+                                'establishment_email': establishment.email,
+                                'establishment_branch_order_phone': order_establishment_branch.order_phone_number,
+                                'establishment_branch_help_phone': order_establishment_branch.help_phone_number
                             }
                         )
             else:
@@ -273,7 +283,7 @@ def get_form(request, establishment_id, order_type):
                 show_errors = 0
             return render(
                 request,
-                'orders/orders.html',
+                'orders/make_order_form.html',
                 {
                     # show_form определяет, нужно ли показывать форму пользователю
                     'show_form': 1,
@@ -288,7 +298,7 @@ def get_form(request, establishment_id, order_type):
         show_errors = 0
         return render(
             request,
-            'orders/orders.html',
+            'orders/make_order_form.html',
             {
                 # show_form определяет, нужно ли показывать форму пользователю
                 'show_form': 0,
