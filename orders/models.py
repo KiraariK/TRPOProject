@@ -127,6 +127,10 @@ class Order(models.Model):
             " " + self.contact_account.__str__() + \
             " " + self.get_state_display()
 
+    def delete(self, using=None):
+        super().delete(using)
+        OrdersCartRow.objects.filter(order=self).delete()
+
 
 class OrdersCartRow(models.Model):
     establishment_dish = models.OneToOneField(

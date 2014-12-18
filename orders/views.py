@@ -5,8 +5,8 @@ from django.shortcuts import render
 from dishes.models import EstablishmentDish, Dish
 from employees.models import Employee
 from establishments.models import EstablishmentBranch, DinnerWagon, Establishment
-from orders.models import Order
-from orders.forms import TableForm
+from orders.models import Order, OrdersCartRow
+from orders.forms import TableForm, UserOrdersForm
 from orders.forms import DeliveryForm
 from orders.forms import PickUpForm
 
@@ -87,6 +87,7 @@ def view_orders(request):
 
 
 def view_establishment_dish_list(request):
+    """Возвращает список блюд в заказе, относящиеся к определенному заведению"""
     if request.is_ajax():
         establishment_id = request.GET.get('id')
         establishment = EstablishmentDish.objects.filter(establishment__id=int(establishment_id))[0].establishment
@@ -144,7 +145,7 @@ def decrement_dish(request):
         return HttpResponse('error')
 
 
-def get_form(request, establishment_id, order_type):
+def get_order_form(request, establishment_id, order_type):
     """Возвращает на страницу соответствующую форму, тип зависит от order_type:
     0 - заказ столика
     1 - заказ самовывоза
@@ -163,6 +164,7 @@ def get_form(request, establishment_id, order_type):
         if order_type == '1':
             if request.method == 'POST':
                 form = PickUpForm(establishment_id, request.POST)
+                # TODO реализовать обработку данных формы самовывоза и создание заказа
             else:
                 form = PickUpForm(establishment_id)
             show_errors = 1
@@ -182,6 +184,7 @@ def get_form(request, establishment_id, order_type):
         elif order_type == '2':
             if request.method == 'POST':
                 form = DeliveryForm(request.POST)
+                # TODO реализовать обработку данных формы доставки и создание заказа
             else:
                 form = DeliveryForm()
             show_errors = 1
@@ -250,8 +253,18 @@ def get_form(request, establishment_id, order_type):
                             establishment_branch=order_establishment_branch,
                             dinner_wagon=order_dinner_wagon
                         )
-                        new_order.make(type='table')
                         new_order.save()
+                        for key in request.session.keys():
+                            if key != 'cart_price':
+                                row = OrdersCartRow(
+                                    establishment_dish=EstablishmentDish.objects.get(dish__id=key),
+                                    dishes_count=request.session[key],
+                                    order=new_order
+                                )
+                                row.save()
+
+                        new_order.make(type='table')
+                        new_order.save(update_fields=['type', 'dinner_wagon', 'state'])
 
                         # удаление из сессии оформленных в заказе блюд и корзины, при необходимости
                         keys_for_delete = []
@@ -268,7 +281,6 @@ def get_form(request, establishment_id, order_type):
                         if is_cart_empty:
                             del request.session['cart_price']
 
-                        # TODO редирект на страницу успешного оформления заказа
                         establishment = Establishment.objects.get(id=establishment_id)
                         return render(
                             request,
@@ -310,3 +322,31 @@ def get_form(request, establishment_id, order_type):
                 'establishment_id': establishment_id
             }
         )
+
+
+def get_user_form(request):
+    """Возвращает на страницу форму для ввода номера телефона клиента"""
+    if request.method == 'POST':
+        form = UserOrdersForm(request.POST)
+        if form.is_valid():
+            is_phone_valid = 1
+            return render(
+                request,
+                'orders/user_orders.html',
+                {
+                    'is_valid': is_phone_valid,
+                    'form': form,
+                    'orders': Order.objects.filter(client_phone=form.cleaned_data['phone'])
+                }
+            )
+    else:
+        form = UserOrdersForm()
+    is_phone_valid = 0
+    return render(
+        request,
+        'orders/user_orders.html',
+        {
+            'is_valid': is_phone_valid,
+            'form': form
+        }
+    )

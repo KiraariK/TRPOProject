@@ -304,3 +304,27 @@ class PickUpForm(forms.Form):
                 label='Адрес заведения',
                 required=True
             )
+
+
+class UserOrdersForm(forms.Form):
+    phone = forms.CharField(
+        label='Ваш контактный телефон',
+        widget=forms.TextInput(attrs={'placeholder': '9004001020'}),
+        max_length=10,
+        error_messages={
+            'required': 'Поле номера телефона не может быть пустым'
+        },
+        required=True
+    )
+
+    def clean_phone(self):
+        phone = self.cleaned_data['phone']
+        symbols_list = list(phone)
+        for symbol in symbols_list:
+            try:
+                int_value = int(symbol)
+                if int_value < 0:
+                    raise forms.ValidationError('Неверный номер телефона')
+            except ValueError:
+                raise forms.ValidationError('Неверный номер телефона')
+        return phone

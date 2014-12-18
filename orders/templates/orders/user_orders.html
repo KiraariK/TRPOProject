@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+    <div class="page-header">
+        <h1>Ваши заказы</h1>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        Получить заказы по номеру телефона
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <form name="user_orders_form" action="{% url 'get_user_form' %}" method="post">
+                        {% csrf_token %}
+                        {% for field in form %}
+                            <div>
+                                {{ field.label }}
+                            </div>
+                            <div>
+                                {{ field }}
+                                {% if field.field.required %}
+                                    <span>*</span>
+                                {% endif %}
+                                {% if show_errors == 1 %}
+                                    {% for error in field.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                            <div>
+                                {{ field.help_text }}
+                            </div>
+                            <div><p></p></div> <!-- Исключительно для пропуска строки в текущем шаблоне верстки -->
+                        {% endfor %}
+                        <input type="submit" value="Показать" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if is_valid == 1 %}
+        {% for order in orders %}
+        <div class="row">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        {{ order.get_type_display }}
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-3">
+                        Статус: <strong>{{ order.get_state_display }}</strong>
+                    </div>
+                    <div class="col-md-3">
+                        <p>{{ order.establishment_branch.establishment.name }} - {{ order.establishment_branch.establishment.email }}</p>
+                        {% if order.type != 2 %}
+                            {{ order.establishment_branch.address }} - {{ order.establishment_branch.help_phone_number }}
+                        {% endif %}
+                    </div>
+                    <div class="col-md-3">
+                        <a class="btn btn-link" href="#">Заказ</a>
+                    </div>
+                    <div class="col-md-3">
+                        {{ order.execute_datetime }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    {% endif %}
+
+{% endblock %}
+
+{% block scripts %}
+
+    <script type="text/javascript">
+        $(document).keydown(function(eventObject) {
+            if (eventObject.which == 13) { // нажата клавиша Enter
+                document.forms["user_orders_form"].submit();
+            }
+        })
+        // TODO: сдлеть ajax запрос для отображения блюд заказа
+    </script>
+
+{% endblock %}
