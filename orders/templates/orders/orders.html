@@ -15,16 +15,19 @@
                             {% if field.field.required %}
                                 <span>*</span>
                             {% endif %}
-                            {% for error in field.errors %}
-                                {{ error }}
-                            {% endfor %}
+                            {% if show_errors == 1 %}
+                                {% for error in field.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            {% endif %}
                         </div>
                         <div>
                             {{ field.help_text }}
                         </div>
                         <div><p></p></div> <!-- Исключительно для пропуска строки в текущем шаблоне верстки -->
                     {% endfor %}
-                    <input id="id_changed" type="hidden" name="fields_changed" value="0" />
+                    <input id="id_address_changed" type="hidden" name="address_changed" value="0" />
+                    <input id="id_hall_changed" type="hidden" name="hall_changed" value="0" />
                     <input type="submit" value="Оформить заказ" />
                 </form>
          </div>
@@ -50,12 +53,12 @@
         })
 
         $("#id_address").change(function() {
-            $("#id_changed").val("1");
+            $("#id_address_changed").val("1");
             document.forms["make_order_form"].submit();
         })
 
         $("#id_hall").change(function() {
-            $("#id_changed").val("1");
+            $("#id_hall_changed").val("1");
             document.forms["make_order_form"].submit();
         })
     </script>

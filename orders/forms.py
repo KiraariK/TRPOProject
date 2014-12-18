@@ -41,30 +41,9 @@ class TableForm(forms.Form):
                 required=True
             )
 
-            # если branch_id == -1 и hall_type = -1: загрузка данных по умолчанию
-            if branch_id == -1 and hall_type == -1:
-                default_branch = EstablishmentBranch.objects.filter(establishment__id=establishment_id).first()
-                self.fields['hall'] = forms.ChoiceField(
-                    choices=[(hall.type, hall.get_type_display()) for hall in BranchHall.objects.filter(
-                        branch=default_branch
-                    )],
-                    label='Тип зала заведения',
-                    required=True
-                )
-
-                default_hall = BranchHall.objects.filter(branch=default_branch).first()
-                free_tables = DinnerWagon.objects.filter(hall=default_hall, is_reserved=False)
-                if free_tables.exists():
-                    table_types = []
-                    for table in free_tables:
-                        if table_types.count(table.seats) == 0:
-                            table_types.append(table.seats)
-                    self.fields['table'] = forms.ChoiceField(
-                        choices=[(table_type, table_type) for table_type in table_types],
-                        label='Количество мест за столиком',
-                        required=True
-                    )
-            else:
+            if branch_id != -1 and hall_type != -1:
+                # изменился зал: для заданного branch_id выгрузить зал hall_type и его столики
+                # если branch_id != -1 и hall_type != -1, то загружаем зал филиала branch_id и его столики
                 default_branch = EstablishmentBranch.objects.filter(
                     establishment__id=establishment_id,
                     id=branch_id
@@ -92,6 +71,107 @@ class TableForm(forms.Form):
                         label='Количество мест за столиком',
                         required=True
                     )
+            elif branch_id != -1 and hall_type == -1:
+                # изменилось заведение: для заданного branch_id выгрузить первый попавшийся зал и его столики
+                # загружаем залы branch_id и сттолики по умолчанию
+                default_branch = EstablishmentBranch.objects.filter(
+                    establishment__id=establishment_id,
+                    id=branch_id
+                ).first()
+                self.fields['hall'] = forms.ChoiceField(
+                    choices=[(hall.type, hall.get_type_display()) for hall in BranchHall.objects.filter(
+                        branch=default_branch
+                    )],
+                    label='Тип зала заведения',
+                    required=True
+                )
+
+                default_hall = BranchHall.objects.filter(branch=default_branch).first()
+                free_tables = DinnerWagon.objects.filter(hall=default_hall, is_reserved=False)
+                if free_tables.exists():
+                    table_types = []
+                    for table in free_tables:
+                        if table_types.count(table.seats) == 0:
+                            table_types.append(table.seats)
+                    self.fields['table'] = forms.ChoiceField(
+                        choices=[(table_type, table_type) for table_type in table_types],
+                        label='Количество мест за столиком',
+                        required=True
+                    )
+            else:
+                # ничего не изменилось
+                # загружаем все по умолчанию
+                default_branch = EstablishmentBranch.objects.filter(establishment__id=establishment_id).first()
+                self.fields['hall'] = forms.ChoiceField(
+                    choices=[(hall.type, hall.get_type_display()) for hall in BranchHall.objects.filter(
+                        branch=default_branch
+                    )],
+                    label='Тип зала заведения',
+                    required=True
+                )
+
+                default_hall = BranchHall.objects.filter(branch=default_branch).first()
+                free_tables = DinnerWagon.objects.filter(hall=default_hall, is_reserved=False)
+                if free_tables.exists():
+                    table_types = []
+                    for table in free_tables:
+                        if table_types.count(table.seats) == 0:
+                            table_types.append(table.seats)
+                    self.fields['table'] = forms.ChoiceField(
+                        choices=[(table_type, table_type) for table_type in table_types],
+                        label='Количество мест за столиком',
+                        required=True
+                    )
+            # if branch_id == -1 and hall_type == -1:
+            #     default_branch = EstablishmentBranch.objects.filter(establishment__id=establishment_id).first()
+            #     self.fields['hall'] = forms.ChoiceField(
+            #         choices=[(hall.type, hall.get_type_display()) for hall in BranchHall.objects.filter(
+            #             branch=default_branch
+            #         )],
+            #         label='Тип зала заведения',
+            #         required=True
+            #     )
+            #
+            #     default_hall = BranchHall.objects.filter(branch=default_branch).first()
+            #     free_tables = DinnerWagon.objects.filter(hall=default_hall, is_reserved=False)
+            #     if free_tables.exists():
+            #         table_types = []
+            #         for table in free_tables:
+            #             if table_types.count(table.seats) == 0:
+            #                 table_types.append(table.seats)
+            #         self.fields['table'] = forms.ChoiceField(
+            #             choices=[(table_type, table_type) for table_type in table_types],
+            #             label='Количество мест за столиком',
+            #             required=True
+            #         )
+            # else:
+            #     default_branch = EstablishmentBranch.objects.filter(
+            #         establishment__id=establishment_id,
+            #         id=branch_id
+            #     ).first()
+            #     self.fields['hall'] = forms.ChoiceField(
+            #         choices=[(hall.type, hall.get_type_display()) for hall in BranchHall.objects.filter(
+            #             branch=default_branch
+            #         )],
+            #         label='Тип зала заведения',
+            #         required=True
+            #     )
+            #
+            #     default_hall = BranchHall.objects.filter(
+            #         branch=default_branch,
+            #         type=hall_type
+            #     ).first()
+            #     free_tables = DinnerWagon.objects.filter(hall=default_hall, is_reserved=False)
+            #     if free_tables.exists():
+            #         table_types = []
+            #         for table in free_tables:
+            #             if table_types.count(table.seats) == 0:
+            #                 table_types.append(table.seats)
+            #         self.fields['table'] = forms.ChoiceField(
+            #             choices=[(table_type, table_type) for table_type in table_types],
+            #             label='Количество мест за столиком',
+            #             required=True
+            #         )
 
 
 class DeliveryForm(forms.Form):

@@ -159,16 +159,20 @@ def get_form(request, establishment_id, order_type):
         order_types = Order.ORDER_TYPE
         if order_type == '0':
             if request.method == 'POST':
-                if request.POST.get('fields_changed') == '1':
-                    # TODO fix bug: добавить еще одно поле input type=hidden для разделения изменений address и hall
+                if request.POST.get('address_changed') == '1':
+                    branch_id = request.POST.get('address')
+                    form = TableForm(establishment_id, branch_id, -1, request.POST)
+                    show_errors = 0
+                elif request.POST.get('hall_changed') == '1':
                     branch_id = request.POST.get('address')
                     hall_type = request.POST.get('hall')
                     form = TableForm(establishment_id, branch_id, hall_type, request.POST)
+                    show_errors = 0
                 else:
                     branch_id = request.POST.get('address')
                     hall_type = request.POST.get('hall')
                     form = TableForm(establishment_id, branch_id, hall_type, request.POST)
-                    # TODO validation: дата не раньше, чем текущая + 2 часа; телефонный номер - полож. число, 10 цифр
+                    show_errors = 1
                     if form.is_valid():
                         return render(
                             request,
@@ -176,6 +180,7 @@ def get_form(request, establishment_id, order_type):
                             {
                                 # show_form определяет, нужно ли показывать форму пользователю
                                 'show_form': 0,
+                                'show_errors': show_errors,
                                 'establishment_id': establishment_id,
                                 'form': form,
                                 'order_types_list': order_types,
@@ -184,12 +189,14 @@ def get_form(request, establishment_id, order_type):
                         )
             else:
                 form = TableForm(establishment_id, -1, -1)
+                show_errors = 0
             return render(
                 request,
                 'orders/orders.html',
                 {
                     # show_form определяет, нужно ли показывать форму пользователю
                     'show_form': 1,
+                    'show_errors': show_errors,
                     'establishment_id': establishment_id,
                     'form': form,
                     'order_types_list': order_types,
@@ -233,15 +240,20 @@ def get_form(request, establishment_id, order_type):
         else:
             # по-умолчанию - форма для заказа столика
             if request.method == 'POST':
-                if request.POST.get('fields_changed') == '1':
+                if request.POST.get('address_changed') == '1':
+                    branch_id = request.POST.get('address')
+                    form = TableForm(establishment_id, branch_id, -1, request.POST)
+                    show_errors = 0
+                elif request.POST.get('hall_changed') == '1':
                     branch_id = request.POST.get('address')
                     hall_type = request.POST.get('hall')
                     form = TableForm(establishment_id, branch_id, hall_type, request.POST)
+                    show_errors = 0
                 else:
                     branch_id = request.POST.get('address')
                     hall_type = request.POST.get('hall')
-                    # TODO validation: дата не раньше, чем текущая + 2 часа; телефонный номер - полож. число, 10 цифр
                     form = TableForm(establishment_id, branch_id, hall_type, request.POST)
+                    show_errors = 1
                     if form.is_valid():
                         return render(
                             request,
@@ -249,6 +261,7 @@ def get_form(request, establishment_id, order_type):
                             {
                                 # show_form определяет, нужно ли показывать форму пользователю
                                 'show_form': 0,
+                                'show_errors': show_errors,
                                 'establishment_id': establishment_id,
                                 'form': form,
                                 'order_types_list': order_types,
@@ -257,12 +270,14 @@ def get_form(request, establishment_id, order_type):
                         )
             else:
                 form = TableForm(establishment_id, -1, -1)
+                show_errors = 0
             return render(
                 request,
                 'orders/orders.html',
                 {
                     # show_form определяет, нужно ли показывать форму пользователю
                     'show_form': 1,
+                    'show_errors': show_errors,
                     'establishment_id': establishment_id,
                     'form': form,
                     'order_types_list': order_types,
@@ -270,12 +285,14 @@ def get_form(request, establishment_id, order_type):
                 }
             )
     else:
+        show_errors = 0
         return render(
             request,
             'orders/orders.html',
             {
                 # show_form определяет, нужно ли показывать форму пользователю
                 'show_form': 0,
+                'show_errors': show_errors,
                 'establishment_id': establishment_id
             }
         )
