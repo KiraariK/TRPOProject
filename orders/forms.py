@@ -29,12 +29,12 @@ class TableForm(forms.Form):
     datetime = forms.DateTimeField(
         label='Дата и время заказа',
         input_formats=['%d-%m-%y %H:%M', '%d-%m-%Y %H:%M'],
-        widget=forms.DateTimeInput(attrs={'placeholder': '15-12-14 19:00'}),
+        widget=forms.DateTimeInput(attrs={'placeholder': 'ДД-ММ-ГГ ЧЧ:мм'}),
         error_messages={
             'required': 'Поле времени заказа не может быть пустым',
             'invalid': 'Неверный формат записи времени заказа'
         },
-        help_text='Выбирая дату помните, что для обработки заказа требуется не менее двух часов.',
+        help_text='Выставляя дату помните, что для обработки заказа требуется не менее двух часов.',
         required=True
     )
     phone = forms.CharField(
@@ -177,11 +177,130 @@ class TableForm(forms.Form):
 
 
 class DeliveryForm(forms.Form):
-    phone = forms.CharField(label='Телефон пользователя', max_length=128)
-    address = forms.ChoiceField
-    data = forms.DateField(
-        widget=forms.TextInput(attrs={'type': 'date'}))
+    datetime = forms.DateTimeField(
+        label='Дата и время доставки',
+        input_formats=['%d-%m-%y %H:%M', '%d-%m-%Y %H:%M'],
+        widget=forms.DateTimeInput(attrs={'placeholder': 'ДД-ММ-ГГ ЧЧ:мм'}),
+        error_messages={
+            'required': 'Поле времени заказа не может быть пустым',
+            'invalid': 'Неверный формат записи времени заказа'
+        },
+        help_text='Выставляя дату помните, что для обработки заказа требуется не менее двух часов.',
+        required=True
+    )
+    address = forms.CharField(
+        label='Адрес для доставки',
+        widget=forms.TextInput(attrs={'placeholder': 'ул. Врешинина, 39-А'}),
+        max_length=50,
+        error_messages={
+            'required': 'Поле адреса доставки не может быть пустым'
+        },
+        help_text='Адрес в пределах выбранного города.',
+        required=True
+    )
+    phone = forms.CharField(
+        label='Ваш контактный телефон',
+        widget=forms.TextInput(attrs={'placeholder': '9004001020'}),
+        max_length=10,
+        error_messages={
+            'required': 'Поле номера телефона не может быть пустым'
+        },
+        help_text='Необходим для обработки и подтверждения заказа сотрудниками заведения.',
+        required=True
+    )
+
+    def clean_datetime(self):
+        date_time = self.cleaned_data['datetime']
+        # TODO учитывать временные зоны (date_time содержит дату с учетом временой зоны) сейчас - абсолютоное время
+        execution_date_time = datetime(
+            date_time.year,
+            date_time.month,
+            date_time.day,
+            date_time.hour,
+            date_time.minute
+        )
+        date_time_border = datetime.now() + timedelta(hours=2)
+        if execution_date_time <= date_time_border:
+            raise forms.ValidationError('Невозможно оформить заказ на выбранное время')
+        return execution_date_time
+
+    def clean_phone(self):
+        phone = self.cleaned_data['phone']
+        symbols_list = list(phone)
+        for symbol in symbols_list:
+            try:
+                int_value = int(symbol)
+                if int_value < 0:
+                    raise forms.ValidationError('Неверный номер телефона')
+            except ValueError:
+                raise forms.ValidationError('Неверный номер телефона')
+        return phone
 
 
 class PickUpForm(forms.Form):
-    phone = forms.CharField(label='Телефон', max_length=128)
+    address = forms.ChoiceField(
+        label='Адрес заведения',
+        error_messages={
+            'required': 'Поле адреса заведения не может быть пустым'
+        },
+        required=True
+    )
+    datetime = forms.DateTimeField(
+        label='Дата и время самовывоза',
+        input_formats=['%d-%m-%y %H:%M', '%d-%m-%Y %H:%M'],
+        widget=forms.DateTimeInput(attrs={'placeholder': 'ДД-ММ-ГГ ЧЧ:мм'}),
+        error_messages={
+            'required': 'Поле времени заказа не может быть пустым',
+            'invalid': 'Неверный формат записи времени заказа'
+        },
+        help_text='Выставляя дату помните, что для обработки заказа требуется не менее двух часов.',
+        required=True
+    )
+    phone = forms.CharField(
+        label='Ваш контактный телефон',
+        widget=forms.TextInput(attrs={'placeholder': '9004001020'}),
+        max_length=10,
+        error_messages={
+            'required': 'Поле номера телефона не может быть пустым'
+        },
+        help_text='Необходим для обработки и подтверждения заказа сотрудниками заведения.',
+        required=True
+    )
+
+    def clean_datetime(self):
+        date_time = self.cleaned_data['datetime']
+        # TODO учитывать временные зоны (date_time содержит дату с учетом временой зоны) сейчас - абсолютоное время
+        execution_date_time = datetime(
+            date_time.year,
+            date_time.month,
+            date_time.day,
+            date_time.hour,
+            date_time.minute
+        )
+        date_time_border = datetime.now() + timedelta(hours=2)
+        if execution_date_time <= date_time_border:
+            raise forms.ValidationError('Невозможно оформить заказ на выбранное время')
+        return execution_date_time
+
+    def clean_phone(self):
+        phone = self.cleaned_data['phone']
+        symbols_list = list(phone)
+        for symbol in symbols_list:
+            try:
+                int_value = int(symbol)
+                if int_value < 0:
+                    raise forms.ValidationError('Неверный номер телефона')
+            except ValueError:
+                raise forms.ValidationError('Неверный номер телефона')
+        return phone
+
+    def __init__(self, establishment_id, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if EstablishmentBranch.objects.filter(establishment__id=establishment_id).exists():
+            self.fields['address'] = forms.ChoiceField(
+                choices=[(branch.id, branch.address) for branch in EstablishmentBranch.objects.filter(
+                    establishment__id=establishment_id
+                )],
+                label='Адрес заведения',
+                required=True
+            )

@@ -162,15 +162,17 @@ def get_form(request, establishment_id, order_type):
         order_types = Order.ORDER_TYPE
         if order_type == '1':
             if request.method == 'POST':
-                form = PickUpForm(request.POST)
+                form = PickUpForm(establishment_id, request.POST)
             else:
-                form = PickUpForm()
+                form = PickUpForm(establishment_id)
+            show_errors = 1
             return render(
                 request,
                 'orders/make_order_form.html',
                 {
                     # show_form определяет, нужно ли показывать форму пользователю
                     'show_form': 1,
+                    'show_errors': show_errors,
                     'establishment_id': establishment_id,
                     'form': form,
                     'order_types_list': order_types,
@@ -182,12 +184,14 @@ def get_form(request, establishment_id, order_type):
                 form = DeliveryForm(request.POST)
             else:
                 form = DeliveryForm()
+            show_errors = 1
             return render(
                 request,
                 'orders/make_order_form.html',
                 {
                     # show_form определяет, нужно ли показывать форму пользователю
                     'show_form': 1,
+                    'show_errors': show_errors,
                     'establishment_id': establishment_id,
                     'form': form,
                     'order_types_list': order_types,
