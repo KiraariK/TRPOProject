@@ -6,24 +6,21 @@ from establishments.models import EstablishmentBranch, BranchHall, DinnerWagon
 class TableForm(forms.Form):
     address = forms.ChoiceField(
         label='Адрес заведения',
-        error_messages=
-        {
+        error_messages={
             'required': 'Поле адреса заведения не может быть пустым'
         },
         required=True
     )
     hall = forms.ChoiceField(
         label='Тип зала заведения',
-        error_messages=
-        {
+        error_messages={
             'required': 'Поле типа зала заведения не может быть пустым'
         },
         required=True
     )
     table = forms.ChoiceField(
         label='Количество мест за столиком',
-        error_messages=
-        {
+        error_messages={
             'required': 'Поле столика заведения не может быть пустым'
         },
         help_text='Если поле пустое, то свободных столиков нет',
@@ -33,8 +30,7 @@ class TableForm(forms.Form):
         label='Дата и время заказа',
         input_formats=['%d-%m-%y %H:%M', '%d-%m-%Y %H:%M'],
         widget=forms.DateTimeInput(attrs={'placeholder': '15-12-14 19:00'}),
-        error_messages=
-        {
+        error_messages={
             'required': 'Поле времени заказа не может быть пустым',
             'invalid': 'Неверный формат записи времени заказа'
         },
@@ -45,8 +41,7 @@ class TableForm(forms.Form):
         label='Ваш контактный телефон',
         widget=forms.TextInput(attrs={'placeholder': '9004001020'}),
         max_length=10,
-        error_messages=
-        {
+        error_messages={
             'required': 'Поле номера телефона не может быть пустым'
         },
         help_text='Необходим для обработки и подтверждения заказа сотрудниками заведения.',

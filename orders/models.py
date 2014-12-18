@@ -101,23 +101,23 @@ class Order(models.Model):
             if kwargs.get('type') == 'delivery':
                 self.type = self.TYPE_DELIVERY
                 self.state = self.STATE_UNDER_CONSIDERATION
-            self.save()
+            # self.save()
 
     def accept(self):
         self.state = self.STATE_IN_PROGRESS
-        self.save()
+        # self.save()
 
     def decline(self):
         if self.type == Order.TYPE_DINNER_WAGON:
             self.dinner_wagon.free()
         self.state = self.STATE_CANCELED
-        self.save()
+        # self.save()
 
     def perform(self):
         if self.type == Order.TYPE_DINNER_WAGON:
             self.dinner_wagon.free()
         self.state = self.STATE_DONE
-        self.save()
+        # self.save()
 
     def __str__(self):
         return \
