@@ -1,19 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/UseCaseModel" dslVersion="1.0.0.0" Id="d950f16e-bd1f-46bb-9cbc-91fff09c0b72" name="AnalysisClasses" linkedPackageId="f7dacdd3-e113-4b5d-93ca-0ef82e9819c3" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
-  <profileInstances>
-    <packageHasProfileInstances Id="be7ed011-2ca9-4f38-a419-a7e75388e0c9">
-      <profileInstance Id="ba68071a-8a20-4651-bbd3-f860fd81647a" name="StandardProfileL2">
-        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
-      </profileInstance>
-      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
-    </packageHasProfileInstances>
-    <packageHasProfileInstances Id="bb6e969f-9b49-4183-a58b-f04c592f7d9e">
-      <profileInstance Id="37d0fb89-31d7-473f-9b9f-d72abec193bf" name="StandardProfileL3">
-        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
-      </profileInstance>
-      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
-    </packageHasProfileInstances>
-  </profileInstances>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="d950f16e-bd1f-46bb-9cbc-91fff09c0b72" name="AnalysisClasses" linkedPackageId="f7dacdd3-e113-4b5d-93ca-0ef82e9819c3" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
   <packagedElements>
     <logicalClassDesignerModelHasTypes>
       <class Id="503d3d07-fa45-4288-87c7-a33ed5458618" name="Заведение" isAbstract="false" isLeaf="false" isActiveClass="false">
@@ -212,21 +198,10 @@
           <property Id="f086e65c-4987-4479-8286-bda51cf3f792" name="количествоМест" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <elementDefinition Id="482d43c3-936d-4d32-b293-3a73839750cf" />
           </property>
-          <property Id="d27b178f-cb1d-4686-8a51-21faf0668d3f" name="занят" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-            <elementDefinition Id="4eb23d6b-0ffa-407f-b184-9cec36872d7e" />
-          </property>
           <property Id="9c45d750-a37e-4ef5-b7ca-8e717452fa3e" name="зал" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <elementDefinition Id="d85aa3d1-4182-4e6f-b44d-c14ea4370802" />
           </property>
         </ownedAttributesInternal>
-        <ownedOperationsInternal>
-          <operation Id="1bad4e9c-b226-4c77-8e1c-8b286ca6c92c" name="забронировать" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
-            <elementDefinition Id="bafd2ef4-bb3c-45b5-8390-179cdad82014" />
-          </operation>
-          <operation Id="fa557cc0-8304-4103-8b40-825170b6f568" name="освободить" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
-            <elementDefinition Id="3fc7da3e-b4af-4632-83fd-91a7bf8b61dd" />
-          </operation>
-        </ownedOperationsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
@@ -801,5 +776,19 @@
   </packagedElements>
   <package Id="f7dacdd3-e113-4b5d-93ca-0ef82e9819c3" name="WannaEatDocs">
     <elementDefinition Id="13823d4d-dd9e-44e2-b8d5-1d57eb6dd29f" />
+    <profileInstances>
+      <packageHasProfileInstances Id="be7ed011-2ca9-4f38-a419-a7e75388e0c9">
+        <profileInstance Id="ba68071a-8a20-4651-bbd3-f860fd81647a" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="bb6e969f-9b49-4183-a58b-f04c592f7d9e">
+        <profileInstance Id="37d0fb89-31d7-473f-9b9f-d72abec193bf" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
   </package>
 </logicalClassDesignerModel>
