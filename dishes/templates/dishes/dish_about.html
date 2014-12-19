@@ -34,12 +34,13 @@
                 </b>
                 <p></p>
             </div>
-          </div>
-          <div class="container">
+                 </div>
+              <div class="container">
             <div class="col-xs-2">
                      <img src="{% static 'images/'|add:dish.dish_image.name %}" class="img-rounded">
             </div>
-            <div class="col-xs-7">
+
+            <div class="col-xs-6">
                 <p align="justify">{{dish.description}}</p>
                 <p align="justify">Состав: {{dish.composition}}</p>
                 <p align="justify">Вес: {{dish.weight}}</p>
