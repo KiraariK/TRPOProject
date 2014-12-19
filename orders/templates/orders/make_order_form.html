@@ -2,36 +2,66 @@
 {% load staticfiles %}
 
 {% block content %}
-         <div class="col-xs-6 col-lg-8">
-             {% if show_form == 1 %}
-                <form name="make_order_form" id="order_form" action="{% url 'get_form' establishment_id=establishment_id order_type=current_order_type %}" method="post">
-                    {% csrf_token %}
-                    {% for field in form %}
-                        <div>
-                            {{ field.label }}
+
+<div class="page-header">
+        <h1>Заказы: </h1>
+    </div>
+<div class="row">
+    {% if show_form == 1 %}
+        <div class="col-xs-10">
+            <div class="panel panel-success"  style="border-color:#eeeeee">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-10">
+                            <h3 class="panel-title" >Детали заказа</h3>
                         </div>
-                        <div>
-                            {{ field }}
-                            {% if field.field.required %}
-                                <span>*</span>
-                            {% endif %}
-                            {% if show_errors == 1 %}
-                                {% for error in field.errors %}
-                                    {{ error }}
+                    </div>
+                </div>
+                <div class="panel-body">
+                     <div class="row">
+                        <div class="col-xs-10">
+                            <form name="make_order_form" id="order_form" action="{% url 'get_form' establishment_id=establishment_id order_type=current_order_type %}" method="post">
+                                {% csrf_token %}
+                                {% for field in form %}
+                                <div>
+                                    {{ field.label }}
+                                </div>
+                                <div>
+                                    {{ field }}
+                                    {% if field.field.required %}
+                                        <span>*</span>
+                                    {% endif %}
+                                    {% if show_errors == 1 %}
+                                    {% for error in field.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                    {% endif %}
+                                </div>
+                                <div>
+                                    {{ field.help_text }}
+                                </div>
+                                <div><p></p></div> <!-- Исключительно для пропуска строки в текущем шаблоне верстки -->
                                 {% endfor %}
-                            {% endif %}
+                                <input id="id_address_changed" type="hidden" name="address_changed" value="0" />
+                                <input id="id_hall_changed" type="hidden" name="hall_changed" value="0" />
+                                <input type="submit" value="Оформить заказ" />
+                            </form>
                         </div>
-                        <div>
-                            {{ field.help_text }}
-                        </div>
-                        <div><p></p></div> <!-- Исключительно для пропуска строки в текущем шаблоне верстки -->
-                    {% endfor %}
-                    <input id="id_address_changed" type="hidden" name="address_changed" value="0" />
-                    <input id="id_hall_changed" type="hidden" name="hall_changed" value="0" />
-                    <input type="submit" value="Оформить заказ" />
-                </form>
-         </div>
-         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+                        <div class="col-xs-2 sidebar-offcanvas" id="sidebar" role="navigation">
+                            <div class="list-group">
+                                {% for type, name in order_types_list %}
+                                <a href="{% url 'get_form' establishment_id=establishment_id order_type=type %}" class="list-group-item {% if type == current_order_type %} active {% endif %}">
+                                {{ name }}
+                                </a>
+                                {% endfor %}
+                            </div>
+                        </div><!--/.sidebar-offcanvas-->
+                    </div>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-2 sidebar-offcanvas" id="sidebar" role="navigation">
             <div class="list-group">
                 {% for type, name in order_types_list %}
                     <a href="{% url 'get_form' establishment_id=establishment_id order_type=type %}" class="list-group-item {% if type == current_order_type %} active {% endif %}">
@@ -40,8 +70,8 @@
                 {% endfor %}
             </div>
          </div><!--/.sidebar-offcanvas-->
-        {% endif %}
-      </div><!--/row-->
+    {% endif %}
+</div>
 {% endblock %}
 
 {% block scripts %}

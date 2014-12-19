@@ -3,58 +3,60 @@
 
 {% block content %}
 
-    <div class="row row-offcanvas row-offcanvas-right">
+         {% if cart_price != 0 %}
+<div class="page-header">
+        <h1>Корзина: </h1>
+    </div>
+<div class="row">
 
-
-
-
-
-
-
-        <div class="container">
-            <div class="row">
-
-            <h3>Корзина: </h3>
-           <b>Сумма заказа: </b> <b id="cart_value">{{ cart_price }} р.    </b>
-            <a class="btn btn-default" href="{% url 'cart' cart_state=0 %}" role="button" position="right"> Очистить корзину заказа</a>
-            </div></div>
-        {% if cart_price != 0 %}
-        <div class="container-fluid">
-            {% for key, val in cart_dishes %}
-                <div class="panel-inner">
+        <div class="col-xs-10">
+            <div class="panel panel-success"  style="border-color:#eeeeee">
+                <div class="panel-heading">
                     <div class="row">
-                        <div class="col-xs-4">
+                        <div class="col-xs-10">
+                            <h3 class="panel-title" >Сумма заказа: {{ cart_price }} р.</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                            {% for key, val in cart_dishes %}
+                     <div class="row">
+                        <div class="col-xs-6">
                             <p></p>
                             "{{ key.dish.name }}" от "{{ key.establishment.name }}" Количество: <span id="dish_count{{ key.dish.id }}">{{ val }}</span>
                         </div>
                         <div class="col-xs-2">
-                            <a class="btn  btn-success add_button{{ key.dish.id }}" onclick="addCount({{ key.dish.id }}, {{ key.dish.price }})" style="width:100%;">Увеличить</a></div>
+                            <a class="btn  btn-success add_button{{ key.dish.id }}" onclick="addCount({{ key.dish.id }}, {{ key.dish.price }})" style="width:100%;">Увеличить</a>
+                        </div>
                         <div class="col-xs-2">
-                            <a class="btn  btn-primary dec_button{{ key.dish.id }}" onclick="decCount({{ key.dish.id }}, 1, {{ key.dish.price }})" style="width:100%;">Уменьшить</a></div>
-                         <div class="col-xs-2">
-                             <a class="btn  btn-default del_button{{ key.dish.id }}" onclick="delCount({{ key.dish.id }}, {{ key.dish.price }})" style="width:100%;">Удалить</a>
-</div>
-                    </div>
-                </div>
-            {% endfor %}
-
-            <div class="panel">
-                <div class="row">
-                    <p> </p>
+                            <a class="btn  btn-primary dec_button{{ key.dish.id }}" onclick="decCount({{ key.dish.id }}, 1, {{ key.dish.price }})" style="width:100%;">Уменьшить</a>
+                        </div>
+                        <div class="col-xs-2">
+                             <a class="btn  btn-default del_button{{ key.dish.id }}" onclick="delCount({{ key.dish.id }}, {{ key.dish.price }})" style="width:100%;background-color: #F4C9BE">Удалить</a>
+                        </div>
+                     </div>
+                    <p></p>
+                    {% endfor %}
                 </div>
             </div>
+        </div>
 
-            <div class="row">
-                <div class="col-xs-8 "></div>
+</div>
+
+
+ <div class="row">
+                <div class="col-xs-6 "></div>
+
                 <div class="col-xs-2 ">
                     <a class="btn btn btn-success" href="{% url 'cart_orders' %}" style="width:100%;">Оформить</a>
                 </div>
+                <div class="col-xs-2">
+                            <a class="btn btn-default" href="{% url 'cart' cart_state=0 %}" role="button" style="width:100%;background-color: #F4C9BE">Очистить корзину </a>
+                </div>
             </div>
+{% endif %}
 
-        </div>
-        {% endif %}
 
-    </div>
 
 {% endblock %}
 
