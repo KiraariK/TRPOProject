@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner"
+<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/UseCaseModel"
   dslVersion="1.0.0.0"
   Id="13823d4d-dd9e-44e2-b8d5-1d57eb6dd29f"
   name="WannaEatDocs" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
@@ -182,20 +182,20 @@
             </relationshipOwnedElementsInternal>
           </association>
           <association
-            Id="c9c42d20-4ee9-4896-b5cc-fee252a389bd"
+            Id="d97fd7e0-e18e-42fb-9e44-f58615530bdf"
             isDerived="false"
             sourceEndRoleName="Клиент"
-            targetEndRoleName="Заказать столик"
+            targetEndRoleName="Оформить заказ"
             isLeaf="false"
             isAbstract="false">
             <useCaseMoniker
-              Id="52f7fbad-0d66-4a0a-9e77-764099e3d17b"
-              LastKnownName="Заказать столик"
+              Id="bf2c4ab3-cd72-4230-983f-a3219dfd71f0"
+              LastKnownName="Оформить заказ"
               LastKnownLocation="WannaEatDocs.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd
-                  Id="ea8ec5a6-75dd-45dd-ad2c-38c8269e573f"
+                  Id="84499f56-0982-47f2-b2a9-bc58124cff5b"
                   name="Клиент"
                   isLeaf="false"
                   isStatic="false"
@@ -208,8 +208,8 @@
               </associationHasOwnedEnds>
               <associationHasOwnedEnds>
                 <memberEnd
-                  Id="cbd0ab6e-26fb-4872-ba79-29e99c8a8fc4"
-                  name="Заказать столик"
+                  Id="3b49c2ff-bd63-4d28-8efe-7aefdd9fa430"
+                  name="Оформить заказ"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
@@ -221,10 +221,10 @@
             </relationshipOwnedElementsInternal>
           </association>
           <association
-            Id="5fefa68f-399c-4aa9-8249-fd93e3f40a6d"
+            Id="84a43429-1c03-47db-bda1-a14a981e2ae0"
             isDerived="false"
-            sourceEndRoleName="Оформить заказы"
-            targetEndRoleName="Клиент"
+            sourceEndRoleName="Клиент"
+            targetEndRoleName="Оформить заказ"
             isLeaf="false"
             isAbstract="false">
             <useCaseMoniker
@@ -234,8 +234,8 @@
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd
-                  Id="16c08c57-5d80-4791-8a70-aba4781c881b"
-                  name="Оформить заказы"
+                  Id="ef8b3f66-a21b-40ba-a852-c44abdd875d8"
+                  name="Клиент"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
@@ -247,8 +247,8 @@
               </associationHasOwnedEnds>
               <associationHasOwnedEnds>
                 <memberEnd
-                  Id="de1b8c49-034e-435c-b714-044fdd449fd4"
-                  name="Клиент"
+                  Id="6d42c5af-1ed0-466b-9fe5-feff62f3ec13"
+                  name="Оформить заказ"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
@@ -1325,17 +1325,6 @@
             aggregation="None"
             isComposite="false" />
           <property
-            Id="4eb23d6b-0ffa-407f-b184-9cec36872d7e"
-            name="занят"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false" />
-          <property
             Id="d85aa3d1-4182-4e6f-b44d-c14ea4370802"
             name="зал"
             isLeaf="false"
@@ -1347,24 +1336,6 @@
             aggregation="None"
             isComposite="false" />
         </ownedAttributesInternal>
-        <ownedOperationsInternal>
-          <operation
-            Id="bafd2ef4-bb3c-45b5-8390-179cdad82014"
-            name="забронировать"
-            isLeaf="false"
-            isStatic="false"
-            isAbstract="false"
-            concurrency="Sequential"
-            isQuery="false" />
-          <operation
-            Id="3fc7da3e-b4af-4632-83fd-91a7bf8b61dd"
-            name="освободить"
-            isLeaf="false"
-            isStatic="false"
-            isAbstract="false"
-            concurrency="Sequential"
-            isQuery="false" />
-        </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
     <packageHasNamedElement>

@@ -1,19 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="bfef01e8-8333-49dd-bf47-aa32d12da7c6" name="UseCases" linkedPackageId="f3bd88b8-1d61-45d1-b6ea-c4b7b1edc701" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
-  <profileInstances>
-    <packageHasProfileInstances Id="294672cb-c596-40d6-a0cb-217eb3a08852">
-      <profileInstance Id="33abe8c4-7814-4588-bced-d1060def6af5" name="StandardProfileL2">
-        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
-      </profileInstance>
-      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
-    </packageHasProfileInstances>
-    <packageHasProfileInstances Id="e2df22a1-805b-46b6-a2d7-2a0b99c4ac8e">
-      <profileInstance Id="4357f444-ef9e-4eab-bce5-d4b37f5fe41f" name="StandardProfileL3">
-        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
-      </profileInstance>
-      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
-    </packageHasProfileInstances>
-  </profileInstances>
+<useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="bfef01e8-8333-49dd-bf47-aa32d12da7c6" name="UseCases" linkedPackageId="f3bd88b8-1d61-45d1-b6ea-c4b7b1edc701" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
   <packagedElements>
     <useCaseModelRootHasTypes>
       <actor Id="38d67f77-9dc4-4056-9753-36a213c2f4e8" name="Клиент" isAbstract="false" isLeaf="false">
@@ -83,37 +69,21 @@
             </relationshipOwnedElementsInternal>
             <elementDefinition Id="0d1aaaab-aad5-42e3-a26b-2f0b886f76a0" />
           </association>
-          <association Id="3c97cd30-9f09-49bb-bfb4-4004ca39ce61" isDerived="false" sourceEndRoleName="Клиент" targetEndRoleName="Заказать столик" isLeaf="false" isAbstract="false">
-            <useCaseMoniker Id="42293b4c-17d3-4b41-bd5d-70130d42e5a9" LastKnownName="Заказать столик" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd Id="6f5ec77c-2ac8-4423-8b7c-25482fec7246" name="Клиент" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
-                  <elementDefinition Id="ea8ec5a6-75dd-45dd-ad2c-38c8269e573f" />
-                </memberEnd>
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd Id="86e9a19f-0690-43fc-b273-2859840e74b5" name="Заказать столик" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-                  <elementDefinition Id="cbd0ab6e-26fb-4872-ba79-29e99c8a8fc4" />
-                </memberEnd>
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-            <elementDefinition Id="c9c42d20-4ee9-4896-b5cc-fee252a389bd" />
-          </association>
-          <association Id="b0281401-0aa8-49a2-ab75-84fee8fb3dad" isDerived="false" sourceEndRoleName="Оформить заказы" targetEndRoleName="Клиент" isLeaf="false" isAbstract="false">
+          <association Id="956a272a-ea4a-4594-a7d9-da5fa66511cd" isDerived="false" sourceEndRoleName="Клиент" targetEndRoleName="Оформить заказ" isLeaf="false" isAbstract="false">
             <useCaseMoniker Id="0dcea2b4-cf1e-40a3-80a4-ed4203b94e95" LastKnownName="Оформить заказ" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
-                <memberEnd Id="998f5ec9-99c9-4940-afe0-c59f14e904a0" name="Оформить заказы" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
-                  <elementDefinition Id="16c08c57-5d80-4791-8a70-aba4781c881b" />
+                <memberEnd Id="11570421-6edf-41aa-a793-5c4c390835a3" name="Клиент" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="ef8b3f66-a21b-40ba-a852-c44abdd875d8" />
                 </memberEnd>
               </associationHasOwnedEnds>
               <associationHasOwnedEnds>
-                <memberEnd Id="fdb6b963-3036-4992-b65b-c395b446443d" name="Клиент" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-                  <elementDefinition Id="de1b8c49-034e-435c-b714-044fdd449fd4" />
+                <memberEnd Id="afb3a224-9585-415b-b424-7be49f18921c" name="Оформить заказ" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="6d42c5af-1ed0-466b-9fe5-feff62f3ec13" />
                 </memberEnd>
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
-            <elementDefinition Id="5fefa68f-399c-4aa9-8249-fd93e3f40a6d" />
+            <elementDefinition Id="84a43429-1c03-47db-bda1-a14a981e2ae0" />
           </association>
         </targetEnds>
       </actor>
@@ -322,7 +292,7 @@
       </useCase>
     </useCaseModelRootHasTypes>
     <useCaseModelRootHasTypes>
-      <useCase Id="e5f0bfba-822b-4788-a103-f5d014579fac" name="Удалить пункт из корзины" isAbstract="false" isLeaf="false">
+      <useCase Id="e5f0bfba-822b-4788-a103-f5d014579fac" name="Удалить блюдо из корзины" isAbstract="false" isLeaf="false">
         <elementDefinition Id="b762430c-774a-49dd-84f9-52798e6751f8" />
         <extendedCases>
           <extend Id="67681c5b-d600-4240-9c66-be3f22d3a8b3">
@@ -394,7 +364,7 @@
       </useCase>
     </useCaseModelRootHasTypes>
     <useCaseModelRootHasTypes>
-      <useCase Id="4fd10a84-6cd3-44fe-8300-c78da3bf8cbe" name="Добавить количество для пункта" isAbstract="false" isLeaf="false">
+      <useCase Id="4fd10a84-6cd3-44fe-8300-c78da3bf8cbe" name="Добавить количество для блюда" isAbstract="false" isLeaf="false">
         <elementDefinition Id="5bd281df-613a-4938-a0d5-e12e19cfe824" />
         <extendedCases>
           <extend Id="4df7eb09-ff07-43d4-9cc0-b1f451e316b2">
@@ -408,7 +378,7 @@
       </useCase>
     </useCaseModelRootHasTypes>
     <useCaseModelRootHasTypes>
-      <useCase Id="bbec6e21-8266-43b7-8ff9-4da3f7d89e58" name="Уменьшить количество для пункта" isAbstract="false" isLeaf="false">
+      <useCase Id="bbec6e21-8266-43b7-8ff9-4da3f7d89e58" name="Уменьшить количество для блюда" isAbstract="false" isLeaf="false">
         <elementDefinition Id="857dc922-c2cd-490a-8b98-e7f0d3113001" />
         <extendedCases>
           <extend Id="2665913b-198e-4898-8522-0e8b1f18e5d4">
@@ -448,5 +418,19 @@
   </packagedElements>
   <package Id="f3bd88b8-1d61-45d1-b6ea-c4b7b1edc701" name="WannaEatDocs">
     <elementDefinition Id="13823d4d-dd9e-44e2-b8d5-1d57eb6dd29f" />
+    <profileInstances>
+      <packageHasProfileInstances Id="294672cb-c596-40d6-a0cb-217eb3a08852">
+        <profileInstance Id="33abe8c4-7814-4588-bced-d1060def6af5" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="e2df22a1-805b-46b6-a2d7-2a0b99c4ac8e">
+        <profileInstance Id="4357f444-ef9e-4eab-bce5-d4b37f5fe41f" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
   </package>
 </useCaseModelRoot>
