@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.shortcuts import render, redirect
 from django.contrib import auth
 from django.http import HttpResponse
@@ -14,7 +15,26 @@ class EmployeePage(ListView):
         context = super().get_context_data(**kwargs)
         employees_id = self.kwargs.get('employees_id')
         context['employees'] = Employee.objects.get(id=employees_id)
-        context['order_list'] = Order.objects.filter(contact_account_id=employees_id)
+        employee_orders = Order.objects.filter(contact_account__id=employees_id)
+        current_datetime = datetime(
+            datetime.now().year,
+            datetime.now().month,
+            datetime.now().day,
+            datetime.now().hour,
+            datetime.now().minute
+        )
+        for order in employee_orders:
+            order_execution_datetime = datetime(
+                order.execute_date.year,
+                order.execute_date.month,
+                order.execute_date.day,
+                order.execute_time.hour,
+                order.execute_time.minute
+            )
+            if order_execution_datetime <= current_datetime:
+                order.perform()
+                order.save(update_fields=['state'])
+        context['order_list'] = employee_orders.order_by('-execute_date')
 
         return context
 

@@ -383,13 +383,32 @@ def get_user_form(request):
         form = UserOrdersForm(request.POST)
         if form.is_valid():
             is_phone_valid = 1
+            user_orders = Order.objects.filter(client_phone=form.cleaned_data['phone'])
+            current_datetime = datetime(
+                datetime.now().year,
+                datetime.now().month,
+                datetime.now().day,
+                datetime.now().hour,
+                datetime.now().minute
+            )
+            for order in user_orders:
+                order_execution_datetime = datetime(
+                    order.execute_date.year,
+                    order.execute_date.month,
+                    order.execute_date.day,
+                    order.execute_time.hour,
+                    order.execute_time.minute
+                )
+                if order_execution_datetime <= current_datetime:
+                    order.perform()
+                    order.save(update_fields=['state'])
             return render(
                 request,
                 'orders/user_orders.html',
                 {
                     'is_valid': is_phone_valid,
                     'form': form,
-                    'orders': Order.objects.filter(client_phone=form.cleaned_data['phone'])
+                    'orders': user_orders.order_by('-execute_date')
                 }
             )
     else:

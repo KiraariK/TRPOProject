@@ -9,50 +9,20 @@
                   <div class="panel-body" style="background:#f1f1f1">
                   <div class="col-xs-10" >
                       <p></p>
-                    <p >Заказ номер: {{ order.id }}</p>
-                       <p >Номер заказа: {{ order.id }}</p>
-                      <p >Заказа для: {{order.contact_account }} </p>
-                      <p >Тип заказа: {{ order.get_type_display }} </p>
-                      <p >Статус заказа: {{ order.get_state_display }}</p>
-                      <p >Контактный номер: {{ order.client_phone }}</p>
-                      <p >Дата выполнения: {{ order.execute_datetime }}</p>
+                      <p>Номер заказа: {{ order.id }}</p>
+                      <p>Тип заказа: {{ order.get_type_display }} </p>
+                      <p>Статус заказа: <strong>{{ order.get_state_display }}</strong></p>
+                      <p>Контактный номер клиента: {{ order.client_phone }}</p>
+                      <p>Дата исполнения заказа: {{ order.execute_date }} {{ order.execute_time }}</p>
                   </div>
                  <div class="col-xs-2">
                      <p></p>
-                  <p><a class="btn btn-default" name="accept" id="accept"  onclick="accept_order({{ order.id }})" role="button" style="width:100%;background-color: #C9F4BE;">Принять</a>
-                   <p></p><a class="btn btn-default" name="decline" id="decline"  onclick="decline_order({{ order.id }})" role="button" style="width:100%;background-color: #F4C9BE">Отменить</a></p>
+                  <p><a class="btn btn-default" name="accept" id="id_accept"  onclick="accept_order({{ order.id }})" role="button" style="width:100%;background-color: #C9F4BE;">Принять</a>
+                   <p></p><a class="btn btn-default" name="decline" id="id_decline"  onclick="decline_order({{ order.id }})" role="button" style="width:100%;background-color: #F4C9BE">Отменить</a></p>
                   </div></div>
               </form>
               {% endfor %}
-
-    <div class="page-header">
-        <h1>Заведение "{{ establishment_name }}"</h1>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="panel panel-success">
-                <div class="panel-heading">
-                    <h3 class="panel-title">
-                        Ваш заказ успешно оформлен.
-                    </h3>
-                </div>
-                <div class="panel-body">
-                    <p>Заказ поступил на рассмотрение администрацией заведения. Они могут связаться с Вами по указанному в заказе телефону.</p>
-                    <p>Вы можете посмотреть свои заказы в меню "Мои заказы" нашего сайта.</p>
-                    <p>Вы также можете сами связаться с администрацией заведения:</p>
-                    <p>Електронная почта: {{ establishment_email }}</p>
-                    {% if order_type != 2 %}
-                        <p>Телефон заказов: {{ establishment_branch_order_phone }}</p>
-                        <p>Телефон для справок: {{ establishment_branch_help_phone }}</p>
-                    {% endif %}
-                    <a class="btn btn-default" href="{% url 'dishes_without_category' establishment_id=establishment_id %}">Вернуться в меню</a>
-                    <a class="btn btn-default" href="{% url 'cart' cart_state=1 %}">Сделать еще заказ</a>
-                </div>
-            </div>
-        </div>
-    </div>
 </div></div>
-
 
 {% endblock %}
 
@@ -62,7 +32,6 @@ function accept_order(order_id) {
             $.get("{% url 'accept_order' %}", {"id" : order_id}, function(data) {
                // acc_state(order_id);
                 alert('Employee.acc_order вызван');
-
             });
         }
 </script>
