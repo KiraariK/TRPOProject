@@ -24,15 +24,3 @@ class EstablishmentBranchTest(TestCase):
         estbranch = EstablishmentBranch(establishment=est_test, address="City Tomsk, Vershinina str, 39a",
                                         order_phone_number="99224343", help_phone_number="4324356")
         self.assertEqual(estbranch.__str__(), 'Vaflia project, City Tomsk, Vershinina str, 39a')
-
-
-class DinnerWagonTest(TestCase):
-    def test_dinnerwagon_is_reserved(self):
-        city_test = City(name='Tomsk')
-        est_test = Establishment(name='Vaflia project', city=city_test, email='kakaha@mail.ru')
-        estbranch = EstablishmentBranch(establishment=est_test, address="City Tomsk, Vershinina str, 39a",
-                                        order_phone_number="99224343", help_phone_number="4324356")
-        esthall = BranchHall(type=1, branch=estbranch, )
-        dinerwagon_test = DinnerWagon(hall=esthall, seats=20, is_reserved=False)
-        dinerwagon_test.reserve()
-        self.assertTrue(dinerwagon_test.is_reserved)

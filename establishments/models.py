@@ -70,20 +70,6 @@ class EstablishmentBranch(models.Model):
             self.address,
         )
 
-    # arguments: hall, table
-    def reserve_hall_table(self, **kwargs):
-        if kwargs.get('hall') is not None and kwargs.get('table') is not None:
-            for hall in self.halls.all():
-                if hall == kwargs.get('hall'):
-                    hall.reserve_table(table=kwargs.get('table'))
-
-    # arguments: hall, table
-    def free_hall_table(self, **kwargs):
-        if kwargs.get('hall') is not None and kwargs.get('table') is not None:
-            for hall in self.halls.all():
-                if hall == kwargs.get('hall'):
-                    hall.free_table(table=kwargs.get('table'))
-
 
 class BranchHall(models.Model):
     HALL_TYPE_SMOKING = '0'
@@ -116,20 +102,6 @@ class BranchHall(models.Model):
             self.get_type_display(),
         )
 
-    # arguments: table
-    def reserve_table(self, **kwargs):
-        if kwargs.get('table') is not None:
-            for table in self.dinner_wagons.all():
-                if table == kwargs.get('table'):
-                    table.reserve()
-
-    # arguments: table
-    def free_table(self, **kwargs):
-        if kwargs.get('table') is not None:
-            for table in self.dinner_wagons.all():
-                if table == kwargs.get('table'):
-                    table.free()
-
 
 class DinnerWagon(models.Model):
     hall = models.ForeignKey(
@@ -143,21 +115,9 @@ class DinnerWagon(models.Model):
         default=2,
         verbose_name='Количество мест'
     )
-    is_reserved = models.BooleanField(
-        default=False,
-        verbose_name='Занят'
-    )
 
     def __str__(self):
         return '{0}: {1}'.format(
             self.hall,
             self.seats,
         )
-
-    def reserve(self):
-        self.is_reserved = 1
-        # self.save()
-
-    def free(self):
-        self.is_reserved = 0
-        # self.save()

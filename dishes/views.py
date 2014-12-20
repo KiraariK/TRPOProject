@@ -23,6 +23,7 @@ class DishesList(ListView):
         default_dish_category = dish_category or Dish.DISH_TYPE_SOUP
         context['current_establishment'] = current_establishment.establishment
         context['dish_categories_list'] = Dish.DISH_TYPE
+        # TODO добавить на страницу пункт категорий "все"
         context['default_dish_category'] = default_dish_category
         context['dishes_list'] = Dish.objects.filter(
             establishmentdish__establishment=establishment_id,

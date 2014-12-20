@@ -1,4 +1,5 @@
 from datetime import datetime
+import time
 import json
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -204,32 +205,80 @@ def get_order_form(request, establishment_id, order_type):
         else:
             if request.method == 'POST':
                 if request.POST.get('address_changed') == '1':
+                    # выб выбран другой филиал заведения
                     branch_id = request.POST.get('address')
-                    form = TableForm(establishment_id, branch_id, -1, request.POST)
+                    form = TableForm(establishment_id, branch_id, -1, -1, request.POST)
                     show_errors = 0
-                elif request.POST.get('hall_changed') == '1':
+                    show_custom_date_error = 0
+                elif request.POST.get('show_tables') == '1':
+                    # была нажата кнопка показа столиков
                     branch_id = request.POST.get('address')
                     hall_type = request.POST.get('hall')
-                    form = TableForm(establishment_id, branch_id, hall_type, request.POST)
-                    show_errors = 0
+                    order_date_str = request.POST.get('date')
+                    try:
+                        time_structure = time.strptime(order_date_str, '%d-%m-%y')
+                        order_date = datetime(time_structure.tm_year, time_structure.tm_mon, time_structure.tm_mday)
+                        border_date = datetime(datetime.now().year, datetime.now().month, datetime.now().day)
+                        if order_date < border_date:
+                            form = TableForm(establishment_id, branch_id, hall_type, -1, request.POST)
+                            show_errors = 0
+                            show_custom_date_error = 1
+                        else:
+                            form = TableForm(establishment_id, branch_id, hall_type, order_date, request.POST)
+                            show_errors = 0
+                            show_custom_date_error = 0
+                    except ValueError:
+                        form = TableForm(establishment_id, branch_id, hall_type, -1, request.POST)
+                        show_errors = 1
+                        show_custom_date_error = 0
+                    except TypeError:
+                        try:
+                            time_structure = time.strptime(order_date_str, '%d-%m-%Y')
+                            order_date = datetime(time_structure.tm_year, time_structure.tm_mon, time_structure.tm_mday)
+                            border_date = datetime(datetime.now().year, datetime.now().month, datetime.now().day)
+                            if order_date < border_date:
+                                form = TableForm(establishment_id, branch_id, hall_type, -1, request.POST)
+                                show_errors = 0
+                                show_custom_date_error = 1
+                            else:
+                                form = TableForm(establishment_id, branch_id, hall_type, order_date, request.POST)
+                                show_errors = 0
+                                show_custom_date_error = 0
+                        except ValueError:
+                            form = TableForm(establishment_id, branch_id, hall_type, -1, request.POST)
+                            show_errors = 1
+                            show_custom_date_error = 0
                 else:
                     branch_id = request.POST.get('address')
                     hall_type = request.POST.get('hall')
-                    form = TableForm(establishment_id, branch_id, hall_type, request.POST)
-                    show_errors = 1
+                    order_date_str = request.POST.get('date')
+                    try:
+                        time_structure = time.strptime(order_date_str, '%d-%m-%y')
+                        order_date = datetime(time_structure.tm_year, time_structure.tm_mon, time_structure.tm_mday)
+                        border_date = datetime(datetime.now().year, datetime.now().month, datetime.now().day)
+                        if order_date < border_date:
+                            form = TableForm(establishment_id, branch_id, hall_type, -1, request.POST)
+                        else:
+                            form = TableForm(establishment_id, branch_id, hall_type, order_date, request.POST)
+                    except ValueError:
+                        form = TableForm(establishment_id, branch_id, hall_type, -1, request.POST)
+                    except TypeError:
+                        try:
+                            time_structure = time.strptime(order_date_str, '%d-%m-%Y')
+                            order_date = datetime(time_structure.tm_year, time_structure.tm_mon, time_structure.tm_mday)
+                            border_date = datetime(datetime.now().year, datetime.now().month, datetime.now().day)
+                            if order_date < border_date:
+                                form = TableForm(establishment_id, branch_id, hall_type, -1, request.POST)
+                            else:
+                                form = TableForm(establishment_id, branch_id, hall_type, order_date, request.POST)
+                        except ValueError:
+                            form = TableForm(establishment_id, branch_id, hall_type, -1, request.POST)
                     if form.is_valid():
-
                         # создание и запись в БД заказа
                         order_client_phone = form.cleaned_data['phone']
                         order_order_type = order_type
-                        date_time_data = form.cleaned_data['datetime']
-                        order_execute_datetime = datetime(
-                            date_time_data.year,
-                            date_time_data.month,
-                            date_time_data.day,
-                            date_time_data.hour,
-                            date_time_data.minute
-                        )
+                        order_execute_date = form.cleaned_data['date']
+                        order_execute_time = form.cleaned_data['time']
                         order_contact_account = Employee.objects.filter(
                             establishment__id=establishment_id
                         ).first()
@@ -240,7 +289,6 @@ def get_order_form(request, establishment_id, order_type):
                         order_table_seats = int(request.POST.get('table'))
                         order_hall_type = request.POST.get('hall')
                         order_dinner_wagon = DinnerWagon.objects.filter(
-                            is_reserved=False,
                             seats=order_table_seats,
                             hall__type=order_hall_type,
                             hall__branch=order_establishment_branch
@@ -248,7 +296,8 @@ def get_order_form(request, establishment_id, order_type):
                         new_order = Order(
                             client_phone=order_client_phone,
                             type=order_order_type,
-                            execute_datetime=order_execute_datetime,
+                            execute_date=order_execute_date,
+                            execute_time=order_execute_time,
                             contact_account=order_contact_account,
                             establishment_branch=order_establishment_branch,
                             dinner_wagon=order_dinner_wagon
@@ -259,12 +308,11 @@ def get_order_form(request, establishment_id, order_type):
                                 row = OrdersCartRow(
                                     establishment_dish=EstablishmentDish.objects.get(dish__id=key),
                                     dishes_count=request.session[key],
-                                    order=new_order
+                                    order=new_order,
                                 )
                                 row.save()
-
                         new_order.make(type='table')
-                        new_order.save(update_fields=['type', 'dinner_wagon', 'state'])
+                        new_order.save(update_fields=['type', 'state'])
 
                         # удаление из сессии оформленных в заказе блюд и корзины, при необходимости
                         keys_for_delete = []
@@ -294,9 +342,13 @@ def get_order_form(request, establishment_id, order_type):
                                 'establishment_branch_help_phone': order_establishment_branch.help_phone_number
                             }
                         )
+                    else:
+                        show_errors = 1
+                        show_custom_date_error = 0
             else:
-                form = TableForm(establishment_id, -1, -1)
+                form = TableForm(establishment_id, -1, -1, -1)
                 show_errors = 0
+                show_custom_date_error = 0
             return render(
                 request,
                 'orders/make_order_form.html',
@@ -304,6 +356,7 @@ def get_order_form(request, establishment_id, order_type):
                     # show_form определяет, нужно ли показывать форму пользователю
                     'show_form': 1,
                     'show_errors': show_errors,
+                    'show_custom_date_error': show_custom_date_error,
                     'establishment_id': establishment_id,
                     'form': form,
                     'order_types_list': order_types,

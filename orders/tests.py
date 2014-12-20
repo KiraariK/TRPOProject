@@ -14,15 +14,15 @@ class OrderTest(TestCase):
                            type=Order.TYPE_DINNER_WAGON,
                            state=Order.STATE_DONE,
                            order_date=date(2014, 12, 12),
-                           execute_datetime=datetime(2014, 12, 12, 18))
-        self.assertEqual(order_test.expire_date, datetime(2015, 1, 11, 18).date(), "expire_date is not equal")
+                           execute_date=datetime(2014, 12, 12).date())
+        self.assertEqual(order_test.expire_date, datetime(2015, 1, 11).date(), "expire_date is not equal")
 
     def test_order_make(self):
         order_test = Order(client_phone=8432424,
                            type=Order.TYPE_DINNER_WAGON,
                            state=Order.STATE_DONE,
                            order_date=date(2014, 12, 12),
-                           execute_datetime=datetime(2014, 12, 12, 18))
+                           execute_date=datetime(2014, 12, 12).date())
         order_test.make()
         self.assertEqual(order_test.state.__str__(), '4', 'State of order is not equal')
         self.assertEqual(order_test.type, Order.TYPE_DINNER_WAGON)
@@ -32,7 +32,7 @@ class OrderTest(TestCase):
                            type=Order.TYPE_DINNER_WAGON,
                            state=Order.STATE_DONE,
                            order_date=date(2014, 12, 12),
-                           execute_datetime=datetime(2014, 12, 12, 18))
+                           execute_date=datetime(2014, 12, 12).date())
         order_test.accept()
         self.assertEqual(order_test.state, Order.STATE_IN_PROGRESS)
 
@@ -41,19 +41,17 @@ class OrderTest(TestCase):
                            type=Order.TYPE_DINNER_WAGON,
                            state=Order.STATE_DONE,
                            order_date=date(2014, 12, 12),
-                           execute_datetime=datetime(2014, 12, 12, 18),
-                           dinner_wagon=DinnerWagon(is_reserved=1, seats=2))
+                           execute_date=datetime(2014, 12, 12).date(),
+                           dinner_wagon=DinnerWagon(seats=2))
         order_test.decline()
         self.assertEqual(order_test.state, Order.STATE_CANCELED)
-        self.assertEqual(order_test.dinner_wagon.is_reserved, False)
 
     def test_order_perform(self):
         order_test = Order(client_phone=8432424,
                            type=Order.TYPE_DINNER_WAGON,
                            state=Order.STATE_DONE,
                            order_date=date(2014, 12, 12),
-                           execute_datetime=datetime(2014, 12, 12, 18),
-                           dinner_wagon=DinnerWagon(is_reserved=1, seats=2))
+                           execute_date=datetime(2014, 12, 12).date(),
+                           dinner_wagon=DinnerWagon(seats=2))
         order_test.perform()
         self.assertEqual(order_test.state, Order.STATE_DONE)
-        self.assertEqual(order_test.dinner_wagon.is_reserved, False)

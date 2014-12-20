@@ -25,9 +25,9 @@ class Order(models.Model):
     TYPE_DELIVERY = '2'
 
     ORDER_TYPE = (
-        (TYPE_DINNER_WAGON, 'Столик'),
-        (TYPE_PICKUP, 'Самовывоз'),
-        (TYPE_DELIVERY, 'Доставка'),
+        (TYPE_DINNER_WAGON, 'Бронирование столика'),
+        (TYPE_PICKUP, 'Заказ самовывоза'),
+        (TYPE_DELIVERY, 'Заказ доставки'),
     )
 
     client_phone = models.CharField(
@@ -50,12 +50,15 @@ class Order(models.Model):
         auto_now_add=True,
         verbose_name='Дата заказа'
     )
-    execute_datetime = models.DateTimeField(verbose_name='Дата исполнения')
+
+    execute_date = models.DateField(verbose_name='Дата исполнения')
+
+    execute_time = models.TimeField(verbose_name='Время исполнения')
 
     @property
     def expire_date(self):
         if self.state == self.STATE_DONE:
-            return self.execute_datetime.date() + timedelta(days=30)
+            return self.execute_date + timedelta(days=30)
 
     contact_account = models.ForeignKey(
         Employee,
@@ -93,39 +96,30 @@ class Order(models.Model):
         if kwargs.get('type') is not None:
             if kwargs.get('type') == 'table':
                 self.type = self.TYPE_DINNER_WAGON
-                self.dinner_wagon.reserve()
                 self.state = self.STATE_UNDER_CONSIDERATION
-            if kwargs.get('type') == 'pickup':
+            elif kwargs.get('type') == 'pickup':
                 self.type = self.TYPE_PICKUP
                 self.state = self.STATE_UNDER_CONSIDERATION
-            if kwargs.get('type') == 'delivery':
+            elif kwargs.get('type') == 'delivery':
                 self.type = self.TYPE_DELIVERY
                 self.state = self.STATE_UNDER_CONSIDERATION
-            # self.save()
 
     def accept(self):
         self.state = self.STATE_IN_PROGRESS
-        # self.save()
 
     def decline(self):
-        if self.type == Order.TYPE_DINNER_WAGON:
-            self.dinner_wagon.free()
         self.state = self.STATE_CANCELED
-        # self.save()
 
     def perform(self):
-        if self.type == Order.TYPE_DINNER_WAGON:
-            self.dinner_wagon.free()
         self.state = self.STATE_DONE
-        # self.save()
 
     def __str__(self):
         return \
             self.client_phone.__str__() + \
-            " " + self.execute_datetime.__str__() + \
+            " " + self.execute_date.__str__() + \
+            " " + self.execute_time.__str__() + \
             " " + self.get_type_display() + \
-            " " + self.contact_account.__str__() + \
-            " " + self.get_state_display()
+            " " + self.contact_account.__str__()
 
     def delete(self, using=None):
         super().delete(using)
@@ -133,9 +127,8 @@ class Order(models.Model):
 
 
 class OrdersCartRow(models.Model):
-    establishment_dish = models.OneToOneField(
+    establishment_dish = models.ForeignKey(
         EstablishmentDish,
-        related_name='+',
         verbose_name='Блюдо заведения'
     )
     dishes_count = models.IntegerField(
