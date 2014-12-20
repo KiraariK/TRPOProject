@@ -58,7 +58,7 @@
                     </div>
                     <div class="col-md-3">
                         <p>{{ order.establishment_branch.establishment.name }} - {{ order.establishment_branch.establishment.email }}</p>
-                        {% if order.type != 2 %}
+                        {% if order.type != '2' %}
                             {{ order.establishment_branch.address }} - {{ order.establishment_branch.help_phone_number }}
                         {% endif %}
                     </div>

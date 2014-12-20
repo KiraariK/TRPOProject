@@ -7,7 +7,7 @@
                 <form name="make_order_form" id="order_form" action="{% url 'get_form' establishment_id=establishment_id order_type=current_order_type %}" method="post">
                     {% csrf_token %}
                     {% for field in form %}
-                        {% if field.label == 'Время бронирования' %}
+                        {% if field.label == 'Время бронирования' and current_order_type == '0' %}
                             <input type="submit" value="Показать столики" onclick="showTables()" />
                             <div><p></p></div> <!-- Исключительно для пропуска строки в текущем шаблоне верстки -->
                             <div id="hidden_area">
@@ -34,9 +34,12 @@
                         </div>
                         <div><p></p></div> <!-- Исключительно для пропуска строки в текущем шаблоне верстки -->
                     {% endfor %}
+                    {% if current_order_type == '0' %}
                     </div>
+                    {% endif %}
                     <input id="id_address_changed" type="hidden" name="address_changed" value="0" />
                     <input id="id_show_tables" type="hidden" name="show_tables" value="0" />
+                    <input id="id_order_type" type="hidden" name="order_type" value="{{ current_order_type }}" />
                     <input type="submit" value="Оформить заказ" onclick="sendOrder()"/>
                 </form>
          </div>
@@ -70,13 +73,19 @@
         }
 
         // если в элементах управления что-то изменяется, то область div id="hidden_area" скрывается
+        // скрывается, только, если это происходит на форме бронирования столика
         $("#id_hall, #id_date").change(function() {
-            $("#hidden_area").html("");
+            if ($("#id_order_type").val() == "0") {
+                $("#hidden_area").html("");
+            }
         })
 
+        // отправка данных на форму только, если это форма бронирования столика
         $("#id_address").change(function() {
-            $("#id_address_changed").val("1");
-            document.forms["make_order_form"].submit();
+            if ($("#id_order_type").val() == "0") {
+                $("#id_address_changed").val("1");
+                document.forms["make_order_form"].submit();
+            }
         })
     </script>
 {% endblock %}

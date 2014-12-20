@@ -341,7 +341,7 @@ class TableForm(forms.Form):
 
 class DeliveryForm(forms.Form):
     date = forms.DateField(
-        label='Дата бронирования',
+        label='Дата доставки',
         input_formats=['%d-%m-%Y', '%d-%m-%y'],
         widget=forms.DateInput(
             attrs={
@@ -350,13 +350,13 @@ class DeliveryForm(forms.Form):
             },
         ),
         error_messages={
-            'required': 'Поле даты бронирования не может быть пустым',
-            'invalid': 'Неверный формат записи даты бронирования'
+            'required': 'Поле даты доставки не может быть пустым',
+            'invalid': 'Неверный формат записи даты доставки'
         },
         required=True
     )
     time = forms.TimeField(
-        label='Время бронирования',
+        label='Время доставки',
         input_formats=['%H:%M'],
         widget=forms.TimeInput(
             attrs={
@@ -365,8 +365,8 @@ class DeliveryForm(forms.Form):
             },
         ),
         error_messages={
-            'required': 'Поле времени бронирования не может быть пустым',
-            'invalid': 'Неверный формат записи времени бронирования'
+            'required': 'Поле времени доставки не может быть пустым',
+            'invalid': 'Неверный формат записи времени доставки'
         },
         required=True
     )
@@ -409,9 +409,9 @@ class DeliveryForm(forms.Form):
         order_date = self.cleaned_data.get('date')
         order_time = self.cleaned_data.get('time')
         if order_date is None:
-            raise ValidationError('Поле даты бронирования не должо быть пустым')
+            raise ValidationError('Поле даты доставки не должо быть пустым')
         elif order_time is None:
-            raise ValidationError('Поле времени бронирования не должо быть пустым')
+            raise ValidationError('Поле времени доставки не должо быть пустым')
         # TODO учитывать временные зоны (date_time содержит дату с учетом временой зоны) сейчас - абсолютоное время
         execution_date_time = datetime(
             order_date.year,
@@ -436,7 +436,7 @@ class PickUpForm(forms.Form):
         required=True
     )
     date = forms.DateField(
-        label='Дата бронирования',
+        label='Дата самовывоза',
         input_formats=['%d-%m-%Y', '%d-%m-%y'],
         widget=forms.DateInput(
             attrs={
@@ -445,13 +445,13 @@ class PickUpForm(forms.Form):
             },
         ),
         error_messages={
-            'required': 'Поле даты бронирования не может быть пустым',
-            'invalid': 'Неверный формат записи даты бронирования'
+            'required': 'Поле даты самовывоза не может быть пустым',
+            'invalid': 'Неверный формат записи даты самовывоза'
         },
         required=True
     )
     time = forms.TimeField(
-        label='Время бронирования',
+        label='Время самовывоза',
         input_formats=['%H:%M'],
         widget=forms.TimeInput(
             attrs={
@@ -460,8 +460,8 @@ class PickUpForm(forms.Form):
             },
         ),
         error_messages={
-            'required': 'Поле времени бронирования не может быть пустым',
-            'invalid': 'Неверный формат записи времени бронирования'
+            'required': 'Поле времени самовывоза не может быть пустым',
+            'invalid': 'Неверный формат записи времени самовывоза'
         },
         required=True
     )
@@ -494,9 +494,9 @@ class PickUpForm(forms.Form):
         order_date = self.cleaned_data.get('date')
         order_time = self.cleaned_data.get('time')
         if order_date is None:
-            raise ValidationError('Поле даты бронирования не должо быть пустым')
+            raise ValidationError('Поле даты самовывоза не должо быть пустым')
         elif order_time is None:
-            raise ValidationError('Поле времени бронирования не должо быть пустым')
+            raise ValidationError('Поле времени самовывоза не должо быть пустым')
         # TODO учитывать временные зоны (date_time содержит дату с учетом временой зоны) сейчас - абсолютоное время
         execution_date_time = datetime(
             order_date.year,

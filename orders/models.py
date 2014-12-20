@@ -67,7 +67,7 @@ class Order(models.Model):
     )
     # особенные поля, необходимые для определенных видов заказов
 
-    # для заказа самовывоза
+    # для заказа самовывоза и бронирования столика
     establishment_branch = models.ForeignKey(
         EstablishmentBranch,
         blank=True,

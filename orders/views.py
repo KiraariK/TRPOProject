@@ -165,10 +165,66 @@ def get_order_form(request, establishment_id, order_type):
         if order_type == '1':
             if request.method == 'POST':
                 form = PickUpForm(establishment_id, request.POST)
-                # TODO реализовать обработку данных формы самовывоза и создание заказа
+                if form.is_valid():
+                    order_client_phone = form.cleaned_data['phone']
+                    order_order_type = order_type
+                    order_execute_date = form.cleaned_data['date']
+                    order_execute_time = form.cleaned_data['time']
+                    order_contact_account = Employee.objects.filter(
+                        establishment__id=establishment_id
+                    ).first()
+                    order_branch_id = int(request.POST.get('address'))
+                    order_establishment_branch = EstablishmentBranch.objects.filter(
+                        id=order_branch_id
+                    ).first()
+                    new_order = Order(
+                        client_phone=order_client_phone,
+                        type=order_order_type,
+                        execute_date=order_execute_date,
+                        execute_time=order_execute_time,
+                        contact_account=order_contact_account,
+                        establishment_branch=order_establishment_branch
+                    )
+                    new_order.save()
+                    new_order.make(type='pickup')
+                    new_order.save(update_fields=['type', 'state'])
+
+                    # удаление из сессии оформленных в заказе блюд и корзины, при необходимости
+                    keys_for_delete = []
+                    for key in request.session.keys():
+                        if key != 'cart_price':
+                            if establishment_dishes.get(id=key) is not None:
+                                keys_for_delete.append(key)
+                    for key in keys_for_delete:
+                        del request.session[key]
+                    is_cart_empty = True
+                    for key in request.session.keys():
+                        if key != 'cart_price':
+                            is_cart_empty = False
+                    if is_cart_empty:
+                        del request.session['cart_price']
+
+                    establishment = Establishment.objects.get(id=establishment_id)
+                    return render(
+                        request,
+                        'orders/order_created.html',
+                        {
+                            'order_type': order_type,
+                            'establishment_id': establishment_id,
+                            'establishment_name': establishment.name,
+                            'establishment_email': establishment.email,
+                            'establishment_branch_order_phone': order_establishment_branch.order_phone_number,
+                            'establishment_branch_help_phone': order_establishment_branch.help_phone_number
+                        }
+                    )
+                else:
+                    if request.POST.get('address_changed') == '1':
+                        show_errors = 0
+                    else:
+                        show_errors = 1
             else:
                 form = PickUpForm(establishment_id)
-            show_errors = 1
+                show_errors = 0
             return render(
                 request,
                 'orders/make_order_form.html',
@@ -186,6 +242,55 @@ def get_order_form(request, establishment_id, order_type):
             if request.method == 'POST':
                 form = DeliveryForm(request.POST)
                 # TODO реализовать обработку данных формы доставки и создание заказа
+                if form.is_valid():
+                    order_client_phone = form.cleaned_data['phone']
+                    order_order_type = order_type
+                    order_execute_date = form.cleaned_data['date']
+                    order_execute_time = form.cleaned_data['time']
+                    order_contact_account = Employee.objects.filter(
+                        establishment__id=establishment_id
+                    ).first()
+                    order_delivery_address = request.POST.get('address')
+                    new_order = Order(
+                        client_phone=order_client_phone,
+                        type=order_order_type,
+                        execute_date=order_execute_date,
+                        execute_time=order_execute_time,
+                        contact_account=order_contact_account,
+                        delivery_address=order_delivery_address
+                    )
+                    new_order.save()
+                    new_order.make(type='delivery')
+                    new_order.save(update_fields=['type', 'state'])
+
+                    # удаление из сессии оформленных в заказе блюд и корзины, при необходимости
+                    keys_for_delete = []
+                    for key in request.session.keys():
+                        if key != 'cart_price':
+                            if establishment_dishes.get(id=key) is not None:
+                                keys_for_delete.append(key)
+                    for key in keys_for_delete:
+                        del request.session[key]
+                    is_cart_empty = True
+                    for key in request.session.keys():
+                        if key != 'cart_price':
+                            is_cart_empty = False
+                    if is_cart_empty:
+                        del request.session['cart_price']
+
+                    establishment = Establishment.objects.get(id=establishment_id)
+                    return render(
+                        request,
+                        'orders/order_created.html',
+                        {
+                            'order_type': order_type,
+                            'establishment_id': establishment_id,
+                            'establishment_name': establishment.name,
+                            'establishment_email': establishment.email,
+                            'establishment_branch_order_phone': '',
+                            'establishment_branch_help_phone': ''
+                        }
+                    )
             else:
                 form = DeliveryForm()
             show_errors = 1
