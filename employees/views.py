@@ -14,7 +14,7 @@ class EmployeePage(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         employees_id = self.kwargs.get('employees_id')
-        context['employees'] = Employee.objects.get(id=employees_id)
+        context['employee'] = Employee.objects.get(id=employees_id)
         employee_orders = Order.objects.filter(contact_account__id=employees_id)
         current_datetime = datetime(
             datetime.now().year,
@@ -89,11 +89,29 @@ def ban_view(request):
     )
 
 
-def acc_state(request):
+def accept_order(request):
     if request.is_ajax():
-        # order_id = request.GET.get('id')
-        # order = Order.objects.get(id=int(order_id))
-        # Employee.acc_order(order_id)
-        return HttpResponse('1')
+        order_id = request.GET.get('order_id')
+        necessary_order = Order.objects.filter(id=order_id).first()
+        if necessary_order.state == Order.STATE_UNDER_CONSIDERATION:
+            necessary_order.accept()
+            necessary_order.save(update_fields=['state'])
+            return HttpResponse(necessary_order.get_state_display())
+        else:
+            return HttpResponse('cancel')
     else:
-        return HttpResponse('0')
+        return HttpResponse('error')
+
+
+def decline_order(request):
+    if request.is_ajax():
+        order_id = request.GET.get('order_id')
+        necessary_order = Order.objects.filter(id=order_id).first()
+        if necessary_order.state == Order.STATE_UNDER_CONSIDERATION:
+            necessary_order.decline()
+            necessary_order.save(update_fields=['state'])
+            return HttpResponse(necessary_order.get_state_display())
+        else:
+            return HttpResponse('cancel')
+    else:
+        return HttpResponse('error')

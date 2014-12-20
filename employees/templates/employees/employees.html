@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 <div class="container">
-    <h1>{{employees.establishment}}</h1>
+    <h1>{{ employee.establishment }}</h1>
 <div class="col-xs-11" >
     {% for order in order_list %}
               <form  class="panel" method="post" style="border-color:#eeeeee">
@@ -11,7 +11,7 @@
                       <p></p>
                       <p>Номер заказа: {{ order.id }}</p>
                       <p>Тип заказа: {{ order.get_type_display }} </p>
-                      <p>Статус заказа: <strong>{{ order.get_state_display }}</strong></p>
+                      <p>Статус заказа: <span id="id_order_state"><strong>{{ order.get_state_display }}</strong></span></p>
                       <p>Контактный номер клиента: {{ order.client_phone }}</p>
                       <p>Дата исполнения заказа: {{ order.execute_date }} {{ order.execute_time }}</p>
                   </div>
@@ -28,11 +28,27 @@
 
  {% block scripts %}
 <script type="text/javascript">
-function accept_order(order_id) {
-            $.get("{% url 'accept_order' %}", {"id" : order_id}, function(data) {
-               // acc_state(order_id);
-                alert('Employee.acc_order вызван');
-            });
-        }
+    function accept_order(order_id) {
+        $.get("{% url 'accept_order' %}", {"order_id": order_id}, function(data) {
+            if (data != "error" && data != "cancel") {
+                $("#id_order_state").html("<strong>" + data + "</strong>");
+            } else if (data == "cancel") {
+                alert("Нельзя");
+            } else {
+                alert("Ошибка");
+            }
+        });
+    }
+    function decline_order(order_id) {
+        $.get("{% url 'decline_order' %}", {"order_id": order_id}, function(data) {
+            if (data != "error" && data != "cancel") {
+                $("#id_order_state").html("<strong>" + data + "</strong>");
+            } else if (data == "cancel") {
+                alert("Нельзя");
+            } else {
+                alert("Ошибка");
+            }
+        });
+    }
 </script>
 {% endblock %}

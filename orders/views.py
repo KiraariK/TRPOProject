@@ -241,7 +241,6 @@ def get_order_form(request, establishment_id, order_type):
         elif order_type == '2':
             if request.method == 'POST':
                 form = DeliveryForm(request.POST)
-                # TODO реализовать обработку данных формы доставки и создание заказа
                 if form.is_valid():
                     order_client_phone = form.cleaned_data['phone']
                     order_order_type = order_type

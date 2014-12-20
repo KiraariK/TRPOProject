@@ -9,6 +9,6 @@ urlpatterns = patterns(
     url(r'^accounts/ban/$', views.ban_view, name='ban_employee'),
     url(r'^accounts/after_login/$', views.auth_view, name='after_login'),
     # url for ajax requests
-    url(r'accept_order/$', views.acc_state, name='accept_order'),
-    url(r'^$', views.acc_state, name='decline_order'),
+    url(r'accept_order/$', views.accept_order, name='accept_order'),
+    url(r'^decline_order/$', views.decline_order, name='decline_order'),
 )
