@@ -11,7 +11,7 @@
                       <p></p>
                       <p>Номер заказа: {{ order.id }}</p>
                       <p>Тип заказа: {{ order.get_type_display }} </p>
-                      <p>Статус заказа: <span id="id_order_state"><strong>{{ order.get_state_display }}</strong></span></p>
+                      <p>Статус заказа: <span id="id_order_state{{ order.id }}"><strong>{{ order.get_state_display }}</strong></span></p>
                       <p>Контактный номер клиента: {{ order.client_phone }}</p>
                       <p>Дата исполнения заказа: {{ order.execute_date }} {{ order.execute_time }}</p>
                   </div>
@@ -40,7 +40,8 @@
     function accept_order(order_id) {
         $.get("{% url 'accept_order' %}", {"order_id": order_id}, function(data) {
             if (data != "error" && data != "cancel") {
-                $("#id_order_state").html("<strong>" + data + "</strong>");
+                var order_state_id = "#id_order_state" + order_id;
+                $(order_state_id).html("<strong>" + data + "</strong>");
             } else if (data == "cancel") {
                 alert("Нельзя");
             } else {
@@ -51,7 +52,8 @@
     function decline_order(order_id) {
         $.get("{% url 'decline_order' %}", {"order_id": order_id}, function(data) {
             if (data != "error" && data != "cancel") {
-                $("#id_order_state").html("<strong>" + data + "</strong>");
+                var order_state_id = "#id_order_state" + order_id;
+                $(order_state_id).html("<strong>" + data + "</strong>");
             } else if (data == "cancel") {
                 alert("Нельзя");
             } else {
