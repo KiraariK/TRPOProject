@@ -30,6 +30,7 @@ def delete_expired_session_data(request):
         message = 'error'
     return HttpResponse(message)
 
+
 def about_page_view(request):
     return render(
         request,
