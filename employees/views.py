@@ -1,10 +1,11 @@
+import json
 from datetime import datetime
 from django.shortcuts import render, redirect
 from django.contrib import auth
 from django.http import HttpResponse
 from django.views.generic import ListView
 from employees.models import Employee
-from orders.models import Order
+from orders.models import Order, OrdersCartRow
 
 
 class EmployeePage(ListView):
@@ -113,5 +114,27 @@ def decline_order(request):
             return HttpResponse(necessary_order.get_state_display())
         else:
             return HttpResponse('cancel')
+    else:
+        return HttpResponse('error')
+
+
+def view_order_dish_list(request):
+    if request.is_ajax():
+        order_id = request.GET.get('id')
+        order_rows = OrdersCartRow.objects.filter(order__id=order_id)
+        dishes_in_order = {}
+        order_price = 0
+        for row in order_rows:
+            dishes_in_order[row.establishment_dish.dish] = row.dishes_count
+            order_price += row.establishment_dish.dish.price * row.dishes_count
+
+        dish_list = []
+        for key, val in dishes_in_order.items():
+            dish_specification = {'dish_name': key.name, 'dish_price': key.price, 'dish_count': val}
+            dish_list.append(dish_specification)
+        order_info = {'order_price': order_price, 'order_components': dish_list}
+
+        json_string = json.dumps(order_info, ensure_ascii=False).encode('utf8')
+        return HttpResponse(json_string)
     else:
         return HttpResponse('error')
