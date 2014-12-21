@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.views.generic import ListView
 from establishments.models import City, Establishment
+from django.shortcuts import render
 
 
 class EstablishmentsList(ListView):
@@ -28,3 +29,12 @@ def delete_expired_session_data(request):
     else:
         message = 'error'
     return HttpResponse(message)
+
+def about_page_view(request):
+    return render(
+        request,
+        'establishments/about.html',
+        {
+
+        }
+    )

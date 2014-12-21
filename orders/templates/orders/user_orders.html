@@ -46,36 +46,42 @@
     {% if is_valid == 1 %}
         {% for order in orders %}
         <div class="row">
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                    <h3 class="panel-title">
-                        {{ order.get_type_display }}
-                    </h3>
-                </div>
-                <div class="panel-body">
-                    <div class="col-md-3">
-                        Статус: <strong>{{ order.get_state_display }}</strong>
+            <div class="col-xs-10">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            {{ order.get_type_display }}
+                        </h3>
                     </div>
-                    <div class="col-md-3">
-                        <p>{{ order.establishment_branch.establishment.name }} - {{ order.establishment_branch.establishment.email }}</p>
-                        {% if order.type != '2' %}
-                            {{ order.establishment_branch.address }} - {{ order.establishment_branch.help_phone_number }}
-                        {% endif %}
-                    </div>
-                    <div class="col-md-3">
-                        <a class="btn btn-link" onclick="viewOrderDishList({{ order.id }})">Заказ</a>
-                    </div>
-                    <div class="col-md-3">
-                        {{ order.execute_date }} {{ order.execute_time }}
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                Статус: <strong>{{ order.get_state_display }}</strong>
+                            </div>
+                            <div class="col-xs-4">
+                                <p>{{ order.establishment_branch.establishment.name }} - {{ order.establishment_branch.establishment.email }}</p>
+                                {% if order.type != '2' %}
+                                    {{ order.establishment_branch.address }} - {{ order.establishment_branch.help_phone_number }}
+                                {% endif %}
+                            </div>
+                            <div class="col-xs-2">
+                                <a class="btn btn-link" onclick="viewOrderDishList({{ order.id }})">Заказ</a>
+                            </div>
+                            <div class="col-xs-3">
+                                {{ order.execute_date }} {{ order.execute_time }}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="alert alert-info" id="popup{{ order.id }}">
-            <span id="order_rows{{ order.id }}"></span>
-            <div class="row">
-                <div class="col-xs-2 ">
-                    <button type="button" class="btn btn-primary" onclick="hidePopUp()" style="width:100%;">Закрыть</button>
+            <div class="col-xs-10">
+                <div class="alert alert-info" id="popup{{ order.id }}">
+                    <span id="order_rows{{ order.id }}"></span>
+                    <div class="row">
+                        <div class="col-xs-2 ">
+                            <button type="button" class="btn btn-primary" onclick="hidePopUp()" style="width:100%;">Закрыть</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
