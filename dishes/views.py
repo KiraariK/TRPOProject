@@ -20,15 +20,19 @@ class DishesList(ListView):
             current_establishment = EstablishmentDish.objects.first()
 
         dish_category = self.kwargs.get('dish_category')
-        default_dish_category = dish_category or Dish.DISH_TYPE_SOUP
+        default_dish_category = dish_category or '100'
         context['current_establishment'] = current_establishment.establishment
         context['dish_categories_list'] = Dish.DISH_TYPE
-        # TODO добавить на страницу пункт категорий "все"
         context['default_dish_category'] = default_dish_category
-        context['dishes_list'] = Dish.objects.filter(
-            establishmentdish__establishment=establishment_id,
-            category=default_dish_category,
-        )
+        if default_dish_category != '100':
+            context['dishes_list'] = Dish.objects.filter(
+                establishmentdish__establishment=establishment_id,
+                category=default_dish_category,
+            )
+        else:
+            context['dishes_list'] = Dish.objects.filter(
+                establishmentdish__establishment=establishment_id
+            )
         return context
 
 
