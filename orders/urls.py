@@ -22,5 +22,5 @@ urlpatterns = patterns(
     url(r'my_orders/$', views.get_user_form, name='get_user_form'),
 
     # url for ajax
-    # url(r'my_orders/dish_list/$', views.view_order_dish_list, name='view_order_dish_list')
+    url(r'my_orders/dish_list/$', views.view_order_dish_list, name='view_order_dish_list')
 )
