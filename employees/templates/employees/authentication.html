@@ -7,8 +7,9 @@
     <p class="error">Sorry, that's not a valid username or password</p>
 {% endif %}
 
-    <h2 class="form-signin-heading col-md-8">Пожалуйста, авторизуйтесь</h2></div>
 <div class="container">
+    <div class="row"> <h2 class="form-signin-heading col-md-8">Пожалуйста, авторизуйтесь</h2></div>
+ <div class="row">
     <div class="col-xs-4">
         {% if state == 1 %}
         <div class="alert alert-danger">Неверный логин/пароль</div>
@@ -22,7 +23,7 @@
 
         <p><button class="btn btn-default" type="submit">Войти</button></p>
         </form>
-    </div>
+    </div></div>
 </div>
 
 {% endblock %}
