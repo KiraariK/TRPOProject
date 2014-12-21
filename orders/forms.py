@@ -22,11 +22,11 @@ class TableForm(forms.Form):
     )
     date = forms.DateField(
         label='Дата бронирования',
-        input_formats=['%d-%m-%Y', '%d-%m-%y'],
+        input_formats=['%Y-%m-%d'],
         widget=forms.DateInput(
             attrs={
                 'type': 'date',
-                'placeholder': 'ДД-ММ-ГГ'
+                'placeholder': 'ДД-ММ-ГГГГ'
             },
         ),
         error_messages={
@@ -342,11 +342,11 @@ class TableForm(forms.Form):
 class DeliveryForm(forms.Form):
     date = forms.DateField(
         label='Дата доставки',
-        input_formats=['%d-%m-%Y', '%d-%m-%y'],
+        input_formats=['%Y-%m-%d'],
         widget=forms.DateInput(
             attrs={
                 'type': 'date',
-                'placeholder': 'ДД-ММ-ГГ'
+                'placeholder': 'ДД-ММ-ГГГГ'
             },
         ),
         error_messages={
@@ -437,11 +437,11 @@ class PickUpForm(forms.Form):
     )
     date = forms.DateField(
         label='Дата самовывоза',
-        input_formats=['%d-%m-%Y', '%d-%m-%y'],
+        input_formats=['%Y-%m-%d'],
         widget=forms.DateInput(
             attrs={
                 'type': 'date',
-                'placeholder': 'ДД-ММ-ГГ'
+                'placeholder': 'ДД-ММ-ГГГГ'
             },
         ),
         error_messages={

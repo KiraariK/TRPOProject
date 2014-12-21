@@ -336,7 +336,7 @@ def get_order_form(request, establishment_id, order_type):
                     hall_type = request.POST.get('hall')
                     order_date_str = request.POST.get('date')
                     try:
-                        time_structure = time.strptime(order_date_str, '%d-%m-%y')
+                        time_structure = time.strptime(order_date_str, '%Y-%m-%d')
                         order_date = datetime(time_structure.tm_year, time_structure.tm_mon, time_structure.tm_mday)
                         border_date = datetime(datetime.now().year, datetime.now().month, datetime.now().day)
                         if order_date < border_date:
@@ -353,7 +353,7 @@ def get_order_form(request, establishment_id, order_type):
                         show_custom_date_error = 0
                     except TypeError:
                         try:
-                            time_structure = time.strptime(order_date_str, '%d-%m-%Y')
+                            time_structure = time.strptime(order_date_str, '%Y-%m-%d')
                             order_date = datetime(time_structure.tm_year, time_structure.tm_mon, time_structure.tm_mday)
                             border_date = datetime(datetime.now().year, datetime.now().month, datetime.now().day)
                             if order_date < border_date:
@@ -373,7 +373,7 @@ def get_order_form(request, establishment_id, order_type):
                     hall_type = request.POST.get('hall')
                     order_date_str = request.POST.get('date')
                     try:
-                        time_structure = time.strptime(order_date_str, '%d-%m-%y')
+                        time_structure = time.strptime(order_date_str, '%Y-%m-%d')
                         order_date = datetime(time_structure.tm_year, time_structure.tm_mon, time_structure.tm_mday)
                         border_date = datetime(datetime.now().year, datetime.now().month, datetime.now().day)
                         if order_date < border_date:
@@ -384,7 +384,7 @@ def get_order_form(request, establishment_id, order_type):
                         form = TableForm(establishment_id, branch_id, hall_type, -1, request.POST)
                     except TypeError:
                         try:
-                            time_structure = time.strptime(order_date_str, '%d-%m-%Y')
+                            time_structure = time.strptime(order_date_str, '%Y-%m-%d')
                             order_date = datetime(time_structure.tm_year, time_structure.tm_mon, time_structure.tm_mday)
                             border_date = datetime(datetime.now().year, datetime.now().month, datetime.now().day)
                             if order_date < border_date:
