@@ -1,9 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<<<<<<< HEAD
 <modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner"
-=======
-<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/UseCaseModel"
->>>>>>> 93379c8ddf6a3993350c1c523b34d47e760fea56
   dslVersion="1.0.0.0"
   Id="13823d4d-dd9e-44e2-b8d5-1d57eb6dd29f"
   name="WannaEatDocs" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
@@ -7850,22 +7846,22 @@
             </covered>
           </operandOccurrenceSpecification>
           <messageOccurrenceSpecification
-            Id="cfde4ddf-b5bd-4578-8121-b27c828e34ee"
-            name="MessageOccurrenceSpecification115">
-            <covered>
-              <lifelineMoniker
-                Id="d7395e2e-9ba1-43f6-9b3f-7bfde62305cd"
-                LastKnownName=": View"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <messageOccurrenceSpecification
             Id="bfa0dbda-2f81-48de-ae06-73b810fed270"
             name="MessageOccurrenceSpecification114">
             <covered>
               <lifelineMoniker
                 Id="21c1b3e7-5a16-4000-99cc-077587bfa305"
                 LastKnownName="request.GET : QueryDict"
+                LastKnownLocation="WannaEatDocs.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="cfde4ddf-b5bd-4578-8121-b27c828e34ee"
+            name="MessageOccurrenceSpecification115">
+            <covered>
+              <lifelineMoniker
+                Id="d7395e2e-9ba1-43f6-9b3f-7bfde62305cd"
+                LastKnownName=": View"
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -8362,22 +8358,22 @@
             </covered>
           </messageOccurrenceSpecification>
           <messageOccurrenceSpecification
-            Id="eb08acc4-0fa6-4e6c-9e6f-393daa8cb655"
-            name="MessageOccurrenceSpecification74">
-            <covered>
-              <lifelineMoniker
-                Id="21c1b3e7-5a16-4000-99cc-077587bfa305"
-                LastKnownName="request.GET : QueryDict"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <messageOccurrenceSpecification
             Id="04a17c2c-d66c-4fbf-acbb-6611fb124384"
             name="MessageOccurrenceSpecification75">
             <covered>
               <lifelineMoniker
                 Id="d7395e2e-9ba1-43f6-9b3f-7bfde62305cd"
                 LastKnownName=": View"
+                LastKnownLocation="WannaEatDocs.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="eb08acc4-0fa6-4e6c-9e6f-393daa8cb655"
+            name="MessageOccurrenceSpecification74">
+            <covered>
+              <lifelineMoniker
+                Id="21c1b3e7-5a16-4000-99cc-077587bfa305"
+                LastKnownName="request.GET : QueryDict"
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -8506,22 +8502,22 @@
             </covered>
           </executionOccurrenceSpecification>
           <messageOccurrenceSpecification
-            Id="8705c595-7681-4a36-bf48-816b39660fcf"
-            name="MessageOccurrenceSpecification77">
-            <covered>
-              <lifelineMoniker
-                Id="21c1b3e7-5a16-4000-99cc-077587bfa305"
-                LastKnownName="request.GET : QueryDict"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <messageOccurrenceSpecification
             Id="7b627668-6b1b-4853-b09f-522ba6d5f28f"
             name="MessageOccurrenceSpecification76">
             <covered>
               <lifelineMoniker
                 Id="d7395e2e-9ba1-43f6-9b3f-7bfde62305cd"
                 LastKnownName=": View"
+                LastKnownLocation="WannaEatDocs.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="8705c595-7681-4a36-bf48-816b39660fcf"
+            name="MessageOccurrenceSpecification77">
+            <covered>
+              <lifelineMoniker
+                Id="21c1b3e7-5a16-4000-99cc-077587bfa305"
+                LastKnownName="request.GET : QueryDict"
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -8938,22 +8934,22 @@
             </covered>
           </messageOccurrenceSpecification>
           <messageOccurrenceSpecification
-            Id="4780f3f8-37cb-4528-91b9-7d91f0002d77"
-            name="MessageOccurrenceSpecification12">
-            <covered>
-              <lifelineMoniker
-                Id="c03bfdfc-2621-4c79-9c2a-7673ae589d39"
-                LastKnownName="session : SessionBase"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <messageOccurrenceSpecification
             Id="7c78cf87-173b-4af0-be76-8173634fb309"
             name="MessageOccurrenceSpecification13">
             <covered>
               <lifelineMoniker
                 Id="0ba2eafc-7cd7-4c5f-93a0-2b3c98f52d57"
                 LastKnownName="Orders.views : View"
+                LastKnownLocation="WannaEatDocs.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="4780f3f8-37cb-4528-91b9-7d91f0002d77"
+            name="MessageOccurrenceSpecification12">
+            <covered>
+              <lifelineMoniker
+                Id="c03bfdfc-2621-4c79-9c2a-7673ae589d39"
+                LastKnownName="session : SessionBase"
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -9034,22 +9030,22 @@
             </covered>
           </operandOccurrenceSpecification>
           <operandOccurrenceSpecification
-            Id="4638c373-345f-4a7a-8773-35b1de06c418"
-            name="OperandOccurrenceSpecification61">
-            <covered>
-              <lifelineMoniker
-                Id="d7395e2e-9ba1-43f6-9b3f-7bfde62305cd"
-                LastKnownName=": View"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </operandOccurrenceSpecification>
-          <operandOccurrenceSpecification
             Id="1ca39ad1-d905-4400-8d05-dd07dcc10ef2"
             name="OperandOccurrenceSpecification59">
             <covered>
               <lifelineMoniker
                 Id="5f30dd76-9137-4577-a99c-89cb90412fe7"
                 LastKnownName="session : SessionBase"
+                LastKnownLocation="WannaEatDocs.uml" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification
+            Id="4638c373-345f-4a7a-8773-35b1de06c418"
+            name="OperandOccurrenceSpecification61">
+            <covered>
+              <lifelineMoniker
+                Id="d7395e2e-9ba1-43f6-9b3f-7bfde62305cd"
+                LastKnownName=": View"
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </operandOccurrenceSpecification>
@@ -9142,22 +9138,22 @@
             </covered>
           </messageOccurrenceSpecification>
           <messageOccurrenceSpecification
-            Id="915ee039-e62a-4738-8190-49520ab32d4d"
-            name="MessageOccurrenceSpecification90">
-            <covered>
-              <lifelineMoniker
-                Id="5f30dd76-9137-4577-a99c-89cb90412fe7"
-                LastKnownName="session : SessionBase"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <messageOccurrenceSpecification
             Id="594ca81d-79a9-4542-94e3-0c949a56602c"
             name="MessageOccurrenceSpecification91">
             <covered>
               <lifelineMoniker
                 Id="d7395e2e-9ba1-43f6-9b3f-7bfde62305cd"
                 LastKnownName=": View"
+                LastKnownLocation="WannaEatDocs.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="915ee039-e62a-4738-8190-49520ab32d4d"
+            name="MessageOccurrenceSpecification90">
+            <covered>
+              <lifelineMoniker
+                Id="5f30dd76-9137-4577-a99c-89cb90412fe7"
+                LastKnownName="session : SessionBase"
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -9416,16 +9412,6 @@
             </covered>
           </executionOccurrenceSpecification>
           <operandOccurrenceSpecification
-            Id="5f6db6aa-707f-414d-b00b-e64309ccd68d"
-            name="OperandOccurrenceSpecification68">
-            <covered>
-              <lifelineMoniker
-                Id="5f30dd76-9137-4577-a99c-89cb90412fe7"
-                LastKnownName="session : SessionBase"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </operandOccurrenceSpecification>
-          <operandOccurrenceSpecification
             Id="5d74bc4f-20a8-49c6-a522-095d9a10dc9e"
             name="OperandOccurrenceSpecification70">
             <covered>
@@ -9436,8 +9422,8 @@
             </covered>
           </operandOccurrenceSpecification>
           <operandOccurrenceSpecification
-            Id="1ec1f246-0990-4ef8-95ec-cbdefe5e9716"
-            name="OperandOccurrenceSpecification71">
+            Id="5f6db6aa-707f-414d-b00b-e64309ccd68d"
+            name="OperandOccurrenceSpecification68">
             <covered>
               <lifelineMoniker
                 Id="5f30dd76-9137-4577-a99c-89cb90412fe7"
@@ -9452,6 +9438,16 @@
               <lifelineMoniker
                 Id="d7395e2e-9ba1-43f6-9b3f-7bfde62305cd"
                 LastKnownName=": View"
+                LastKnownLocation="WannaEatDocs.uml" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification
+            Id="1ec1f246-0990-4ef8-95ec-cbdefe5e9716"
+            name="OperandOccurrenceSpecification71">
+            <covered>
+              <lifelineMoniker
+                Id="5f30dd76-9137-4577-a99c-89cb90412fe7"
+                LastKnownName="session : SessionBase"
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </operandOccurrenceSpecification>
@@ -9860,26 +9856,6 @@
             </covered>
           </operandOccurrenceSpecification>
           <operandOccurrenceSpecification
-            Id="52ebf6b0-a2e3-44b3-ba3d-b8d7a7e805e1"
-            name="OperandOccurrenceSpecification58">
-            <covered>
-              <lifelineMoniker
-                Id="3fe7ccd3-3e32-423b-9f90-ab2e7504d170"
-                LastKnownName="Dish.objects : _default_manager"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </operandOccurrenceSpecification>
-          <operandOccurrenceSpecification
-            Id="af0487cf-d34a-41dd-b996-c75f07d4b889"
-            name="OperandOccurrenceSpecification54">
-            <covered>
-              <lifelineMoniker
-                Id="d7395e2e-9ba1-43f6-9b3f-7bfde62305cd"
-                LastKnownName=": View"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </operandOccurrenceSpecification>
-          <operandOccurrenceSpecification
             Id="166b9071-5b1f-4da3-b9c2-63b4e1e6414d"
             name="OperandOccurrenceSpecification52">
             <covered>
@@ -9896,6 +9872,26 @@
               <lifelineMoniker
                 Id="5f30dd76-9137-4577-a99c-89cb90412fe7"
                 LastKnownName="session : SessionBase"
+                LastKnownLocation="WannaEatDocs.uml" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification
+            Id="52ebf6b0-a2e3-44b3-ba3d-b8d7a7e805e1"
+            name="OperandOccurrenceSpecification58">
+            <covered>
+              <lifelineMoniker
+                Id="3fe7ccd3-3e32-423b-9f90-ab2e7504d170"
+                LastKnownName="Dish.objects : _default_manager"
+                LastKnownLocation="WannaEatDocs.uml" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification
+            Id="af0487cf-d34a-41dd-b996-c75f07d4b889"
+            name="OperandOccurrenceSpecification54">
+            <covered>
+              <lifelineMoniker
+                Id="d7395e2e-9ba1-43f6-9b3f-7bfde62305cd"
+                LastKnownName=": View"
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </operandOccurrenceSpecification>
@@ -10961,7 +10957,7 @@
             <coveredLifelines>
               <lifelineMoniker
                 Id="94ab754c-e901-46aa-812a-b7b8a2d9ea95"
-                LastKnownName="ListView"
+                LastKnownName=": ListView"
                 LastKnownLocation="WannaEatDocs.uml" />
             </coveredLifelines>
             <finish>
@@ -11001,7 +10997,7 @@
             <covered>
               <lifelineMoniker
                 Id="94ab754c-e901-46aa-812a-b7b8a2d9ea95"
-                LastKnownName="ListView"
+                LastKnownName=": ListView"
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </executionOccurrenceSpecification>
@@ -11021,7 +11017,7 @@
             <covered>
               <lifelineMoniker
                 Id="94ab754c-e901-46aa-812a-b7b8a2d9ea95"
-                LastKnownName="ListView"
+                LastKnownName=": ListView"
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -11041,7 +11037,7 @@
             <covered>
               <lifelineMoniker
                 Id="94ab754c-e901-46aa-812a-b7b8a2d9ea95"
-                LastKnownName="ListView"
+                LastKnownName=": ListView"
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -11059,7 +11055,7 @@
             <covered>
               <lifelineMoniker
                 Id="94ab754c-e901-46aa-812a-b7b8a2d9ea95"
-                LastKnownName="ListView"
+                LastKnownName=": ListView"
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </executionOccurrenceSpecification>
@@ -11159,11 +11155,7 @@
                 LastKnownLocation="WannaEatDocs.uml" />
               <lifelineMoniker
                 Id="037c348b-4900-49ce-9cec-9c13dfd24523"
-                LastKnownName="Objects : EstablishmentDish"
-                LastKnownLocation="WannaEatDocs.uml" />
-              <lifelineMoniker
-                Id="80de64c3-189f-4e3f-b13f-af93a23ed0a3"
-                LastKnownName=": Establishment"
+                LastKnownName="EstablishmentDish.objects : _defaul_manager_"
                 LastKnownLocation="WannaEatDocs.uml" />
             </coveredLifelines>
             <operands>
@@ -11177,11 +11169,7 @@
                     LastKnownLocation="WannaEatDocs.uml" />
                   <lifelineMoniker
                     Id="037c348b-4900-49ce-9cec-9c13dfd24523"
-                    LastKnownName="Objects : EstablishmentDish"
-                    LastKnownLocation="WannaEatDocs.uml" />
-                  <lifelineMoniker
-                    Id="80de64c3-189f-4e3f-b13f-af93a23ed0a3"
-                    LastKnownName=": Establishment"
+                    LastKnownName="EstablishmentDish.objects : _defaul_manager_"
                     LastKnownLocation="WannaEatDocs.uml" />
                 </coveredLifelines>
                 <fragments>
@@ -11197,11 +11185,7 @@
                         LastKnownLocation="WannaEatDocs.uml" />
                       <lifelineMoniker
                         Id="037c348b-4900-49ce-9cec-9c13dfd24523"
-                        LastKnownName="Objects : EstablishmentDish"
-                        LastKnownLocation="WannaEatDocs.uml" />
-                      <lifelineMoniker
-                        Id="80de64c3-189f-4e3f-b13f-af93a23ed0a3"
-                        LastKnownName=": Establishment"
+                        LastKnownName="EstablishmentDish.objects : _defaul_manager_"
                         LastKnownLocation="WannaEatDocs.uml" />
                     </coveredLifelines>
                     <operands>
@@ -11215,11 +11199,7 @@
                             LastKnownLocation="WannaEatDocs.uml" />
                           <lifelineMoniker
                             Id="037c348b-4900-49ce-9cec-9c13dfd24523"
-                            LastKnownName="Objects : EstablishmentDish"
-                            LastKnownLocation="WannaEatDocs.uml" />
-                          <lifelineMoniker
-                            Id="80de64c3-189f-4e3f-b13f-af93a23ed0a3"
-                            LastKnownName=": Establishment"
+                            LastKnownName="EstablishmentDish.objects : _defaul_manager_"
                             LastKnownLocation="WannaEatDocs.uml" />
                         </coveredLifelines>
                         <guard>
@@ -11243,14 +11223,6 @@
                             Id="1d3855cf-a469-469f-a042-229031ab56ab"
                             LastKnownName="OperandOccurrenceSpecification44"
                             LastKnownLocation="WannaEatDocs.uml" />
-                          <operandOccurrenceSpecificationMoniker
-                            Id="305bf7a6-8d91-482d-9b56-77ff23ed7378"
-                            LastKnownName="OperandOccurrenceSpecification53"
-                            LastKnownLocation="WannaEatDocs.uml" />
-                          <operandOccurrenceSpecificationMoniker
-                            Id="cf4f42bd-4fce-4cc5-90fa-3f20948b7a74"
-                            LastKnownName="OperandOccurrenceSpecification54"
-                            LastKnownLocation="WannaEatDocs.uml" />
                         </operandOccurrenceSpecifications>
                       </interactionOperand>
                       <interactionOperand
@@ -11263,11 +11235,7 @@
                             LastKnownLocation="WannaEatDocs.uml" />
                           <lifelineMoniker
                             Id="037c348b-4900-49ce-9cec-9c13dfd24523"
-                            LastKnownName="Objects : EstablishmentDish"
-                            LastKnownLocation="WannaEatDocs.uml" />
-                          <lifelineMoniker
-                            Id="80de64c3-189f-4e3f-b13f-af93a23ed0a3"
-                            LastKnownName=": Establishment"
+                            LastKnownName="EstablishmentDish.objects : _defaul_manager_"
                             LastKnownLocation="WannaEatDocs.uml" />
                         </coveredLifelines>
                         <guard>
@@ -11290,14 +11258,6 @@
                           <operandOccurrenceSpecificationMoniker
                             Id="6e80ae0c-139d-4af9-8fe7-6a6a255141d1"
                             LastKnownName="OperandOccurrenceSpecification52"
-                            LastKnownLocation="WannaEatDocs.uml" />
-                          <operandOccurrenceSpecificationMoniker
-                            Id="88bd441f-9379-4757-aca8-2a1d81fc5f6e"
-                            LastKnownName="OperandOccurrenceSpecification55"
-                            LastKnownLocation="WannaEatDocs.uml" />
-                          <operandOccurrenceSpecificationMoniker
-                            Id="59f4570f-a2f2-4c52-9e61-034eb5cbb5ee"
-                            LastKnownName="OperandOccurrenceSpecification56"
                             LastKnownLocation="WannaEatDocs.uml" />
                         </operandOccurrenceSpecifications>
                       </interactionOperand>
@@ -11325,14 +11285,6 @@
                     Id="823fb670-4c73-4d28-9180-6150db2319fe"
                     LastKnownName="OperandOccurrenceSpecification40"
                     LastKnownLocation="WannaEatDocs.uml" />
-                  <operandOccurrenceSpecificationMoniker
-                    Id="d12655dd-8181-461d-8b1e-a7d565726280"
-                    LastKnownName="OperandOccurrenceSpecification57"
-                    LastKnownLocation="WannaEatDocs.uml" />
-                  <operandOccurrenceSpecificationMoniker
-                    Id="4709993e-c2b5-4c43-8a51-7ed189e53b50"
-                    LastKnownName="OperandOccurrenceSpecification58"
-                    LastKnownLocation="WannaEatDocs.uml" />
                 </operandOccurrenceSpecifications>
               </interactionOperand>
               <interactionOperand
@@ -11345,11 +11297,7 @@
                     LastKnownLocation="WannaEatDocs.uml" />
                   <lifelineMoniker
                     Id="037c348b-4900-49ce-9cec-9c13dfd24523"
-                    LastKnownName="Objects : EstablishmentDish"
-                    LastKnownLocation="WannaEatDocs.uml" />
-                  <lifelineMoniker
-                    Id="80de64c3-189f-4e3f-b13f-af93a23ed0a3"
-                    LastKnownName=": Establishment"
+                    LastKnownName="EstablishmentDish.objects : _defaul_manager_"
                     LastKnownLocation="WannaEatDocs.uml" />
                 </coveredLifelines>
                 <guard>
@@ -11373,14 +11321,6 @@
                     Id="3ae8dd41-79e8-4f46-bb6b-473c9298ec28"
                     LastKnownName="OperandOccurrenceSpecification48"
                     LastKnownLocation="WannaEatDocs.uml" />
-                  <operandOccurrenceSpecificationMoniker
-                    Id="d9cdeffb-2023-4a7e-8e23-68fd5e6b2179"
-                    LastKnownName="OperandOccurrenceSpecification59"
-                    LastKnownLocation="WannaEatDocs.uml" />
-                  <operandOccurrenceSpecificationMoniker
-                    Id="c158c235-59f0-45c2-926f-009380e829c0"
-                    LastKnownName="OperandOccurrenceSpecification60"
-                    LastKnownLocation="WannaEatDocs.uml" />
                 </operandOccurrenceSpecifications>
               </interactionOperand>
             </operands>
@@ -11391,7 +11331,7 @@
             <covered>
               <lifelineMoniker
                 Id="037c348b-4900-49ce-9cec-9c13dfd24523"
-                LastKnownName="Objects : EstablishmentDish"
+                LastKnownName="EstablishmentDish.objects : _defaul_manager_"
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </operandOccurrenceSpecification>
@@ -11406,26 +11346,6 @@
             </covered>
           </operandOccurrenceSpecification>
           <operandOccurrenceSpecification
-            Id="d12655dd-8181-461d-8b1e-a7d565726280"
-            name="OperandOccurrenceSpecification57">
-            <covered>
-              <lifelineMoniker
-                Id="80de64c3-189f-4e3f-b13f-af93a23ed0a3"
-                LastKnownName=": Establishment"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </operandOccurrenceSpecification>
-          <operandOccurrenceSpecification
-            Id="1a0865b8-b514-4c01-be5c-7dcebf00394a"
-            name="OperandOccurrenceSpecification41">
-            <covered>
-              <lifelineMoniker
-                Id="037c348b-4900-49ce-9cec-9c13dfd24523"
-                LastKnownName="Objects : EstablishmentDish"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </operandOccurrenceSpecification>
-          <operandOccurrenceSpecification
             Id="d6a9e7c5-7adf-43ab-bf23-e44d15f10f0d"
             name="OperandOccurrenceSpecification43">
             <covered>
@@ -11436,12 +11356,12 @@
             </covered>
           </operandOccurrenceSpecification>
           <operandOccurrenceSpecification
-            Id="305bf7a6-8d91-482d-9b56-77ff23ed7378"
-            name="OperandOccurrenceSpecification53">
+            Id="1a0865b8-b514-4c01-be5c-7dcebf00394a"
+            name="OperandOccurrenceSpecification41">
             <covered>
               <lifelineMoniker
-                Id="80de64c3-189f-4e3f-b13f-af93a23ed0a3"
-                LastKnownName=": Establishment"
+                Id="037c348b-4900-49ce-9cec-9c13dfd24523"
+                LastKnownName="EstablishmentDish.objects : _defaul_manager_"
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </operandOccurrenceSpecification>
@@ -11451,7 +11371,7 @@
             <coveredLifelines>
               <lifelineMoniker
                 Id="037c348b-4900-49ce-9cec-9c13dfd24523"
-                LastKnownName="Objects : EstablishmentDish"
+                LastKnownName="EstablishmentDish.objects : _defaul_manager_"
                 LastKnownLocation="WannaEatDocs.uml" />
             </coveredLifelines>
             <finish>
@@ -11470,14 +11390,6 @@
               <messageOccurrenceSpecificationMoniker
                 Id="1866688a-8d5c-45e5-874a-fbaad5d0e075"
                 LastKnownName="MessageOccurrenceSpecification16"
-                LastKnownLocation="WannaEatDocs.uml" />
-              <messageOccurrenceSpecificationMoniker
-                Id="390f86bd-85e4-45c0-b2b6-6a3ff724ce8a"
-                LastKnownName="MessageOccurrenceSpecification47"
-                LastKnownLocation="WannaEatDocs.uml" />
-              <messageOccurrenceSpecificationMoniker
-                Id="954ceb0e-f99c-45ee-ac1e-b936094e1fad"
-                LastKnownName="MessageOccurrenceSpecification50"
                 LastKnownLocation="WannaEatDocs.uml" />
               <messageOccurrenceSpecificationMoniker
                 Id="d86b4db2-e1d8-438b-a897-1b0497f1fe6b"
@@ -11499,10 +11411,20 @@
             <covered>
               <lifelineMoniker
                 Id="037c348b-4900-49ce-9cec-9c13dfd24523"
-                LastKnownName="Objects : EstablishmentDish"
+                LastKnownName="EstablishmentDish.objects : _defaul_manager_"
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="1866688a-8d5c-45e5-874a-fbaad5d0e075"
+            name="MessageOccurrenceSpecification16">
+            <covered>
+              <lifelineMoniker
+                Id="037c348b-4900-49ce-9cec-9c13dfd24523"
+                LastKnownName="EstablishmentDish.objects : _defaul_manager_"
+                LastKnownLocation="WannaEatDocs.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
           <messageOccurrenceSpecification
             Id="80227335-2eaf-435e-b729-6e1f1b9ab5ab"
             name="MessageOccurrenceSpecification15">
@@ -11514,140 +11436,22 @@
             </covered>
           </messageOccurrenceSpecification>
           <messageOccurrenceSpecification
-            Id="1866688a-8d5c-45e5-874a-fbaad5d0e075"
-            name="MessageOccurrenceSpecification16">
-            <covered>
-              <lifelineMoniker
-                Id="037c348b-4900-49ce-9cec-9c13dfd24523"
-                LastKnownName="Objects : EstablishmentDish"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <behaviorExecutionSpecification
-            Id="1170ba2b-1d05-4a3f-b1f1-8dd91b868df1"
-            name="BehaviorExecutionSpecification15">
-            <coveredLifelines>
-              <lifelineMoniker
-                Id="80de64c3-189f-4e3f-b13f-af93a23ed0a3"
-                LastKnownName=": Establishment"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </coveredLifelines>
-            <finish>
-              <executionOccurrenceSpecificationMoniker
-                Id="fe8da957-00a0-4a9b-819c-cd2336567733"
-                LastKnownName="ExecutionOccurrenceSpecification30"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </finish>
-            <start>
-              <executionOccurrenceSpecificationMoniker
-                Id="b44abb0b-08b8-409d-8019-ab052b869804"
-                LastKnownName="ExecutionOccurrenceSpecification29"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </start>
-            <nestedOccurrences>
-              <messageOccurrenceSpecificationMoniker
-                Id="7db0a3ab-1e0a-40e3-a8b7-e158f19038cb"
-                LastKnownName="MessageOccurrenceSpecification48"
-                LastKnownLocation="WannaEatDocs.uml" />
-              <messageOccurrenceSpecificationMoniker
-                Id="903ed342-1abe-4415-bbbe-0829039f88fe"
-                LastKnownName="MessageOccurrenceSpecification49"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </nestedOccurrences>
-          </behaviorExecutionSpecification>
-          <executionOccurrenceSpecification
-            Id="b44abb0b-08b8-409d-8019-ab052b869804"
-            name="ExecutionOccurrenceSpecification29">
-            <event>
-              <executionOccurrenceSpecificationReferencesEvent>
-                <executionEventMoniker
-                  Id="5c3bbeff-df71-48e8-acc0-0a8ab6d9367a"
-                  LastKnownName="ExecutionEvent"
-                  LastKnownLocation="WannaEatDocs.uml" />
-              </executionOccurrenceSpecificationReferencesEvent>
-            </event>
-            <covered>
-              <lifelineMoniker
-                Id="80de64c3-189f-4e3f-b13f-af93a23ed0a3"
-                LastKnownName=": Establishment"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </executionOccurrenceSpecification>
-          <messageOccurrenceSpecification
-            Id="7db0a3ab-1e0a-40e3-a8b7-e158f19038cb"
-            name="MessageOccurrenceSpecification48">
-            <covered>
-              <lifelineMoniker
-                Id="80de64c3-189f-4e3f-b13f-af93a23ed0a3"
-                LastKnownName=": Establishment"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <messageOccurrenceSpecification
-            Id="390f86bd-85e4-45c0-b2b6-6a3ff724ce8a"
-            name="MessageOccurrenceSpecification47">
-            <covered>
-              <lifelineMoniker
-                Id="037c348b-4900-49ce-9cec-9c13dfd24523"
-                LastKnownName="Objects : EstablishmentDish"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <messageOccurrenceSpecification
-            Id="903ed342-1abe-4415-bbbe-0829039f88fe"
-            name="MessageOccurrenceSpecification49">
-            <covered>
-              <lifelineMoniker
-                Id="80de64c3-189f-4e3f-b13f-af93a23ed0a3"
-                LastKnownName=": Establishment"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <messageOccurrenceSpecification
-            Id="954ceb0e-f99c-45ee-ac1e-b936094e1fad"
-            name="MessageOccurrenceSpecification50">
-            <covered>
-              <lifelineMoniker
-                Id="037c348b-4900-49ce-9cec-9c13dfd24523"
-                LastKnownName="Objects : EstablishmentDish"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <executionOccurrenceSpecification
-            Id="fe8da957-00a0-4a9b-819c-cd2336567733"
-            name="ExecutionOccurrenceSpecification30">
-            <event>
-              <executionOccurrenceSpecificationReferencesEvent>
-                <executionEventMoniker
-                  Id="05906a08-7d47-43ca-9aaf-a344c3e9bb69"
-                  LastKnownName="ExecutionEvent"
-                  LastKnownLocation="WannaEatDocs.uml" />
-              </executionOccurrenceSpecificationReferencesEvent>
-            </event>
-            <covered>
-              <lifelineMoniker
-                Id="80de64c3-189f-4e3f-b13f-af93a23ed0a3"
-                LastKnownName=": Establishment"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </executionOccurrenceSpecification>
-          <messageOccurrenceSpecification
-            Id="d86b4db2-e1d8-438b-a897-1b0497f1fe6b"
-            name="MessageOccurrenceSpecification17">
-            <covered>
-              <lifelineMoniker
-                Id="037c348b-4900-49ce-9cec-9c13dfd24523"
-                LastKnownName="Objects : EstablishmentDish"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <messageOccurrenceSpecification
             Id="a232b0f5-b617-4554-877c-9aaa1f8f8437"
             name="MessageOccurrenceSpecification18">
             <covered>
               <lifelineMoniker
                 Id="6e4aa5a5-815a-47df-b67f-2244d46da1ab"
                 LastKnownName="DishesList : ListView"
+                LastKnownLocation="WannaEatDocs.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="d86b4db2-e1d8-438b-a897-1b0497f1fe6b"
+            name="MessageOccurrenceSpecification17">
+            <covered>
+              <lifelineMoniker
+                Id="037c348b-4900-49ce-9cec-9c13dfd24523"
+                LastKnownName="EstablishmentDish.objects : _defaul_manager_"
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -11665,27 +11469,17 @@
             <covered>
               <lifelineMoniker
                 Id="037c348b-4900-49ce-9cec-9c13dfd24523"
-                LastKnownName="Objects : EstablishmentDish"
+                LastKnownName="EstablishmentDish.objects : _defaul_manager_"
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </executionOccurrenceSpecification>
-          <operandOccurrenceSpecification
-            Id="cf4f42bd-4fce-4cc5-90fa-3f20948b7a74"
-            name="OperandOccurrenceSpecification54">
-            <covered>
-              <lifelineMoniker
-                Id="80de64c3-189f-4e3f-b13f-af93a23ed0a3"
-                LastKnownName=": Establishment"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </operandOccurrenceSpecification>
           <operandOccurrenceSpecification
             Id="35b63417-c8db-4cfe-8755-3bb38cabb457"
             name="OperandOccurrenceSpecification42">
             <covered>
               <lifelineMoniker
                 Id="037c348b-4900-49ce-9cec-9c13dfd24523"
-                LastKnownName="Objects : EstablishmentDish"
+                LastKnownName="EstablishmentDish.objects : _defaul_manager_"
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </operandOccurrenceSpecification>
@@ -11710,22 +11504,12 @@
             </covered>
           </operandOccurrenceSpecification>
           <operandOccurrenceSpecification
-            Id="88bd441f-9379-4757-aca8-2a1d81fc5f6e"
-            name="OperandOccurrenceSpecification55">
-            <covered>
-              <lifelineMoniker
-                Id="80de64c3-189f-4e3f-b13f-af93a23ed0a3"
-                LastKnownName=": Establishment"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </operandOccurrenceSpecification>
-          <operandOccurrenceSpecification
             Id="617ae1f7-6272-4efb-8c66-b3febdd716f1"
             name="OperandOccurrenceSpecification49">
             <covered>
               <lifelineMoniker
                 Id="037c348b-4900-49ce-9cec-9c13dfd24523"
-                LastKnownName="Objects : EstablishmentDish"
+                LastKnownName="EstablishmentDish.objects : _defaul_manager_"
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </operandOccurrenceSpecification>
@@ -11735,7 +11519,7 @@
             <coveredLifelines>
               <lifelineMoniker
                 Id="037c348b-4900-49ce-9cec-9c13dfd24523"
-                LastKnownName="Objects : EstablishmentDish"
+                LastKnownName="EstablishmentDish.objects : _defaul_manager_"
                 LastKnownLocation="WannaEatDocs.uml" />
             </coveredLifelines>
             <finish>
@@ -11754,14 +11538,6 @@
               <messageOccurrenceSpecificationMoniker
                 Id="ca32da46-78e9-4d2a-b607-f49e1a22dc94"
                 LastKnownName="MessageOccurrenceSpecification22"
-                LastKnownLocation="WannaEatDocs.uml" />
-              <messageOccurrenceSpecificationMoniker
-                Id="3c7c1ab1-4ad8-4eb9-9a09-4a7f27bdd0b9"
-                LastKnownName="MessageOccurrenceSpecification51"
-                LastKnownLocation="WannaEatDocs.uml" />
-              <messageOccurrenceSpecificationMoniker
-                Id="9747b2ff-41d8-4004-8761-2311528700c3"
-                LastKnownName="MessageOccurrenceSpecification54"
                 LastKnownLocation="WannaEatDocs.uml" />
               <messageOccurrenceSpecificationMoniker
                 Id="d5d19589-90c8-44ca-88a5-d03734f8823b"
@@ -11783,7 +11559,7 @@
             <covered>
               <lifelineMoniker
                 Id="037c348b-4900-49ce-9cec-9c13dfd24523"
-                LastKnownName="Objects : EstablishmentDish"
+                LastKnownName="EstablishmentDish.objects : _defaul_manager_"
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </executionOccurrenceSpecification>
@@ -11803,125 +11579,7 @@
             <covered>
               <lifelineMoniker
                 Id="037c348b-4900-49ce-9cec-9c13dfd24523"
-                LastKnownName="Objects : EstablishmentDish"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <behaviorExecutionSpecification
-            Id="b2275b44-eed6-43d1-9f54-4ba27e112585"
-            name="BehaviorExecutionSpecification16">
-            <coveredLifelines>
-              <lifelineMoniker
-                Id="80de64c3-189f-4e3f-b13f-af93a23ed0a3"
-                LastKnownName=": Establishment"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </coveredLifelines>
-            <finish>
-              <executionOccurrenceSpecificationMoniker
-                Id="8769f1c1-c021-4678-94fc-f455ddeb5f7f"
-                LastKnownName="ExecutionOccurrenceSpecification32"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </finish>
-            <start>
-              <executionOccurrenceSpecificationMoniker
-                Id="e87fa436-2623-4d4e-8154-78e1e02c6ae5"
-                LastKnownName="ExecutionOccurrenceSpecification31"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </start>
-            <nestedOccurrences>
-              <messageOccurrenceSpecificationMoniker
-                Id="87bf6e55-8472-436c-9487-400be7064b72"
-                LastKnownName="MessageOccurrenceSpecification52"
-                LastKnownLocation="WannaEatDocs.uml" />
-              <messageOccurrenceSpecificationMoniker
-                Id="6473b47d-b538-414a-aca4-4c3f81c0dbf2"
-                LastKnownName="MessageOccurrenceSpecification53"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </nestedOccurrences>
-          </behaviorExecutionSpecification>
-          <executionOccurrenceSpecification
-            Id="e87fa436-2623-4d4e-8154-78e1e02c6ae5"
-            name="ExecutionOccurrenceSpecification31">
-            <event>
-              <executionOccurrenceSpecificationReferencesEvent>
-                <executionEventMoniker
-                  Id="ea594668-5fd1-4235-82ab-f2ab335d0d06"
-                  LastKnownName="ExecutionEvent"
-                  LastKnownLocation="WannaEatDocs.uml" />
-              </executionOccurrenceSpecificationReferencesEvent>
-            </event>
-            <covered>
-              <lifelineMoniker
-                Id="80de64c3-189f-4e3f-b13f-af93a23ed0a3"
-                LastKnownName=": Establishment"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </executionOccurrenceSpecification>
-          <messageOccurrenceSpecification
-            Id="3c7c1ab1-4ad8-4eb9-9a09-4a7f27bdd0b9"
-            name="MessageOccurrenceSpecification51">
-            <covered>
-              <lifelineMoniker
-                Id="037c348b-4900-49ce-9cec-9c13dfd24523"
-                LastKnownName="Objects : EstablishmentDish"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <messageOccurrenceSpecification
-            Id="87bf6e55-8472-436c-9487-400be7064b72"
-            name="MessageOccurrenceSpecification52">
-            <covered>
-              <lifelineMoniker
-                Id="80de64c3-189f-4e3f-b13f-af93a23ed0a3"
-                LastKnownName=": Establishment"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <messageOccurrenceSpecification
-            Id="6473b47d-b538-414a-aca4-4c3f81c0dbf2"
-            name="MessageOccurrenceSpecification53">
-            <covered>
-              <lifelineMoniker
-                Id="80de64c3-189f-4e3f-b13f-af93a23ed0a3"
-                LastKnownName=": Establishment"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <messageOccurrenceSpecification
-            Id="9747b2ff-41d8-4004-8761-2311528700c3"
-            name="MessageOccurrenceSpecification54">
-            <covered>
-              <lifelineMoniker
-                Id="037c348b-4900-49ce-9cec-9c13dfd24523"
-                LastKnownName="Objects : EstablishmentDish"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <executionOccurrenceSpecification
-            Id="8769f1c1-c021-4678-94fc-f455ddeb5f7f"
-            name="ExecutionOccurrenceSpecification32">
-            <event>
-              <executionOccurrenceSpecificationReferencesEvent>
-                <executionEventMoniker
-                  Id="2558a949-b021-477b-8221-8efb6e29a3f2"
-                  LastKnownName="ExecutionEvent"
-                  LastKnownLocation="WannaEatDocs.uml" />
-              </executionOccurrenceSpecificationReferencesEvent>
-            </event>
-            <covered>
-              <lifelineMoniker
-                Id="80de64c3-189f-4e3f-b13f-af93a23ed0a3"
-                LastKnownName=": Establishment"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </executionOccurrenceSpecification>
-          <messageOccurrenceSpecification
-            Id="d5d19589-90c8-44ca-88a5-d03734f8823b"
-            name="MessageOccurrenceSpecification23">
-            <covered>
-              <lifelineMoniker
-                Id="037c348b-4900-49ce-9cec-9c13dfd24523"
-                LastKnownName="Objects : EstablishmentDish"
+                LastKnownName="EstablishmentDish.objects : _defaul_manager_"
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -11932,6 +11590,16 @@
               <lifelineMoniker
                 Id="6e4aa5a5-815a-47df-b67f-2244d46da1ab"
                 LastKnownName="DishesList : ListView"
+                LastKnownLocation="WannaEatDocs.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="d5d19589-90c8-44ca-88a5-d03734f8823b"
+            name="MessageOccurrenceSpecification23">
+            <covered>
+              <lifelineMoniker
+                Id="037c348b-4900-49ce-9cec-9c13dfd24523"
+                LastKnownName="EstablishmentDish.objects : _defaul_manager_"
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -11949,17 +11617,17 @@
             <covered>
               <lifelineMoniker
                 Id="037c348b-4900-49ce-9cec-9c13dfd24523"
-                LastKnownName="Objects : EstablishmentDish"
+                LastKnownName="EstablishmentDish.objects : _defaul_manager_"
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </executionOccurrenceSpecification>
           <operandOccurrenceSpecification
-            Id="59f4570f-a2f2-4c52-9e61-034eb5cbb5ee"
-            name="OperandOccurrenceSpecification56">
+            Id="6e80ae0c-139d-4af9-8fe7-6a6a255141d1"
+            name="OperandOccurrenceSpecification52">
             <covered>
               <lifelineMoniker
-                Id="80de64c3-189f-4e3f-b13f-af93a23ed0a3"
-                LastKnownName=": Establishment"
+                Id="6e4aa5a5-815a-47df-b67f-2244d46da1ab"
+                LastKnownName="DishesList : ListView"
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </operandOccurrenceSpecification>
@@ -11969,17 +11637,17 @@
             <covered>
               <lifelineMoniker
                 Id="037c348b-4900-49ce-9cec-9c13dfd24523"
-                LastKnownName="Objects : EstablishmentDish"
+                LastKnownName="EstablishmentDish.objects : _defaul_manager_"
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </operandOccurrenceSpecification>
           <operandOccurrenceSpecification
-            Id="6e80ae0c-139d-4af9-8fe7-6a6a255141d1"
-            name="OperandOccurrenceSpecification52">
+            Id="f6dcd1ef-4f2d-446c-aff5-33884af607d4"
+            name="OperandOccurrenceSpecification38">
             <covered>
               <lifelineMoniker
-                Id="6e4aa5a5-815a-47df-b67f-2244d46da1ab"
-                LastKnownName="DishesList : ListView"
+                Id="037c348b-4900-49ce-9cec-9c13dfd24523"
+                LastKnownName="EstablishmentDish.objects : _defaul_manager_"
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </operandOccurrenceSpecification>
@@ -11994,46 +11662,6 @@
             </covered>
           </operandOccurrenceSpecification>
           <operandOccurrenceSpecification
-            Id="4709993e-c2b5-4c43-8a51-7ed189e53b50"
-            name="OperandOccurrenceSpecification58">
-            <covered>
-              <lifelineMoniker
-                Id="80de64c3-189f-4e3f-b13f-af93a23ed0a3"
-                LastKnownName=": Establishment"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </operandOccurrenceSpecification>
-          <operandOccurrenceSpecification
-            Id="f6dcd1ef-4f2d-446c-aff5-33884af607d4"
-            name="OperandOccurrenceSpecification38">
-            <covered>
-              <lifelineMoniker
-                Id="037c348b-4900-49ce-9cec-9c13dfd24523"
-                LastKnownName="Objects : EstablishmentDish"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </operandOccurrenceSpecification>
-          <operandOccurrenceSpecification
-            Id="88822527-bef3-4f0a-b114-ebea94decb01"
-            name="OperandOccurrenceSpecification45">
-            <covered>
-              <lifelineMoniker
-                Id="037c348b-4900-49ce-9cec-9c13dfd24523"
-                LastKnownName="Objects : EstablishmentDish"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </operandOccurrenceSpecification>
-          <operandOccurrenceSpecification
-            Id="d9cdeffb-2023-4a7e-8e23-68fd5e6b2179"
-            name="OperandOccurrenceSpecification59">
-            <covered>
-              <lifelineMoniker
-                Id="80de64c3-189f-4e3f-b13f-af93a23ed0a3"
-                LastKnownName=": Establishment"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </operandOccurrenceSpecification>
-          <operandOccurrenceSpecification
             Id="48accb5c-339c-4652-8096-e5c404752dc9"
             name="OperandOccurrenceSpecification47">
             <covered>
@@ -12043,13 +11671,23 @@
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification
+            Id="88822527-bef3-4f0a-b114-ebea94decb01"
+            name="OperandOccurrenceSpecification45">
+            <covered>
+              <lifelineMoniker
+                Id="037c348b-4900-49ce-9cec-9c13dfd24523"
+                LastKnownName="EstablishmentDish.objects : _defaul_manager_"
+                LastKnownLocation="WannaEatDocs.uml" />
+            </covered>
+          </operandOccurrenceSpecification>
           <behaviorExecutionSpecification
             Id="b0aa54c1-3d55-4e5a-b106-1c4022fe7707"
             name="BehaviorExecutionSpecification9">
             <coveredLifelines>
               <lifelineMoniker
                 Id="037c348b-4900-49ce-9cec-9c13dfd24523"
-                LastKnownName="Objects : EstablishmentDish"
+                LastKnownName="EstablishmentDish.objects : _defaul_manager_"
                 LastKnownLocation="WannaEatDocs.uml" />
             </coveredLifelines>
             <finish>
@@ -12068,14 +11706,6 @@
               <messageOccurrenceSpecificationMoniker
                 Id="5273ed21-b3cf-4d75-b0aa-a5b56cb3bae6"
                 LastKnownName="MessageOccurrenceSpecification26"
-                LastKnownLocation="WannaEatDocs.uml" />
-              <messageOccurrenceSpecificationMoniker
-                Id="81519af3-407d-49c9-a394-069405c3376e"
-                LastKnownName="MessageOccurrenceSpecification55"
-                LastKnownLocation="WannaEatDocs.uml" />
-              <messageOccurrenceSpecificationMoniker
-                Id="e5451495-713a-4b5c-8090-9a89814579fa"
-                LastKnownName="MessageOccurrenceSpecification58"
                 LastKnownLocation="WannaEatDocs.uml" />
               <messageOccurrenceSpecificationMoniker
                 Id="d17317b1-b99d-4b08-b80b-5b33d956bfd0"
@@ -12097,7 +11727,7 @@
             <covered>
               <lifelineMoniker
                 Id="037c348b-4900-49ce-9cec-9c13dfd24523"
-                LastKnownName="Objects : EstablishmentDish"
+                LastKnownName="EstablishmentDish.objects : _defaul_manager_"
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </executionOccurrenceSpecification>
@@ -12107,7 +11737,7 @@
             <covered>
               <lifelineMoniker
                 Id="037c348b-4900-49ce-9cec-9c13dfd24523"
-                LastKnownName="Objects : EstablishmentDish"
+                LastKnownName="EstablishmentDish.objects : _defaul_manager_"
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -12121,114 +11751,6 @@
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </messageOccurrenceSpecification>
-          <behaviorExecutionSpecification
-            Id="20e4e857-7394-46a4-ad9e-66ac91f301f7"
-            name="BehaviorExecutionSpecification17">
-            <coveredLifelines>
-              <lifelineMoniker
-                Id="80de64c3-189f-4e3f-b13f-af93a23ed0a3"
-                LastKnownName=": Establishment"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </coveredLifelines>
-            <finish>
-              <executionOccurrenceSpecificationMoniker
-                Id="e78b5592-e14c-4bfa-bbc9-1e6c20918242"
-                LastKnownName="ExecutionOccurrenceSpecification34"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </finish>
-            <start>
-              <executionOccurrenceSpecificationMoniker
-                Id="3fd9ae88-79c8-440f-9619-49ddb843af72"
-                LastKnownName="ExecutionOccurrenceSpecification33"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </start>
-            <nestedOccurrences>
-              <messageOccurrenceSpecificationMoniker
-                Id="0fcbdef3-c186-4afe-8f2c-1ecedd284d1a"
-                LastKnownName="MessageOccurrenceSpecification56"
-                LastKnownLocation="WannaEatDocs.uml" />
-              <messageOccurrenceSpecificationMoniker
-                Id="bf5cf30e-beba-45c8-924d-f379b536afaf"
-                LastKnownName="MessageOccurrenceSpecification57"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </nestedOccurrences>
-          </behaviorExecutionSpecification>
-          <executionOccurrenceSpecification
-            Id="3fd9ae88-79c8-440f-9619-49ddb843af72"
-            name="ExecutionOccurrenceSpecification33">
-            <event>
-              <executionOccurrenceSpecificationReferencesEvent>
-                <executionEventMoniker
-                  Id="bfd821f6-f546-4844-a9e5-1a75846d776f"
-                  LastKnownName="ExecutionEvent"
-                  LastKnownLocation="WannaEatDocs.uml" />
-              </executionOccurrenceSpecificationReferencesEvent>
-            </event>
-            <covered>
-              <lifelineMoniker
-                Id="80de64c3-189f-4e3f-b13f-af93a23ed0a3"
-                LastKnownName=": Establishment"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </executionOccurrenceSpecification>
-          <messageOccurrenceSpecification
-            Id="81519af3-407d-49c9-a394-069405c3376e"
-            name="MessageOccurrenceSpecification55">
-            <covered>
-              <lifelineMoniker
-                Id="037c348b-4900-49ce-9cec-9c13dfd24523"
-                LastKnownName="Objects : EstablishmentDish"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <messageOccurrenceSpecification
-            Id="0fcbdef3-c186-4afe-8f2c-1ecedd284d1a"
-            name="MessageOccurrenceSpecification56">
-            <covered>
-              <lifelineMoniker
-                Id="80de64c3-189f-4e3f-b13f-af93a23ed0a3"
-                LastKnownName=": Establishment"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <messageOccurrenceSpecification
-            Id="bf5cf30e-beba-45c8-924d-f379b536afaf"
-            name="MessageOccurrenceSpecification57">
-            <covered>
-              <lifelineMoniker
-                Id="80de64c3-189f-4e3f-b13f-af93a23ed0a3"
-                LastKnownName=": Establishment"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <messageOccurrenceSpecification
-            Id="e5451495-713a-4b5c-8090-9a89814579fa"
-            name="MessageOccurrenceSpecification58">
-            <covered>
-              <lifelineMoniker
-                Id="037c348b-4900-49ce-9cec-9c13dfd24523"
-                LastKnownName="Objects : EstablishmentDish"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <executionOccurrenceSpecification
-            Id="e78b5592-e14c-4bfa-bbc9-1e6c20918242"
-            name="ExecutionOccurrenceSpecification34">
-            <event>
-              <executionOccurrenceSpecificationReferencesEvent>
-                <executionEventMoniker
-                  Id="cfc57851-3a57-47f6-891b-1fad6f4841c3"
-                  LastKnownName="ExecutionEvent"
-                  LastKnownLocation="WannaEatDocs.uml" />
-              </executionOccurrenceSpecificationReferencesEvent>
-            </event>
-            <covered>
-              <lifelineMoniker
-                Id="80de64c3-189f-4e3f-b13f-af93a23ed0a3"
-                LastKnownName=": Establishment"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </executionOccurrenceSpecification>
           <messageOccurrenceSpecification
             Id="43c1b4ac-8478-407a-8afc-39295aa57ac2"
             name="MessageOccurrenceSpecification28">
@@ -12245,7 +11767,7 @@
             <covered>
               <lifelineMoniker
                 Id="037c348b-4900-49ce-9cec-9c13dfd24523"
-                LastKnownName="Objects : EstablishmentDish"
+                LastKnownName="EstablishmentDish.objects : _defaul_manager_"
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -12263,20 +11785,10 @@
             <covered>
               <lifelineMoniker
                 Id="037c348b-4900-49ce-9cec-9c13dfd24523"
-                LastKnownName="Objects : EstablishmentDish"
+                LastKnownName="EstablishmentDish.objects : _defaul_manager_"
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </executionOccurrenceSpecification>
-          <operandOccurrenceSpecification
-            Id="a39ba037-fc05-48dc-9565-5e29b2f1bb42"
-            name="OperandOccurrenceSpecification46">
-            <covered>
-              <lifelineMoniker
-                Id="037c348b-4900-49ce-9cec-9c13dfd24523"
-                LastKnownName="Objects : EstablishmentDish"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </operandOccurrenceSpecification>
           <operandOccurrenceSpecification
             Id="3ae8dd41-79e8-4f46-bb6b-473c9298ec28"
             name="OperandOccurrenceSpecification48">
@@ -12288,12 +11800,12 @@
             </covered>
           </operandOccurrenceSpecification>
           <operandOccurrenceSpecification
-            Id="c158c235-59f0-45c2-926f-009380e829c0"
-            name="OperandOccurrenceSpecification60">
+            Id="a39ba037-fc05-48dc-9565-5e29b2f1bb42"
+            name="OperandOccurrenceSpecification46">
             <covered>
               <lifelineMoniker
-                Id="80de64c3-189f-4e3f-b13f-af93a23ed0a3"
-                LastKnownName=": Establishment"
+                Id="037c348b-4900-49ce-9cec-9c13dfd24523"
+                LastKnownName="EstablishmentDish.objects : _defaul_manager_"
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </operandOccurrenceSpecification>
@@ -12387,7 +11899,7 @@
             <coveredLifelines>
               <lifelineMoniker
                 Id="187a3a87-3236-43d7-8445-3f921ae46aca"
-                LastKnownName=": Dish"
+                LastKnownName="Dish"
                 LastKnownLocation="WannaEatDocs.uml" />
             </coveredLifelines>
             <finish>
@@ -12427,7 +11939,7 @@
             <covered>
               <lifelineMoniker
                 Id="187a3a87-3236-43d7-8445-3f921ae46aca"
-                LastKnownName=": Dish"
+                LastKnownName="Dish"
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </executionOccurrenceSpecification>
@@ -12447,7 +11959,7 @@
             <covered>
               <lifelineMoniker
                 Id="187a3a87-3236-43d7-8445-3f921ae46aca"
-                LastKnownName=": Dish"
+                LastKnownName="Dish"
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -12457,7 +11969,7 @@
             <covered>
               <lifelineMoniker
                 Id="187a3a87-3236-43d7-8445-3f921ae46aca"
-                LastKnownName=": Dish"
+                LastKnownName="Dish"
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -12485,7 +11997,7 @@
             <covered>
               <lifelineMoniker
                 Id="187a3a87-3236-43d7-8445-3f921ae46aca"
-                LastKnownName=": Dish"
+                LastKnownName="Dish"
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </executionOccurrenceSpecification>
@@ -12495,7 +12007,7 @@
             <coveredLifelines>
               <lifelineMoniker
                 Id="1fbe3603-cac3-46aa-81aa-98eb25cfdf5a"
-                LastKnownName="Objects : Dish"
+                LastKnownName="Dish.objects : _default_manager_"
                 LastKnownLocation="WannaEatDocs.uml" />
             </coveredLifelines>
             <finish>
@@ -12535,7 +12047,7 @@
             <covered>
               <lifelineMoniker
                 Id="1fbe3603-cac3-46aa-81aa-98eb25cfdf5a"
-                LastKnownName="Objects : Dish"
+                LastKnownName="Dish.objects : _default_manager_"
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </executionOccurrenceSpecification>
@@ -12555,17 +12067,7 @@
             <covered>
               <lifelineMoniker
                 Id="1fbe3603-cac3-46aa-81aa-98eb25cfdf5a"
-                LastKnownName="Objects : Dish"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <messageOccurrenceSpecification
-            Id="038a0ae3-e3ef-4d48-b563-1d631de95996"
-            name="MessageOccurrenceSpecification35">
-            <covered>
-              <lifelineMoniker
-                Id="1fbe3603-cac3-46aa-81aa-98eb25cfdf5a"
-                LastKnownName="Objects : Dish"
+                LastKnownName="Dish.objects : _default_manager_"
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -12576,6 +12078,16 @@
               <lifelineMoniker
                 Id="6e4aa5a5-815a-47df-b67f-2244d46da1ab"
                 LastKnownName="DishesList : ListView"
+                LastKnownLocation="WannaEatDocs.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="038a0ae3-e3ef-4d48-b563-1d631de95996"
+            name="MessageOccurrenceSpecification35">
+            <covered>
+              <lifelineMoniker
+                Id="1fbe3603-cac3-46aa-81aa-98eb25cfdf5a"
+                LastKnownName="Dish.objects : _default_manager_"
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -12593,7 +12105,7 @@
             <covered>
               <lifelineMoniker
                 Id="1fbe3603-cac3-46aa-81aa-98eb25cfdf5a"
-                LastKnownName="Objects : Dish"
+                LastKnownName="Dish.objects : _default_manager_"
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </executionOccurrenceSpecification>
@@ -12635,9 +12147,9 @@
           </lifeline>
           <lifeline
             Id="94ab754c-e901-46aa-812a-b7b8a2d9ea95"
-            name="ListView"
+            name=": ListView"
             isActor="false"
-            lifelineDisplayName="ListView">
+            lifelineDisplayName=": ListView">
             <topLevelOccurrences>
               <executionOccurrenceSpecificationMoniker
                 Id="0c803b4c-6ccf-4428-97dc-0df75b7b8164"
@@ -12651,9 +12163,9 @@
           </lifeline>
           <lifeline
             Id="037c348b-4900-49ce-9cec-9c13dfd24523"
-            name="Objects : EstablishmentDish"
+            name="EstablishmentDish.objects : _defaul_manager_"
             isActor="false"
-            lifelineDisplayName="Objects : EstablishmentDish">
+            lifelineDisplayName="EstablishmentDish.objects : _defaul_manager_">
             <topLevelOccurrences>
               <operandOccurrenceSpecificationMoniker
                 Id="e17c3cf1-8a45-403b-bcf9-2cc40f6b9161"
@@ -12714,74 +12226,10 @@
             </topLevelOccurrences>
           </lifeline>
           <lifeline
-            Id="80de64c3-189f-4e3f-b13f-af93a23ed0a3"
-            name=": Establishment"
-            isActor="false"
-            lifelineDisplayName=": Establishment">
-            <topLevelOccurrences>
-              <operandOccurrenceSpecificationMoniker
-                Id="d12655dd-8181-461d-8b1e-a7d565726280"
-                LastKnownName="OperandOccurrenceSpecification57"
-                LastKnownLocation="WannaEatDocs.uml" />
-              <operandOccurrenceSpecificationMoniker
-                Id="305bf7a6-8d91-482d-9b56-77ff23ed7378"
-                LastKnownName="OperandOccurrenceSpecification53"
-                LastKnownLocation="WannaEatDocs.uml" />
-              <executionOccurrenceSpecificationMoniker
-                Id="b44abb0b-08b8-409d-8019-ab052b869804"
-                LastKnownName="ExecutionOccurrenceSpecification29"
-                LastKnownLocation="WannaEatDocs.uml" />
-              <executionOccurrenceSpecificationMoniker
-                Id="fe8da957-00a0-4a9b-819c-cd2336567733"
-                LastKnownName="ExecutionOccurrenceSpecification30"
-                LastKnownLocation="WannaEatDocs.uml" />
-              <operandOccurrenceSpecificationMoniker
-                Id="cf4f42bd-4fce-4cc5-90fa-3f20948b7a74"
-                LastKnownName="OperandOccurrenceSpecification54"
-                LastKnownLocation="WannaEatDocs.uml" />
-              <operandOccurrenceSpecificationMoniker
-                Id="88bd441f-9379-4757-aca8-2a1d81fc5f6e"
-                LastKnownName="OperandOccurrenceSpecification55"
-                LastKnownLocation="WannaEatDocs.uml" />
-              <executionOccurrenceSpecificationMoniker
-                Id="e87fa436-2623-4d4e-8154-78e1e02c6ae5"
-                LastKnownName="ExecutionOccurrenceSpecification31"
-                LastKnownLocation="WannaEatDocs.uml" />
-              <executionOccurrenceSpecificationMoniker
-                Id="8769f1c1-c021-4678-94fc-f455ddeb5f7f"
-                LastKnownName="ExecutionOccurrenceSpecification32"
-                LastKnownLocation="WannaEatDocs.uml" />
-              <operandOccurrenceSpecificationMoniker
-                Id="59f4570f-a2f2-4c52-9e61-034eb5cbb5ee"
-                LastKnownName="OperandOccurrenceSpecification56"
-                LastKnownLocation="WannaEatDocs.uml" />
-              <operandOccurrenceSpecificationMoniker
-                Id="4709993e-c2b5-4c43-8a51-7ed189e53b50"
-                LastKnownName="OperandOccurrenceSpecification58"
-                LastKnownLocation="WannaEatDocs.uml" />
-              <operandOccurrenceSpecificationMoniker
-                Id="d9cdeffb-2023-4a7e-8e23-68fd5e6b2179"
-                LastKnownName="OperandOccurrenceSpecification59"
-                LastKnownLocation="WannaEatDocs.uml" />
-              <executionOccurrenceSpecificationMoniker
-                Id="3fd9ae88-79c8-440f-9619-49ddb843af72"
-                LastKnownName="ExecutionOccurrenceSpecification33"
-                LastKnownLocation="WannaEatDocs.uml" />
-              <executionOccurrenceSpecificationMoniker
-                Id="e78b5592-e14c-4bfa-bbc9-1e6c20918242"
-                LastKnownName="ExecutionOccurrenceSpecification34"
-                LastKnownLocation="WannaEatDocs.uml" />
-              <operandOccurrenceSpecificationMoniker
-                Id="c158c235-59f0-45c2-926f-009380e829c0"
-                LastKnownName="OperandOccurrenceSpecification60"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </topLevelOccurrences>
-          </lifeline>
-          <lifeline
             Id="1fbe3603-cac3-46aa-81aa-98eb25cfdf5a"
-            name="Objects : Dish"
+            name="Dish.objects : _default_manager_"
             isActor="false"
-            lifelineDisplayName="Objects : Dish">
+            lifelineDisplayName="Dish.objects : _default_manager_">
             <topLevelOccurrences>
               <executionOccurrenceSpecificationMoniker
                 Id="0e630bea-b9e8-4079-8a2a-0ad2e88dfa36"
@@ -12795,9 +12243,9 @@
           </lifeline>
           <lifeline
             Id="187a3a87-3236-43d7-8445-3f921ae46aca"
-            name=": Dish"
+            name="Dish"
             isActor="false"
-            lifelineDisplayName=": Dish">
+            lifelineDisplayName="Dish">
             <topLevelOccurrences>
               <executionOccurrenceSpecificationMoniker
                 Id="a1e85e04-4f69-41cf-991b-f1583f7debb5"
@@ -12907,44 +12355,6 @@
             </receiveEvent>
           </message>
           <message
-            Id="058ef50e-bddf-411b-bd6f-47931b4d3844"
-            name="EstablishmentDish.Establishment"
-            messageKind="Complete"
-            messageSort="SynchCall"
-            createSelfMessage="false">
-            <sendEvent>
-              <messageOccurrenceSpecificationMoniker
-                Id="390f86bd-85e4-45c0-b2b6-6a3ff724ce8a"
-                LastKnownName="MessageOccurrenceSpecification47"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </sendEvent>
-            <receiveEvent>
-              <messageOccurrenceSpecificationMoniker
-                Id="7db0a3ab-1e0a-40e3-a8b7-e158f19038cb"
-                LastKnownName="MessageOccurrenceSpecification48"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </receiveEvent>
-          </message>
-          <message
-            Id="324fd5ec-31c7-4ee2-9182-b55de050c2d9"
-            name="&lt;&lt;return&gt;&gt;"
-            messageKind="Complete"
-            messageSort="Reply"
-            createSelfMessage="false">
-            <sendEvent>
-              <messageOccurrenceSpecificationMoniker
-                Id="903ed342-1abe-4415-bbbe-0829039f88fe"
-                LastKnownName="MessageOccurrenceSpecification49"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </sendEvent>
-            <receiveEvent>
-              <messageOccurrenceSpecificationMoniker
-                Id="954ceb0e-f99c-45ee-ac1e-b936094e1fad"
-                LastKnownName="MessageOccurrenceSpecification50"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </receiveEvent>
-          </message>
-          <message
             Id="0c27f27e-5987-4e01-952b-638c6f5a398e"
             name="&lt;&lt;return&gt;&gt;"
             messageKind="Complete"
@@ -12983,44 +12393,6 @@
             </receiveEvent>
           </message>
           <message
-            Id="0a4e7993-9485-4606-b26d-eafe9f538490"
-            name="EstablishmentDish.Establishment"
-            messageKind="Complete"
-            messageSort="SynchCall"
-            createSelfMessage="false">
-            <sendEvent>
-              <messageOccurrenceSpecificationMoniker
-                Id="3c7c1ab1-4ad8-4eb9-9a09-4a7f27bdd0b9"
-                LastKnownName="MessageOccurrenceSpecification51"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </sendEvent>
-            <receiveEvent>
-              <messageOccurrenceSpecificationMoniker
-                Id="87bf6e55-8472-436c-9487-400be7064b72"
-                LastKnownName="MessageOccurrenceSpecification52"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </receiveEvent>
-          </message>
-          <message
-            Id="49e36261-e46e-4245-b4aa-7e51b43eda7f"
-            name="&lt;&lt;return&gt;&gt;"
-            messageKind="Complete"
-            messageSort="Reply"
-            createSelfMessage="false">
-            <sendEvent>
-              <messageOccurrenceSpecificationMoniker
-                Id="6473b47d-b538-414a-aca4-4c3f81c0dbf2"
-                LastKnownName="MessageOccurrenceSpecification53"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </sendEvent>
-            <receiveEvent>
-              <messageOccurrenceSpecificationMoniker
-                Id="9747b2ff-41d8-4004-8761-2311528700c3"
-                LastKnownName="MessageOccurrenceSpecification54"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </receiveEvent>
-          </message>
-          <message
             Id="54cc5d99-a527-4456-804a-60065a40b436"
             name="&lt;&lt;return&gt;&gt;"
             messageKind="Complete"
@@ -13055,44 +12427,6 @@
               <messageOccurrenceSpecificationMoniker
                 Id="5273ed21-b3cf-4d75-b0aa-a5b56cb3bae6"
                 LastKnownName="MessageOccurrenceSpecification26"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </receiveEvent>
-          </message>
-          <message
-            Id="26ab1165-64e1-43ad-8ead-0e5e7e4a300d"
-            name="EstablishmentDish.Establishment"
-            messageKind="Complete"
-            messageSort="SynchCall"
-            createSelfMessage="false">
-            <sendEvent>
-              <messageOccurrenceSpecificationMoniker
-                Id="81519af3-407d-49c9-a394-069405c3376e"
-                LastKnownName="MessageOccurrenceSpecification55"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </sendEvent>
-            <receiveEvent>
-              <messageOccurrenceSpecificationMoniker
-                Id="0fcbdef3-c186-4afe-8f2c-1ecedd284d1a"
-                LastKnownName="MessageOccurrenceSpecification56"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </receiveEvent>
-          </message>
-          <message
-            Id="5ebe7b28-953f-43f5-8b63-c53ef13d3a9e"
-            name="&lt;&lt;return&gt;&gt;"
-            messageKind="Complete"
-            messageSort="Reply"
-            createSelfMessage="false">
-            <sendEvent>
-              <messageOccurrenceSpecificationMoniker
-                Id="bf5cf30e-beba-45c8-924d-f379b536afaf"
-                LastKnownName="MessageOccurrenceSpecification57"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </sendEvent>
-            <receiveEvent>
-              <messageOccurrenceSpecificationMoniker
-                Id="e5451495-713a-4b5c-8090-9a89814579fa"
-                LastKnownName="MessageOccurrenceSpecification58"
                 LastKnownLocation="WannaEatDocs.uml" />
             </receiveEvent>
           </message>
@@ -13136,7 +12470,7 @@
           </message>
           <message
             Id="882272d4-1509-40ab-b600-e3af498355f7"
-            name="Dish.DISH_TYPE"
+            name="DISH_TYPE"
             messageKind="Complete"
             messageSort="SynchCall"
             createSelfMessage="false">
@@ -13301,36 +12635,6 @@
     <packageHasNamedElement>
       <executionEvent
         Id="33dd01cf-d07d-4703-8f4c-7d5a684ca7a3"
-        name="ExecutionEvent" />
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <executionEvent
-        Id="5c3bbeff-df71-48e8-acc0-0a8ab6d9367a"
-        name="ExecutionEvent" />
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <executionEvent
-        Id="05906a08-7d47-43ca-9aaf-a344c3e9bb69"
-        name="ExecutionEvent" />
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <executionEvent
-        Id="ea594668-5fd1-4235-82ab-f2ab335d0d06"
-        name="ExecutionEvent" />
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <executionEvent
-        Id="2558a949-b021-477b-8221-8efb6e29a3f2"
-        name="ExecutionEvent" />
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <executionEvent
-        Id="bfd821f6-f546-4844-a9e5-1a75846d776f"
-        name="ExecutionEvent" />
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <executionEvent
-        Id="cfc57851-3a57-47f6-891b-1fad6f4841c3"
         name="ExecutionEvent" />
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -13724,22 +13028,22 @@
             </covered>
           </executionOccurrenceSpecification>
           <messageOccurrenceSpecification
-            Id="c5f522b2-800a-472d-9524-42553a6996f8"
-            name="MessageOccurrenceSpecification68">
-            <covered>
-              <lifelineMoniker
-                Id="03d6b566-6866-4a8d-9555-35a279f597b2"
-                LastKnownName="request.Post : QueryDict"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <messageOccurrenceSpecification
             Id="bd6151e8-bfb1-422c-8e73-e87a8f06f353"
             name="MessageOccurrenceSpecification67">
             <covered>
               <lifelineMoniker
                 Id="222bb78f-ab0c-44f4-87b6-79e7720026f3"
                 LastKnownName="Employee.views : View"
+                LastKnownLocation="WannaEatDocs.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="c5f522b2-800a-472d-9524-42553a6996f8"
+            name="MessageOccurrenceSpecification68">
+            <covered>
+              <lifelineMoniker
+                Id="03d6b566-6866-4a8d-9555-35a279f597b2"
+                LastKnownName="request.Post : QueryDict"
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -14654,22 +13958,22 @@
             </covered>
           </executionOccurrenceSpecification>
           <messageOccurrenceSpecification
-            Id="b51ef4f6-a756-4f50-9c29-bac0081435a3"
-            name="MessageOccurrenceSpecification78">
-            <covered>
-              <lifelineMoniker
-                Id="da747c0e-fb7a-4d78-950e-dd0e6aff8046"
-                LastKnownName="Employee.objects : _default_manager"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <messageOccurrenceSpecification
             Id="4b460c39-9b92-4501-88c7-627f32f994ab"
             name="MessageOccurrenceSpecification77">
             <covered>
               <lifelineMoniker
                 Id="222bb78f-ab0c-44f4-87b6-79e7720026f3"
                 LastKnownName="Employee.views : View"
+                LastKnownLocation="WannaEatDocs.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="b51ef4f6-a756-4f50-9c29-bac0081435a3"
+            name="MessageOccurrenceSpecification78">
+            <covered>
+              <lifelineMoniker
+                Id="da747c0e-fb7a-4d78-950e-dd0e6aff8046"
+                LastKnownName="Employee.objects : _default_manager"
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -14848,22 +14152,22 @@
             </covered>
           </executionOccurrenceSpecification>
           <messageOccurrenceSpecification
-            Id="caf27ca5-66e6-418a-8302-12b26f979eb6"
-            name="MessageOccurrenceSpecification82">
-            <covered>
-              <lifelineMoniker
-                Id="a8faba2c-6ac4-44e6-807d-775bbb5a77e9"
-                LastKnownName="django.contrib.auth"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <messageOccurrenceSpecification
             Id="f5a71516-6bdd-4d16-b371-e14a2c91b9fb"
             name="MessageOccurrenceSpecification81">
             <covered>
               <lifelineMoniker
                 Id="222bb78f-ab0c-44f4-87b6-79e7720026f3"
                 LastKnownName="Employee.views : View"
+                LastKnownLocation="WannaEatDocs.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="caf27ca5-66e6-418a-8302-12b26f979eb6"
+            name="MessageOccurrenceSpecification82">
+            <covered>
+              <lifelineMoniker
+                Id="a8faba2c-6ac4-44e6-807d-775bbb5a77e9"
+                LastKnownName="django.contrib.auth"
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -15014,6 +14318,16 @@
             </covered>
           </executionOccurrenceSpecification>
           <operandOccurrenceSpecification
+            Id="75185263-42e5-48b8-8abc-8c7a3bf80578"
+            name="OperandOccurrenceSpecification22">
+            <covered>
+              <lifelineMoniker
+                Id="ccbcd909-5002-445a-9df6-6b9178b76d53"
+                LastKnownName="django.shortcuts"
+                LastKnownLocation="WannaEatDocs.uml" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification
             Id="4a3a3f89-1712-4fd4-bdf7-fbcbb91b961c"
             name="OperandOccurrenceSpecification14">
             <covered>
@@ -15034,12 +14348,12 @@
             </covered>
           </operandOccurrenceSpecification>
           <operandOccurrenceSpecification
-            Id="75185263-42e5-48b8-8abc-8c7a3bf80578"
-            name="OperandOccurrenceSpecification22">
+            Id="174e6b8e-0901-4b7d-8ab2-81ce3a8dc1a3"
+            name="OperandOccurrenceSpecification19">
             <covered>
               <lifelineMoniker
-                Id="ccbcd909-5002-445a-9df6-6b9178b76d53"
-                LastKnownName="django.shortcuts"
+                Id="222bb78f-ab0c-44f4-87b6-79e7720026f3"
+                LastKnownName="Employee.views : View"
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </operandOccurrenceSpecification>
@@ -15060,16 +14374,6 @@
               <lifelineMoniker
                 Id="ccbcd909-5002-445a-9df6-6b9178b76d53"
                 LastKnownName="django.shortcuts"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </operandOccurrenceSpecification>
-          <operandOccurrenceSpecification
-            Id="174e6b8e-0901-4b7d-8ab2-81ce3a8dc1a3"
-            name="OperandOccurrenceSpecification19">
-            <covered>
-              <lifelineMoniker
-                Id="222bb78f-ab0c-44f4-87b6-79e7720026f3"
-                LastKnownName="Employee.views : View"
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </operandOccurrenceSpecification>
@@ -15212,26 +14516,6 @@
             </covered>
           </operandOccurrenceSpecification>
           <operandOccurrenceSpecification
-            Id="c36bccf4-f00f-4573-b977-cbf023a9a260"
-            name="OperandOccurrenceSpecification4">
-            <covered>
-              <lifelineMoniker
-                Id="222bb78f-ab0c-44f4-87b6-79e7720026f3"
-                LastKnownName="Employee.views : View"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </operandOccurrenceSpecification>
-          <operandOccurrenceSpecification
-            Id="e60e2245-c824-4a95-914a-2db3644a00cc"
-            name="OperandOccurrenceSpecification10">
-            <covered>
-              <lifelineMoniker
-                Id="a8faba2c-6ac4-44e6-807d-775bbb5a77e9"
-                LastKnownName="django.contrib.auth"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </operandOccurrenceSpecification>
-          <operandOccurrenceSpecification
             Id="3d673b01-369b-4a68-b084-e1f407a1ae74"
             name="OperandOccurrenceSpecification2">
             <covered>
@@ -15248,6 +14532,26 @@
               <lifelineMoniker
                 Id="ccbcd909-5002-445a-9df6-6b9178b76d53"
                 LastKnownName="django.shortcuts"
+                LastKnownLocation="WannaEatDocs.uml" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification
+            Id="e60e2245-c824-4a95-914a-2db3644a00cc"
+            name="OperandOccurrenceSpecification10">
+            <covered>
+              <lifelineMoniker
+                Id="a8faba2c-6ac4-44e6-807d-775bbb5a77e9"
+                LastKnownName="django.contrib.auth"
+                LastKnownLocation="WannaEatDocs.uml" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification
+            Id="c36bccf4-f00f-4573-b977-cbf023a9a260"
+            name="OperandOccurrenceSpecification4">
+            <covered>
+              <lifelineMoniker
+                Id="222bb78f-ab0c-44f4-87b6-79e7720026f3"
+                LastKnownName="Employee.views : View"
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </operandOccurrenceSpecification>
@@ -15400,26 +14704,6 @@
             </covered>
           </executionOccurrenceSpecification>
           <operandOccurrenceSpecification
-            Id="efbc92c3-adde-43e1-b039-f9678c622bcb"
-            name="OperandOccurrenceSpecification28">
-            <covered>
-              <lifelineMoniker
-                Id="ccbcd909-5002-445a-9df6-6b9178b76d53"
-                LastKnownName="django.shortcuts"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </operandOccurrenceSpecification>
-          <operandOccurrenceSpecification
-            Id="1aac6d83-7db5-45fb-9a5d-592e7594d106"
-            name="OperandOccurrenceSpecification12">
-            <covered>
-              <lifelineMoniker
-                Id="a8faba2c-6ac4-44e6-807d-775bbb5a77e9"
-                LastKnownName="django.contrib.auth"
-                LastKnownLocation="WannaEatDocs.uml" />
-            </covered>
-          </operandOccurrenceSpecification>
-          <operandOccurrenceSpecification
             Id="c5d389fb-6047-4a23-9d0b-fd9593c43be7"
             name="OperandOccurrenceSpecification6">
             <covered>
@@ -15436,6 +14720,26 @@
               <lifelineMoniker
                 Id="222bb78f-ab0c-44f4-87b6-79e7720026f3"
                 LastKnownName="Employee.views : View"
+                LastKnownLocation="WannaEatDocs.uml" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification
+            Id="efbc92c3-adde-43e1-b039-f9678c622bcb"
+            name="OperandOccurrenceSpecification28">
+            <covered>
+              <lifelineMoniker
+                Id="ccbcd909-5002-445a-9df6-6b9178b76d53"
+                LastKnownName="django.shortcuts"
+                LastKnownLocation="WannaEatDocs.uml" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification
+            Id="1aac6d83-7db5-45fb-9a5d-592e7594d106"
+            name="OperandOccurrenceSpecification12">
+            <covered>
+              <lifelineMoniker
+                Id="a8faba2c-6ac4-44e6-807d-775bbb5a77e9"
+                LastKnownName="django.contrib.auth"
                 LastKnownLocation="WannaEatDocs.uml" />
             </covered>
           </operandOccurrenceSpecification>
