@@ -1,6 +1,8 @@
 from datetime import datetime, timedelta
 from django import forms
+from django.core.exceptions import ValidationError
 from establishments.models import EstablishmentBranch, BranchHall, DinnerWagon
+from orders.models import Order
 
 
 class TableForm(forms.Form):
@@ -18,23 +20,42 @@ class TableForm(forms.Form):
         },
         required=True
     )
+    date = forms.DateField(
+        label='Дата бронирования',
+        input_formats=['%d-%m-%Y', '%d-%m-%y'],
+        widget=forms.DateInput(
+            attrs={
+                'type': 'date',
+                'placeholder': 'ДД-ММ-ГГ'
+            },
+        ),
+        error_messages={
+            'required': 'Поле даты бронирования не может быть пустым',
+            'invalid': 'Неверный формат записи даты бронирования'
+        },
+        required=True
+    )
+    time = forms.TimeField(
+        label='Время бронирования',
+        input_formats=['%H:%M'],
+        widget=forms.TimeInput(
+            attrs={
+                'type': 'time',
+                'placeholder': 'ЧЧ:ММ'
+            },
+        ),
+        error_messages={
+            'required': 'Поле времени бронирования не может быть пустым',
+            'invalid': 'Неверный формат записи времени бронирования'
+        },
+        required=True
+    )
     table = forms.ChoiceField(
         label='Количество мест за столиком',
         error_messages={
             'required': 'Поле столика заведения не может быть пустым'
         },
         help_text='Если поле пустое, то свободных столиков нет',
-        required=True
-    )
-    datetime = forms.DateTimeField(
-        label='Дата и время заказа',
-        input_formats=['%d-%m-%y %H:%M', '%d-%m-%Y %H:%M'],
-        widget=forms.DateTimeInput(attrs={'placeholder': 'ДД-ММ-ГГ ЧЧ:мм'}),
-        error_messages={
-            'required': 'Поле времени заказа не может быть пустым',
-            'invalid': 'Неверный формат записи времени заказа'
-        },
-        help_text='Выставляя дату помните, что для обработки заказа требуется не менее двух часов.',
         required=True
     )
     phone = forms.CharField(
@@ -48,24 +69,11 @@ class TableForm(forms.Form):
         required=True
     )
 
-    def clean_datetime(self):
-        date_time = self.cleaned_data['datetime']
-        # TODO учитывать временные зоны (date_time содержит дату с учетом временой зоны) сейчас - абсолютоное время
-        execution_date_time = datetime(
-            date_time.year,
-            date_time.month,
-            date_time.day,
-            date_time.hour,
-            date_time.minute
-        )
-        date_time_border = datetime.now() + timedelta(hours=2)
-        if execution_date_time <= date_time_border:
-            raise forms.ValidationError('Невозможно оформить заказ на выбранное время')
-        return execution_date_time
-
     def clean_phone(self):
         phone = self.cleaned_data['phone']
         symbols_list = list(phone)
+        if symbols_list.__len__() < 10:
+            raise forms.ValidationError('Номер телефона должен состоять из 10 цифр')
         for symbol in symbols_list:
             try:
                 int_value = int(symbol)
@@ -75,117 +83,291 @@ class TableForm(forms.Form):
                 raise forms.ValidationError('Неверный номер телефона')
         return phone
 
-    def __init__(self, establishment_id, branch_id, hall_type, *args, **kwargs):
+    def clean(self):
+        order_date = self.cleaned_data.get('date')
+        order_time = self.cleaned_data.get('time')
+        if order_date is None:
+            raise ValidationError('Поле даты бронирования не должо быть пустым')
+        elif order_time is None:
+            raise ValidationError('Поле времени бронирования не должо быть пустым')
+        # TODO учитывать временные зоны (date_time содержит дату с учетом временой зоны) сейчас - абсолютоное время
+        execution_date_time = datetime(
+            order_date.year,
+            order_date.month,
+            order_date.day,
+            order_time.hour,
+            order_time.minute
+        )
+        date_time_border = datetime.now() + timedelta(hours=2)
+        if execution_date_time <= date_time_border:
+            error_message = 'Невозможно оформить заказ на выбранное время'
+            self.add_error('date', error_message)
+            self.add_error('time', error_message)
+
+    def __init__(self, establishment_id, branch_id, hall_type, order_date, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        if EstablishmentBranch.objects.filter(establishment__id=establishment_id).exists():
-            self.fields['address'] = forms.ChoiceField(
-                choices=[(branch.id, branch.address) for branch in EstablishmentBranch.objects.filter(
-                    establishment__id=establishment_id
-                )],
-                label='Адрес заведения',
-                required=True
-            )
-
-            # TODO: исправить баг: оценивание забронированности столиков происходит без учета даты и времени заказов
-            # как пофиксить:
-            # 1. изменить модель столика - убрать is_reserved
-            # 2. изменить форму заказа столика - 2 шага: 1. Выбрать филиал, зал, дату (submit) 2. Столик, телефон
-            # 3. изменить разметку html формы
-            # 4. изменить конструктор формы
-            # 5. изменить view формы, чтобы правильно вызывать конструктор
-            if branch_id != -1 and hall_type != -1:
-                # изменился зал: для заданного branch_id выгрузить зал hall_type и его столики
-                # если branch_id != -1 и hall_type != -1, то загружаем зал филиала branch_id и его столики
-                default_branch = EstablishmentBranch.objects.filter(
-                    establishment__id=establishment_id,
-                    id=branch_id
-                ).first()
-                self.fields['hall'] = forms.ChoiceField(
-                    choices=[(hall.type, hall.get_type_display()) for hall in BranchHall.objects.filter(
-                        branch=default_branch
+        if establishment_id != -1:
+            if EstablishmentBranch.objects.filter(establishment__id=establishment_id).exists():
+                self.fields['address'] = forms.ChoiceField(
+                    choices=[(branch.id, branch.address) for branch in EstablishmentBranch.objects.filter(
+                        establishment__id=establishment_id
                     )],
-                    label='Тип зала заведения',
+                    label='Адрес заведения',
                     required=True
                 )
 
-                default_hall = BranchHall.objects.filter(
-                    branch=default_branch,
-                    type=hall_type
-                ).first()
-                free_tables = DinnerWagon.objects.filter(hall=default_hall, is_reserved=False)
-                if free_tables.exists():
-                    table_types = []
-                    for table in free_tables:
-                        if table_types.count(table.seats) == 0:
-                            table_types.append(table.seats)
+                if branch_id == -1 and hall_type == -1 and order_date == -1:
+                    # загружаем данные формы по умолчанию
+                    default_branch = EstablishmentBranch.objects.filter(establishment__id=establishment_id).first()
+                    self.fields['hall'] = forms.ChoiceField(
+                        choices=[(hall.type, hall.get_type_display()) for hall in BranchHall.objects.filter(
+                            branch=default_branch
+                        )],
+                        label='Тип зала заведения',
+                        error_messages={
+                            'required': 'Поле адреса заведения не может быть пустым'
+                        },
+                        required=True
+                    )
+
+                    default_date = datetime.now() + timedelta(days=1)
+
+                    default_hall = BranchHall.objects.filter(branch=default_branch).first()
+                    # определяем, какие столики на заданную дату свободны
+                    tables_in_hall = DinnerWagon.objects.filter(hall=default_hall)
+                    hall_tables_specification = {}
+                    for table in tables_in_hall:
+                        if hall_tables_specification.get(table.seats) is None:
+                            hall_tables_specification[table.seats] = 1
+                        else:
+                            hall_tables_specification[table.seats] += 1
+                    table_orders_for_default_date = Order.objects.filter(
+                        execute_date=default_date.date(),
+                        type=Order.TYPE_DINNER_WAGON,
+                        establishment_branch=default_branch,
+                        dinner_wagon__hall=default_hall
+                    )
+                    order_tables_specification = {}
+                    for order in table_orders_for_default_date:
+                        if order_tables_specification.get(order.dinner_wagon.seats) is None:
+                            order_tables_specification[order.dinner_wagon.seats] = 1
+                        else:
+                            order_tables_specification[order.dinner_wagon.seats] += 1
+                    keys_for_delete = []
+                    for hall_table_key in hall_tables_specification.keys():
+                        if order_tables_specification.get(hall_table_key) is not None:
+                            hall_tables_specification[hall_table_key] -= 1
+                            if hall_tables_specification[hall_table_key] == 0:
+                                keys_for_delete.append(hall_table_key)
+                    for key in keys_for_delete:
+                        del hall_tables_specification[key]
+                    # в результате hall_tables_specification пуст или содержит свободные столики на заданную дату
                     self.fields['table'] = forms.ChoiceField(
-                        choices=[(table_type, table_type) for table_type in table_types],
+                        choices=[(key, key) for key in hall_tables_specification.keys()],
+                        error_messages={
+                            'required': 'Поле столика заведения не может быть пустым'
+                        },
+                        help_text='Если поле пустое, то свободных столиков нет',
                         label='Количество мест за столиком',
                         required=True
                     )
-            elif branch_id != -1 and hall_type == -1:
-                # изменилось заведение: для заданного branch_id выгрузить первый попавшийся зал и его столики
-                # загружаем залы branch_id и сттолики по умолчанию
-                default_branch = EstablishmentBranch.objects.filter(
-                    establishment__id=establishment_id,
-                    id=branch_id
-                ).first()
-                self.fields['hall'] = forms.ChoiceField(
-                    choices=[(hall.type, hall.get_type_display()) for hall in BranchHall.objects.filter(
-                        branch=default_branch
-                    )],
-                    label='Тип зала заведения',
-                    required=True
-                )
+                elif branch_id != -1 and hall_type == -1 and order_date == -1:
+                    # загрузка формы после изменения выбора филиала заведения
+                    default_branch = EstablishmentBranch.objects.filter(
+                        establishment__id=establishment_id,
+                        id=branch_id
+                    ).first()
+                    self.fields['hall'] = forms.ChoiceField(
+                        choices=[(hall.type, hall.get_type_display()) for hall in BranchHall.objects.filter(
+                            branch=default_branch
+                        )],
+                        label='Тип зала заведения',
+                        required=True
+                    )
 
-                default_hall = BranchHall.objects.filter(branch=default_branch).first()
-                free_tables = DinnerWagon.objects.filter(hall=default_hall, is_reserved=False)
-                if free_tables.exists():
-                    table_types = []
-                    for table in free_tables:
-                        if table_types.count(table.seats) == 0:
-                            table_types.append(table.seats)
+                    default_date = datetime.now() + timedelta(days=1)
+
+                    default_hall = BranchHall.objects.filter(branch=default_branch).first()
+                    # определяем, какие столики на заданную дату свободны
+                    tables_in_hall = DinnerWagon.objects.filter(hall=default_hall)
+                    hall_tables_specification = {}
+                    for table in tables_in_hall:
+                        if hall_tables_specification.get(table.seats) is None:
+                            hall_tables_specification[table.seats] = 1
+                        else:
+                            hall_tables_specification[table.seats] += 1
+                    table_orders_for_default_date = Order.objects.filter(
+                        execute_date=default_date.date(),
+                        type=Order.TYPE_DINNER_WAGON,
+                        establishment_branch=default_branch,
+                        dinner_wagon__hall=default_hall
+                    )
+                    order_tables_specification = {}
+                    for order in table_orders_for_default_date:
+                        if order_tables_specification.get(order.dinner_wagon.seats) is None:
+                            order_tables_specification[order.dinner_wagon.seats] = 1
+                        else:
+                            order_tables_specification[order.dinner_wagon.seats] += 1
+                    keys_for_delete = []
+                    for hall_table_key in hall_tables_specification.keys():
+                        if order_tables_specification.get(hall_table_key) is not None:
+                            hall_tables_specification[hall_table_key] -= 1
+                            if hall_tables_specification[hall_table_key] == 0:
+                                keys_for_delete.append(hall_table_key)
+                    for key in keys_for_delete:
+                        del hall_tables_specification[key]
+                    # в результате hall_tables_specification пуст или содержит свободные столики на заданную дату
                     self.fields['table'] = forms.ChoiceField(
-                        choices=[(table_type, table_type) for table_type in table_types],
+                        choices=[(key, key) for key in hall_tables_specification.keys()],
+                        error_messages={
+                            'required': 'Поле столика заведения не может быть пустым'
+                        },
+                        help_text='Если поле пустое, то свободных столиков нет',
                         label='Количество мест за столиком',
                         required=True
                     )
-            else:
-                # ничего не изменилось
-                # загружаем все по умолчанию
-                default_branch = EstablishmentBranch.objects.filter(establishment__id=establishment_id).first()
-                self.fields['hall'] = forms.ChoiceField(
-                    choices=[(hall.type, hall.get_type_display()) for hall in BranchHall.objects.filter(
-                        branch=default_branch
-                    )],
-                    label='Тип зала заведения',
-                    required=True
-                )
+                elif branch_id != -1 and hall_type != -1 and order_date == -1:
+                    # что-то не то с датой бронирования столика
+                    default_branch = EstablishmentBranch.objects.filter(
+                        establishment__id=establishment_id,
+                        id=branch_id
+                    ).first()
+                    self.fields['hall'] = forms.ChoiceField(
+                        choices=[(hall.type, hall.get_type_display()) for hall in BranchHall.objects.filter(
+                            branch=default_branch
+                        )],
+                        label='Тип зала заведения',
+                        required=True
+                    )
 
-                default_hall = BranchHall.objects.filter(branch=default_branch).first()
-                free_tables = DinnerWagon.objects.filter(hall=default_hall, is_reserved=False)
-                if free_tables.exists():
-                    table_types = []
-                    for table in free_tables:
-                        if table_types.count(table.seats) == 0:
-                            table_types.append(table.seats)
+                    default_date = datetime.now() + timedelta(days=1)
+
+                    default_hall = BranchHall.objects.filter(branch=default_branch).first()
+                    # определяем, какие столики на заданную дату свободны
+                    tables_in_hall = DinnerWagon.objects.filter(hall=default_hall)
+                    hall_tables_specification = {}
+                    for table in tables_in_hall:
+                        if hall_tables_specification.get(table.seats) is None:
+                            hall_tables_specification[table.seats] = 1
+                        else:
+                            hall_tables_specification[table.seats] += 1
+                    table_orders_for_default_date = Order.objects.filter(
+                        execute_date=default_date.date(),
+                        type=Order.TYPE_DINNER_WAGON,
+                        establishment_branch=default_branch,
+                        dinner_wagon__hall=default_hall
+                    )
+                    order_tables_specification = {}
+                    for order in table_orders_for_default_date:
+                        if order_tables_specification.get(order.dinner_wagon.seats) is None:
+                            order_tables_specification[order.dinner_wagon.seats] = 1
+                        else:
+                            order_tables_specification[order.dinner_wagon.seats] += 1
+                    keys_for_delete = []
+                    for hall_table_key in hall_tables_specification.keys():
+                        if order_tables_specification.get(hall_table_key) is not None:
+                            hall_tables_specification[hall_table_key] -= 1
+                            if hall_tables_specification[hall_table_key] == 0:
+                                keys_for_delete.append(hall_table_key)
+                    for key in keys_for_delete:
+                        del hall_tables_specification[key]
+                    # в результате hall_tables_specification пуст или содержит свободные столики на заданную дату
                     self.fields['table'] = forms.ChoiceField(
-                        choices=[(table_type, table_type) for table_type in table_types],
+                        choices=[(key, key) for key in hall_tables_specification.keys()],
+                        error_messages={
+                            'required': 'Поле столика заведения не может быть пустым'
+                        },
+                        help_text='Если поле пустое, то свободных столиков нет',
+                        label='Количество мест за столиком',
+                        required=True
+                    )
+                else:
+                    # загружаем данные формы с полученным данными
+                    default_branch = EstablishmentBranch.objects.filter(
+                        establishment__id=establishment_id,
+                        id=branch_id
+                    ).first()
+                    self.fields['hall'] = forms.ChoiceField(
+                        choices=[(hall.type, hall.get_type_display()) for hall in BranchHall.objects.filter(
+                            branch=default_branch
+                        )],
+                        label='Тип зала заведения',
+                        required=True
+                    )
+
+                    default_hall = BranchHall.objects.filter(
+                        branch=default_branch,
+                        type=hall_type
+                    ).first()
+                    # определяем, какие столики на заданную дату свободны
+                    tables_in_hall = DinnerWagon.objects.filter(hall=default_hall)
+                    hall_tables_specification = {}
+                    for table in tables_in_hall:
+                        if hall_tables_specification.get(table.seats) is None:
+                            hall_tables_specification[table.seats] = 1
+                        else:
+                            hall_tables_specification[table.seats] += 1
+                    table_orders_for_default_date = Order.objects.filter(
+                        execute_date=order_date,
+                        type=Order.TYPE_DINNER_WAGON,
+                        establishment_branch=default_branch,
+                        dinner_wagon__hall=default_hall
+                    )
+                    order_tables_specification = {}
+                    for order in table_orders_for_default_date:
+                        if order_tables_specification.get(order.dinner_wagon.seats) is None:
+                            order_tables_specification[order.dinner_wagon.seats] = 1
+                        else:
+                            order_tables_specification[order.dinner_wagon.seats] += 1
+                    keys_for_delete = []
+                    for hall_table_key in hall_tables_specification.keys():
+                        if order_tables_specification.get(hall_table_key) is not None:
+                            hall_tables_specification[hall_table_key] -= 1
+                            if hall_tables_specification[hall_table_key] == 0:
+                                keys_for_delete.append(hall_table_key)
+                    for key in keys_for_delete:
+                        del hall_tables_specification[key]
+                    # в результате hall_tables_specification пуст или содержит свободные столики на заданную дату
+                    self.fields['table'] = forms.ChoiceField(
+                        choices=[(key, key) for key in hall_tables_specification.keys()],
+                        error_messages={
+                            'required': 'Поле столика заведения не может быть пустым'
+                        },
+                        help_text='Если поле пустое, то свободных столиков нет',
                         label='Количество мест за столиком',
                         required=True
                     )
 
 
 class DeliveryForm(forms.Form):
-    datetime = forms.DateTimeField(
-        label='Дата и время доставки',
-        input_formats=['%d-%m-%y %H:%M', '%d-%m-%Y %H:%M'],
-        widget=forms.DateTimeInput(attrs={'placeholder': 'ДД-ММ-ГГ ЧЧ:мм'}),
+    date = forms.DateField(
+        label='Дата доставки',
+        input_formats=['%d-%m-%Y', '%d-%m-%y'],
+        widget=forms.DateInput(
+            attrs={
+                'type': 'date',
+                'placeholder': 'ДД-ММ-ГГ'
+            },
+        ),
         error_messages={
-            'required': 'Поле времени заказа не может быть пустым',
-            'invalid': 'Неверный формат записи времени заказа'
+            'required': 'Поле даты доставки не может быть пустым',
+            'invalid': 'Неверный формат записи даты доставки'
         },
-        help_text='Выставляя дату помните, что для обработки заказа требуется не менее двух часов.',
+        required=True
+    )
+    time = forms.TimeField(
+        label='Время доставки',
+        input_formats=['%H:%M'],
+        widget=forms.TimeInput(
+            attrs={
+                'type': 'time',
+                'placeholder': 'ЧЧ:ММ'
+            },
+        ),
+        error_messages={
+            'required': 'Поле времени доставки не может быть пустым',
+            'invalid': 'Неверный формат записи времени доставки'
+        },
         required=True
     )
     address = forms.CharField(
@@ -209,24 +391,11 @@ class DeliveryForm(forms.Form):
         required=True
     )
 
-    def clean_datetime(self):
-        date_time = self.cleaned_data['datetime']
-        # TODO учитывать временные зоны (date_time содержит дату с учетом временой зоны) сейчас - абсолютоное время
-        execution_date_time = datetime(
-            date_time.year,
-            date_time.month,
-            date_time.day,
-            date_time.hour,
-            date_time.minute
-        )
-        date_time_border = datetime.now() + timedelta(hours=2)
-        if execution_date_time <= date_time_border:
-            raise forms.ValidationError('Невозможно оформить заказ на выбранное время')
-        return execution_date_time
-
     def clean_phone(self):
         phone = self.cleaned_data['phone']
         symbols_list = list(phone)
+        if symbols_list.__len__() < 10:
+            raise forms.ValidationError('Номер телефона должен состоять из 10 цифр')
         for symbol in symbols_list:
             try:
                 int_value = int(symbol)
@@ -235,6 +404,27 @@ class DeliveryForm(forms.Form):
             except ValueError:
                 raise forms.ValidationError('Неверный номер телефона')
         return phone
+
+    def clean(self):
+        order_date = self.cleaned_data.get('date')
+        order_time = self.cleaned_data.get('time')
+        if order_date is None:
+            raise ValidationError('Поле даты доставки не должо быть пустым')
+        elif order_time is None:
+            raise ValidationError('Поле времени доставки не должо быть пустым')
+        # TODO учитывать временные зоны (date_time содержит дату с учетом временой зоны) сейчас - абсолютоное время
+        execution_date_time = datetime(
+            order_date.year,
+            order_date.month,
+            order_date.day,
+            order_time.hour,
+            order_time.minute
+        )
+        date_time_border = datetime.now() + timedelta(hours=2)
+        if execution_date_time <= date_time_border:
+            error_message = 'Невозможно оформить заказ на выбранное время'
+            self.add_error('date', error_message)
+            self.add_error('time', error_message)
 
 
 class PickUpForm(forms.Form):
@@ -245,15 +435,34 @@ class PickUpForm(forms.Form):
         },
         required=True
     )
-    datetime = forms.DateTimeField(
-        label='Дата и время самовывоза',
-        input_formats=['%d-%m-%y %H:%M', '%d-%m-%Y %H:%M'],
-        widget=forms.DateTimeInput(attrs={'placeholder': 'ДД-ММ-ГГ ЧЧ:мм'}),
+    date = forms.DateField(
+        label='Дата самовывоза',
+        input_formats=['%d-%m-%Y', '%d-%m-%y'],
+        widget=forms.DateInput(
+            attrs={
+                'type': 'date',
+                'placeholder': 'ДД-ММ-ГГ'
+            },
+        ),
         error_messages={
-            'required': 'Поле времени заказа не может быть пустым',
-            'invalid': 'Неверный формат записи времени заказа'
+            'required': 'Поле даты самовывоза не может быть пустым',
+            'invalid': 'Неверный формат записи даты самовывоза'
         },
-        help_text='Выставляя дату помните, что для обработки заказа требуется не менее двух часов.',
+        required=True
+    )
+    time = forms.TimeField(
+        label='Время самовывоза',
+        input_formats=['%H:%M'],
+        widget=forms.TimeInput(
+            attrs={
+                'type': 'time',
+                'placeholder': 'ЧЧ:ММ'
+            },
+        ),
+        error_messages={
+            'required': 'Поле времени самовывоза не может быть пустым',
+            'invalid': 'Неверный формат записи времени самовывоза'
+        },
         required=True
     )
     phone = forms.CharField(
@@ -267,24 +476,11 @@ class PickUpForm(forms.Form):
         required=True
     )
 
-    def clean_datetime(self):
-        date_time = self.cleaned_data['datetime']
-        # TODO учитывать временные зоны (date_time содержит дату с учетом временой зоны) сейчас - абсолютоное время
-        execution_date_time = datetime(
-            date_time.year,
-            date_time.month,
-            date_time.day,
-            date_time.hour,
-            date_time.minute
-        )
-        date_time_border = datetime.now() + timedelta(hours=2)
-        if execution_date_time <= date_time_border:
-            raise forms.ValidationError('Невозможно оформить заказ на выбранное время')
-        return execution_date_time
-
     def clean_phone(self):
         phone = self.cleaned_data['phone']
         symbols_list = list(phone)
+        if symbols_list.__len__() < 10:
+            raise forms.ValidationError('Номер телефона должен состоять из 10 цифр')
         for symbol in symbols_list:
             try:
                 int_value = int(symbol)
@@ -293,6 +489,27 @@ class PickUpForm(forms.Form):
             except ValueError:
                 raise forms.ValidationError('Неверный номер телефона')
         return phone
+
+    def clean(self):
+        order_date = self.cleaned_data.get('date')
+        order_time = self.cleaned_data.get('time')
+        if order_date is None:
+            raise ValidationError('Поле даты самовывоза не должо быть пустым')
+        elif order_time is None:
+            raise ValidationError('Поле времени самовывоза не должо быть пустым')
+        # TODO учитывать временные зоны (date_time содержит дату с учетом временой зоны) сейчас - абсолютоное время
+        execution_date_time = datetime(
+            order_date.year,
+            order_date.month,
+            order_date.day,
+            order_time.hour,
+            order_time.minute
+        )
+        date_time_border = datetime.now() + timedelta(hours=2)
+        if execution_date_time <= date_time_border:
+            error_message = 'Невозможно оформить заказ на выбранное время'
+            self.add_error('date', error_message)
+            self.add_error('time', error_message)
 
     def __init__(self, establishment_id, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -320,6 +537,8 @@ class UserOrdersForm(forms.Form):
     def clean_phone(self):
         phone = self.cleaned_data['phone']
         symbols_list = list(phone)
+        if symbols_list.__len__() < 10:
+            raise forms.ValidationError('Номер телефона должен состоять из 10 цифр')
         for symbol in symbols_list:
             try:
                 int_value = int(symbol)

@@ -8,17 +8,17 @@ from django.conf import settings
 class Migration(migrations.Migration):
 
     dependencies = [
-        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ('establishments', '0001_initial'),
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.CreateModel(
             name='Employee',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', auto_created=True, primary_key=True, serialize=False)),
-                ('establishment', models.OneToOneField(related_name='account', to='establishments.Establishment', verbose_name='Заведение')),
-                ('user', models.ForeignKey(related_name='establishments_accounts', to=settings.AUTH_USER_MODEL, verbose_name='Пользователь')),
+                ('id', models.AutoField(serialize=False, auto_created=True, verbose_name='ID', primary_key=True)),
+                ('establishment', models.OneToOneField(to='establishments.Establishment', related_name='account', verbose_name='Заведение')),
+                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL, verbose_name='Пользователь', related_name='establishments_accounts')),
             ],
             options={
             },

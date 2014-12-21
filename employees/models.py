@@ -20,15 +20,20 @@ class Employee(models.Model):
             self.establishment
         )
 
-    # arguments: order
-    def acc_order(self, **kwargs):
-        if kwargs.get('order') is not None:
-            for order in self.orders.all():
-                if order == kwargs.get('order'):
-                    order.accept()
-
-    def dec_order(self, **kwargs):
-        if kwargs.get('order') is not None:
-            for order in self.orders.all():
-                if order == kwargs.get('order'):
-                    order.decline()
+    # arguments: order_id = order_id
+    # @staticmethod
+    # def acc_order(**kwargs):
+    #     order_id = kwargs.get('order_id')
+    #     if order_id is not None:
+    #         necessary_order = Order.objects.filter(id=order_id)
+    #         necessary_order.accept()
+    #         necessary_order.save(update_fields=['state'])
+    #
+    # # arguments: order_id = order_id
+    # @staticmethod
+    # def dec_order(**kwargs):
+    #     order_id = kwargs.get('order_id')
+    #     if order_id is not None:
+    #         necessary_order = Order.objects.filter(id=order_id)
+    #         necessary_order.decline()
+    #         necessary_order.save(update_fields=['state'])

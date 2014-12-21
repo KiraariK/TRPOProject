@@ -15,7 +15,7 @@
           <div class="row">
               {% for establishment in establishment_list %}
             <div class="col-xs-6 col-lg-4">
-              <h2>{{ establishment.name }}</h2>
+              <h3>{{ establishment.name }}</h3>
                 <img src="{% static 'images/'|add:establishment.establishment_image.name %}" class="img-thumbnail">
               <p>{{ establishment.description }}</p>
                 <p><a class="btn btn-default" href="{% url 'dishes_without_category' establishment_id=establishment.id %}" role="button">Меню</a></p>

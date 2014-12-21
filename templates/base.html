@@ -4,8 +4,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }}</title>
+    <title>Wanna eat</title>
     {% load staticfiles %}
+    <link rel="icon" type="image/png" href="{% static 'images/title/app-icon.png' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
 
@@ -39,7 +40,7 @@
         {% block content %}{% endblock %}
         <hr>
         <footer>
-         <div class="col-xs-4">Company 2014 </div>
+         <div class="col-xs-4">Группа 8ВМ43 2014 год, ТПУ.</div>
              <div class="col-xs-6">  </div>
             <div class="col-xs-2">
                <a href="{% url 'login_employee' %}">Войти</a>

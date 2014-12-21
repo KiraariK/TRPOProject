@@ -7,25 +7,26 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
+        ('establishments', '0001_initial'),
         ('employees', '0001_initial'),
         ('dishes', '0001_initial'),
-        ('establishments', '0001_initial'),
     ]
 
     operations = [
         migrations.CreateModel(
             name='Order',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', auto_created=True, primary_key=True, serialize=False)),
+                ('id', models.AutoField(serialize=False, auto_created=True, verbose_name='ID', primary_key=True)),
                 ('client_phone', models.CharField(max_length=10, verbose_name='Телефон клиента')),
-                ('type', models.CharField(max_length=1, choices=[('0', 'Столик'), ('1', 'Самовывоз'), ('2', 'Доставка')], verbose_name='Тип заказа')),
-                ('state', models.CharField(max_length=1, default='0', choices=[('0', 'Не установлен'), ('1', 'На рассмотрении'), ('2', 'Выполняется'), ('3', 'Отменен'), ('4', 'Выполнен')], verbose_name='Состояние заказа')),
+                ('type', models.CharField(max_length=1, verbose_name='Тип заказа', choices=[('0', 'Боронирование столика'), ('1', 'Заказ самовывоза'), ('2', 'Заказ доставки')])),
+                ('state', models.CharField(default='0', max_length=1, verbose_name='Состояние заказа', choices=[('0', 'Не установлен'), ('1', 'На рассмотрении'), ('2', 'Выполняется'), ('3', 'Отменен'), ('4', 'Выполнен')])),
                 ('order_date', models.DateField(verbose_name='Дата заказа', auto_now_add=True)),
-                ('execute_datetime', models.DateTimeField(verbose_name='Дата исполнения')),
+                ('execute_date', models.DateField(verbose_name='Дата исполнения')),
+                ('execute_time', models.TimeField(verbose_name='Время исполнения')),
                 ('delivery_address', models.CharField(max_length=50, blank=True, null=True, verbose_name='Адрес доставки')),
-                ('contact_account', models.ForeignKey(related_name='orders', to='employees.Employee', verbose_name='Контактное лицо организации')),
-                ('dinner_wagon', models.ForeignKey(related_name='orders', to='establishments.DinnerWagon', verbose_name='Столик', blank=True, null=True)),
-                ('establishment_branch', models.ForeignKey(related_name='+', to='establishments.EstablishmentBranch', verbose_name='Филиал заведения', blank=True, null=True)),
+                ('contact_account', models.ForeignKey(to='employees.Employee', verbose_name='Контактное лицо организации', related_name='orders')),
+                ('dinner_wagon', models.ForeignKey(blank=True, related_name='orders', to='establishments.DinnerWagon', null=True, verbose_name='Столик')),
+                ('establishment_branch', models.ForeignKey(blank=True, related_name='+', to='establishments.EstablishmentBranch', null=True, verbose_name='Филиал заведения')),
             ],
             options={
             },
@@ -34,10 +35,12 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='OrdersCartRow',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', auto_created=True, primary_key=True, serialize=False)),
-                ('dishes_count', models.IntegerField(verbose_name='Количество блюд', default=1)),
-                ('establishment_dish', models.OneToOneField(related_name='+', to='dishes.EstablishmentDish', verbose_name='Блюдо заведения')),
-                ('order', models.ForeignKey(related_name='rows', to='orders.Order', verbose_name='Строка заказа')),
+                ('id', models.AutoField(serialize=False, auto_created=True, verbose_name='ID', primary_key=True)),
+                ('dishes_count', models.IntegerField(default=1, verbose_name='Количество блюд')),
+                ('order_date', models.DateField(verbose_name='Дата заказа блюда')),
+                ('order_time', models.TimeField(verbose_name='Время заказ блюда')),
+                ('establishment_dish', models.OneToOneField(to='dishes.EstablishmentDish', verbose_name='Блюдо заведения')),
+                ('order', models.ForeignKey(to='orders.Order', verbose_name='Строка заказа', related_name='rows')),
             ],
             options={
             },
