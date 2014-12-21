@@ -10,12 +10,18 @@ from orders.models import Order, OrdersCartRow
 
 class OrderTest(TestCase):
     def test_order_expire_date(self):
-        order_test = Order(client_phone=8432424,
-                           type=Order.TYPE_DINNER_WAGON,
-                           state=Order.STATE_DONE,
-                           order_date=date(2014, 12, 12),
-                           execute_date=datetime(2014, 12, 12).date())
-        self.assertEqual(order_test.expire_date, datetime(2015, 1, 11).date(), "expire_date is not equal")
+        order_test = Order(
+            client_phone=8432424,
+            type=Order.TYPE_DINNER_WAGON,
+            state=Order.STATE_DONE,
+            order_date=date(2014, 12, 12),
+            execute_date=datetime(2014, 12, 12).date()
+        )
+        self.assertEqual(
+            order_test.expire_date,
+            datetime(2015, 1, 11).date(),
+            "expire_date is not equal"
+        )
 
     def test_order_make(self):
         order_test = Order(client_phone=8432424,
@@ -37,14 +43,19 @@ class OrderTest(TestCase):
         self.assertEqual(order_test.state, Order.STATE_IN_PROGRESS)
 
     def test_order_decline(self):
-        order_test = Order(client_phone=8432424,
-                           type=Order.TYPE_DINNER_WAGON,
-                           state=Order.STATE_DONE,
-                           order_date=date(2014, 12, 12),
-                           execute_date=datetime(2014, 12, 12).date(),
-                           dinner_wagon=DinnerWagon(seats=2))
+        order_test = Order(
+            client_phone=8432424,
+            type=Order.TYPE_DINNER_WAGON,
+            state=Order.STATE_DONE,
+            order_date=date(2014, 12, 12),
+            execute_date=datetime(2014, 12, 12).date(),
+            dinner_wagon=DinnerWagon(seats=2)
+        )
         order_test.decline()
-        self.assertEqual(order_test.state, Order.STATE_CANCELED)
+        self.assertEqual(
+            order_test.state,
+            Order.STATE_CANCELED
+        )
 
     def test_order_perform(self):
         order_test = Order(client_phone=8432424,

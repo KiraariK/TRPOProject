@@ -10,7 +10,10 @@ class DishTest(TestCase):
             price=70.50,
             category=Dish.DISH_TYPE_GARNISH,
         )
-        self.assertEqual(dish.__str__(), 'Гречка', "Имя класса неверно")
+        self.assertEqual(
+            dish.__str__(),
+            'Гречка', "Имя класса неверно"
+        )
 
 
 class EstablishmentDishTest(TestCase):
