@@ -66,3 +66,6 @@ class OrderTest(TestCase):
                            dinner_wagon=DinnerWagon(seats=2))
         order_test.perform()
         self.assertEqual(order_test.state, Order.STATE_DONE)
+
+
+
