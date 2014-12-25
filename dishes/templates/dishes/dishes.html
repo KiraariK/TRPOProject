@@ -29,7 +29,7 @@
               <img src="{% static 'images/'|add:dish.dish_image.name %}" class="img-thumbnail">
               <p>{{ dish.composition }}</p>
                 <p>Вес порции: {{ dish.weight }} гр.</p>
-                <p>Цена: {{ dish.price }}.</p>
+                <p>Цена: {{ dish.price }} р.</p>
                 <p><a class="btn btn-default" href="{% url 'dish_about' dish_id=dish.id %}"  role="button">Подробнее</a>
                     <a >
                         <img src="{% static 'images/cart/add_to_basket.png' %}" class="btn btn-default" onClick="addDish({{ dish.id }}, {{ dish.price }})" role="button" title="Добавить в корзину">

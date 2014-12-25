@@ -42,6 +42,9 @@
       <SubType>Content</SubType>
       <DependentUpon>Classes\ProjectClasses.classdiagram</DependentUpon>
     </Content>
+    <Content Include="ModelDefinition\Package1_1920.uml">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="ModelDefinition\Package1_2141.uml">
       <SubType>Content</SubType>
     </Content>
@@ -49,6 +52,18 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="ModelDefinition\Package3_2141.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package_1919.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package_1920.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package_1921.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package_1923.uml">
       <SubType>Content</SubType>
     </Content>
     <Content Include="ModelDefinition\Package_2141.uml">

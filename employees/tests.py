@@ -1,3 +1,5 @@
+from django.contrib import auth
+from django.contrib.auth.models import User
 from django.test import TestCase
 # TODO accept_order and decline_order
 # Create your tests here.
@@ -24,3 +26,24 @@ class AuthenticateTest(TestCase):
     def test_index(self):
         resp = self.client.get('/employee/accounts/login/')
         self.assertEqual(resp.status_code, 200)
+
+    def test_auth(self):
+        self.c = Client()
+        self.user = User.objects.create(
+            username='testuser',
+            password='12345',
+            is_active=True,
+            is_staff=True,
+            is_superuser=True
+        )
+        self.user.set_password('hello')
+        self.user.save()
+        self.user = auth.authenticate(username='testuser', password='hello')
+        login = self.c.login(username='testuser', password='hello')
+        self.assertTrue(login)
+
+    def test_auth2(self):
+        self.c = Client()
+        self.user = auth.authenticate(username='testuser1', password='hello')
+        login = self.c.login(username='testuser1', password='hello')
+        self.assertFalse(login)

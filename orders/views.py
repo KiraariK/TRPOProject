@@ -157,8 +157,9 @@ def get_order_form(request, establishment_id, order_type):
     is_valid_request = False
     for key in request.session.keys():
         if key != 'cart_price':
-            if establishment_dishes.get(id=key) is not None:
+            if establishment_dishes.filter(id=key).first() is not None:
                 is_valid_request = True
+                break
 
     if is_valid_request:
         order_types = Order.ORDER_TYPE

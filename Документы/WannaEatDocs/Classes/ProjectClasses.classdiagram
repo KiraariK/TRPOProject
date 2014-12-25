@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" dslVersion="1.0.0.0" Id="530cb5a4-9866-40a2-9b65-007b97c433b9" name="ProjectClasses" linkedPackageId="e96e8005-3ca7-4ae8-bb99-f2d4b03a28a3" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="530cb5a4-9866-40a2-9b65-007b97c433b9" name="ProjectClasses" linkedPackageId="e96e8005-3ca7-4ae8-bb99-f2d4b03a28a3" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
   <packagedElements>
     <logicalClassDesignerModelHasTypes>
       <class Id="6cf96e65-62eb-46cc-bdf6-7e32d2b1613d" name="Заведение" isAbstract="false" isLeaf="false" isActiveClass="false">
@@ -41,16 +41,6 @@
               </associationHasOwnedEnds>
               <associationHasOwnedEnds>
                 <memberEnd Id="fb941e33-32c2-4030-85bb-5aeb4f8a42a7" name="БлюдоЗаведения" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-                  <lowerValueInternal>
-                    <literalString Id="7c1fac9e-49a7-4ebb-b244-692b87591c4d" name="Lower" value="М">
-                      <elementDefinition Id="88fc2a99-9f50-4beb-84ac-e38442c4e091" />
-                    </literalString>
-                  </lowerValueInternal>
-                  <upperValueInternal>
-                    <literalString Id="b4f652ea-93c3-4f2a-b361-9596a0bde69d" name="Upper" value="М">
-                      <elementDefinition Id="b58f3634-adf0-4c7e-9625-0c9142d79bad" />
-                    </literalString>
-                  </upperValueInternal>
                   <elementDefinition Id="cf9e3ec2-1b9c-4b57-a773-68d3f5c23474" />
                 </memberEnd>
               </associationHasOwnedEnds>
@@ -81,6 +71,11 @@
             <elementDefinition Id="206ad64d-0656-4140-a295-deb421e144cc" />
           </property>
         </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="48450e1a-a119-41ab-a287-9a736ec25660" name="__str__" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="d0def5fa-7eea-4d4f-9a41-44d96fe37d0a" />
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
@@ -131,6 +126,11 @@
             <elementDefinition Id="a2787dc0-c769-45b7-82ed-fc47c1755cfb" />
           </property>
         </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="b10cf196-c465-4cff-bf96-2c3d002de04b" name="__str__" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="850bfc0b-320a-435f-956e-6d92d3699142" />
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
@@ -179,14 +179,8 @@
           </property>
         </ownedAttributesInternal>
         <ownedOperationsInternal>
-          <operation Id="f92509c0-7d31-4dd1-85e8-1242453fa6dc" name="пересчитатьСвободныеСтолики" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
-            <elementDefinition Id="7e83a815-1e80-4565-8bdb-a800c45fe3a9" />
-          </operation>
-          <operation Id="466ff6a2-faf4-44f6-bbc8-48cc0511c8e7" name="забронироватьСтолик" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
-            <elementDefinition Id="ea6a9850-1efc-4292-8f74-d8b04dbf4517" />
-          </operation>
-          <operation Id="ff365c07-b63f-4ac5-94a7-ebe1d775ff58" name="освободитьСтолик" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
-            <elementDefinition Id="7f779b0e-2e4e-4018-a468-8a77baf5bcac" />
+          <operation Id="66926ac4-dd76-4990-9724-756e764f257e" name="__str__" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="ba8b7028-3754-4b8b-a88d-1f49b3a056e3" />
           </operation>
         </ownedOperationsInternal>
       </class>
@@ -198,19 +192,13 @@
           <property Id="5dce8b70-5e5d-4d85-bd34-999fe7f1b3ad" name="количествоМест" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <elementDefinition Id="60a4b34c-a570-4017-9e85-e175f07e212c" />
           </property>
-          <property Id="4e172fc3-fb13-48bb-8856-00842a0a338a" name="занят" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-            <elementDefinition Id="e80f0932-758c-44aa-94fc-6910fb95fc26" />
-          </property>
           <property Id="a683ad83-571e-4995-bd4c-8c4967ec56f6" name="зал" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <elementDefinition Id="071fd78d-bb04-4ab9-a943-984c7b116c1c" />
           </property>
         </ownedAttributesInternal>
         <ownedOperationsInternal>
-          <operation Id="523f40e0-f2a5-4759-bb22-9ccbce9ead84" name="забронировать" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
-            <elementDefinition Id="b4a5b7c4-42dc-4e24-8bac-84528cf3f787" />
-          </operation>
-          <operation Id="deb86870-88c4-44ff-ba81-e55510ad7cd1" name="освободить" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
-            <elementDefinition Id="a03f7614-e9d7-424b-8115-eb2073c061c7" />
+          <operation Id="bf592a17-d09b-43cc-88cc-423cf75ae120" name="__str__" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="fc84080c-51ba-4ff2-99d3-1881a532b755" />
           </operation>
         </ownedOperationsInternal>
       </class>
@@ -241,6 +229,11 @@
             <elementDefinition Id="b5857357-e4d6-4075-95f1-a3a781f54152" />
           </property>
         </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="13f103f3-2162-463c-b0ae-4c29ba34f641" name="__str__" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="48c62dc2-0faf-47f3-b99f-1a01ddaaf304" />
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
@@ -306,6 +299,11 @@
             <elementDefinition Id="96b4837f-ad37-4133-bbc2-91a9e47be2ca" />
           </property>
         </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="94da262d-ad8d-4133-a933-de81ff24e32a" name="__str__" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="f214ba60-5816-4c02-8bfd-e44e1ee3f3e1" />
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
@@ -347,6 +345,11 @@
             <elementDefinition Id="d18354c6-b15f-4c76-aa55-e9b999ca1061" />
           </property>
         </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="45e34d9b-87af-4ea5-b43d-78a2d3d69768" name="__str__" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="b4817c94-8f61-47d0-b04a-8e06f63be91c" />
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
@@ -424,12 +427,12 @@
           </property>
           <property Id="87c813b8-f996-407f-a0e5-d3f145cafee5" name="адресДоставки" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <lowerValueInternal>
-              <literalString Id="6f5422e4-6d64-4afa-ac58-6c76d9f54d83" name="Lower" value="для заказа доставки">
+              <literalString Id="6f5422e4-6d64-4afa-ac58-6c76d9f54d83" name="Lower" value="1">
                 <elementDefinition Id="0674f6f3-c15c-4923-b726-d7ce9f40c295" />
               </literalString>
             </lowerValueInternal>
             <upperValueInternal>
-              <literalString Id="45874c01-1ef9-4925-aa5c-51ded16c1d29" name="Upper" value="для заказа доставки">
+              <literalString Id="45874c01-1ef9-4925-aa5c-51ded16c1d29" name="Upper" value="1">
                 <elementDefinition Id="73b3bb12-4a8d-49c6-ba66-c4df35b442d5" />
               </literalString>
             </upperValueInternal>
@@ -441,7 +444,7 @@
           <property Id="0ff84c50-4a14-40da-b931-5c4f2ddc6835" name="контактныйСотрудник" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <elementDefinition Id="5935af88-eed0-4855-aa50-e35d5c3cfaef" />
           </property>
-          <property Id="c918ccc0-1656-4f58-904f-ce92dcbc1598" name="столик[для заказа столика]" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+          <property Id="c918ccc0-1656-4f58-904f-ce92dcbc1598" name="столик" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <elementDefinition Id="3258e7c2-19c9-4620-9a61-42403738c414" />
           </property>
           <property Id="45387b2a-b56e-4fa2-a973-4ba312183ff5" name="строкиЗаказа" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
@@ -449,12 +452,12 @@
           </property>
           <property Id="977e5eb9-6f20-46b3-8de5-b4645fa056a0" name="филиалЗаведения" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <lowerValueInternal>
-              <literalString Id="5055c7c9-56d6-4744-833c-de2562bedde7" name="Lower" value="для заказа самовывоза">
+              <literalString Id="5055c7c9-56d6-4744-833c-de2562bedde7" name="Lower" value="1">
                 <elementDefinition Id="5c971e1c-e7fb-453c-9151-bb95e3320c1d" />
               </literalString>
             </lowerValueInternal>
             <upperValueInternal>
-              <literalString Id="bafc424e-bb13-4d4d-8143-029160c845b6" name="Upper" value="для заказа самовывоза">
+              <literalString Id="bafc424e-bb13-4d4d-8143-029160c845b6" name="Upper" value="1">
                 <elementDefinition Id="ccf56069-5681-42af-868a-e793ece61dec" />
               </literalString>
             </upperValueInternal>
@@ -479,6 +482,12 @@
           </operation>
           <operation Id="b5234cf9-e48a-46ae-b829-69685292b359" name="оформить" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
             <elementDefinition Id="2eae48e3-7f3a-488d-8049-376145d3e654" />
+          </operation>
+          <operation Id="3397ed1c-6d06-4fbf-b99a-d24925159d9b" name="__str__" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="48f4fcc8-eb8d-4c34-897a-0a8155900f74" />
+          </operation>
+          <operation Id="ffc12da1-d061-4c3b-a0f7-b5b30489d4c0" name="delete" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="890f3009-b4b9-4797-a1bf-000350dff799" />
           </operation>
         </ownedOperationsInternal>
       </class>
@@ -708,11 +717,8 @@
           </property>
         </ownedAttributesInternal>
         <ownedOperationsInternal>
-          <operation Id="6bd1f4a2-21f0-4b0b-aebc-2fcb4a7dca8f" name="подтвердитьЗаказ" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
-            <elementDefinition Id="fe516bcf-2aca-4ac9-9dbe-bdaae79e9b21" />
-          </operation>
-          <operation Id="e4931386-175c-48ea-bd1b-98a6763d140e" name="отменитьЗаказ" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
-            <elementDefinition Id="f0c5e6e2-cc07-4c71-adbd-51bb301641dc" />
+          <operation Id="13cb1993-c8f1-4c25-8b08-70047f39dbc5" name="__str__" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="59cf7d18-6f0e-4ff1-b436-b595ae98b321" />
           </operation>
         </ownedOperationsInternal>
       </class>

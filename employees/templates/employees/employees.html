@@ -1,9 +1,12 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
+
 <div class="page-header">
         <h1>{{ employee.establishment }}</h1>
 </div>
+
+        {% if employee_user.is_authenticated %}
 
 {% for order in order_list %}
 <div class="row">
@@ -42,7 +45,16 @@
               </div>
         </div>
 </div>
+
 {% endfor %}
+
+{% else %}
+    <div class="page-header">
+        Вы не авторизованы
+    </div>
+    <a class="btn btn-default" href="{% url 'login_employee' %}">Авторизоваться</a>
+{% endif %}
+
 {% endblock %}
 
  {% block scripts %}

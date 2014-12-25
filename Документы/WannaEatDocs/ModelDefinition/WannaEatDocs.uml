@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner"
+<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner"
   dslVersion="1.0.0.0"
   Id="13823d4d-dd9e-44e2-b8d5-1d57eb6dd29f"
   name="WannaEatDocs" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
@@ -1276,33 +1276,6 @@
             aggregation="None"
             isComposite="false" />
         </ownedAttributesInternal>
-        <ownedOperationsInternal>
-          <operation
-            Id="129e20f1-142b-48e8-96d7-3d0632494835"
-            name="пересчитатьСвободныеСтолики"
-            visibility="Private"
-            isLeaf="false"
-            isStatic="false"
-            isAbstract="false"
-            concurrency="Sequential"
-            isQuery="false" />
-          <operation
-            Id="c30a13ce-52eb-4702-aafd-ac31eef1499b"
-            name="забронироватьСтолик"
-            isLeaf="false"
-            isStatic="false"
-            isAbstract="false"
-            concurrency="Sequential"
-            isQuery="false" />
-          <operation
-            Id="7d82e786-7716-4fa0-a90a-feeee5936e02"
-            name="освободитьСтолик"
-            isLeaf="false"
-            isStatic="false"
-            isAbstract="false"
-            concurrency="Sequential"
-            isQuery="false" />
-        </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -4495,6 +4468,16 @@
             aggregation="None"
             isComposite="false" />
         </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="d0def5fa-7eea-4d4f-9a41-44d96fe37d0a"
+            name="__str__"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+        </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -4615,6 +4598,16 @@
             aggregation="None"
             isComposite="false" />
         </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="850bfc0b-320a-435f-956e-6d92d3699142"
+            name="__str__"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+        </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -4726,25 +4719,8 @@
         </ownedAttributesInternal>
         <ownedOperationsInternal>
           <operation
-            Id="7e83a815-1e80-4565-8bdb-a800c45fe3a9"
-            name="пересчитатьСвободныеСтолики"
-            visibility="Private"
-            isLeaf="false"
-            isStatic="false"
-            isAbstract="false"
-            concurrency="Sequential"
-            isQuery="false" />
-          <operation
-            Id="ea6a9850-1efc-4292-8f74-d8b04dbf4517"
-            name="забронироватьСтолик"
-            isLeaf="false"
-            isStatic="false"
-            isAbstract="false"
-            concurrency="Sequential"
-            isQuery="false" />
-          <operation
-            Id="7f779b0e-2e4e-4018-a468-8a77baf5bcac"
-            name="освободитьСтолик"
+            Id="ba8b7028-3754-4b8b-a88d-1f49b3a056e3"
+            name="__str__"
             isLeaf="false"
             isStatic="false"
             isAbstract="false"
@@ -4773,17 +4749,6 @@
             aggregation="None"
             isComposite="false" />
           <property
-            Id="e80f0932-758c-44aa-94fc-6910fb95fc26"
-            name="занят"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false" />
-          <property
             Id="071fd78d-bb04-4ab9-a943-984c7b116c1c"
             name="зал"
             isLeaf="false"
@@ -4797,16 +4762,8 @@
         </ownedAttributesInternal>
         <ownedOperationsInternal>
           <operation
-            Id="b4a5b7c4-42dc-4e24-8bac-84528cf3f787"
-            name="забронировать"
-            isLeaf="false"
-            isStatic="false"
-            isAbstract="false"
-            concurrency="Sequential"
-            isQuery="false" />
-          <operation
-            Id="a03f7614-e9d7-424b-8115-eb2073c061c7"
-            name="освободить"
+            Id="fc84080c-51ba-4ff2-99d3-1881a532b755"
+            name="__str__"
             isLeaf="false"
             isStatic="false"
             isAbstract="false"
@@ -4901,6 +4858,16 @@
             aggregation="None"
             isComposite="false" />
         </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="48c62dc2-0faf-47f3-b99f-1a01ddaaf304"
+            name="__str__"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+        </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -5060,6 +5027,16 @@
             aggregation="None"
             isComposite="false" />
         </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="f214ba60-5816-4c02-8bfd-e44e1ee3f3e1"
+            name="__str__"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+        </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -5147,6 +5124,16 @@
             aggregation="None"
             isComposite="false" />
         </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="b4817c94-8f61-47d0-b04a-8e06f63be91c"
+            name="__str__"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+        </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -5337,13 +5324,13 @@
               <literalString
                 Id="0674f6f3-c15c-4923-b726-d7ce9f40c295"
                 name="Lower"
-                value="для заказа доставки" />
+                value="1" />
             </lowerValueInternal>
             <upperValueInternal>
               <literalString
                 Id="73b3bb12-4a8d-49c6-ba66-c4df35b442d5"
                 name="Upper"
-                value="для заказа доставки" />
+                value="1" />
             </upperValueInternal>
           </property>
           <property
@@ -5370,7 +5357,7 @@
             isComposite="false" />
           <property
             Id="3258e7c2-19c9-4620-9a61-42403738c414"
-            name="столик[для заказа столика]"
+            name="столик"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -5405,13 +5392,13 @@
               <literalString
                 Id="5c971e1c-e7fb-453c-9151-bb95e3320c1d"
                 name="Lower"
-                value="для заказа самовывоза" />
+                value="1" />
             </lowerValueInternal>
             <upperValueInternal>
               <literalString
                 Id="ccf56069-5681-42af-868a-e793ece61dec"
                 name="Upper"
-                value="для заказа самовывоза" />
+                value="1" />
             </upperValueInternal>
           </property>
           <property
@@ -5465,6 +5452,22 @@
           <operation
             Id="2eae48e3-7f3a-488d-8049-376145d3e654"
             name="оформить"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="48f4fcc8-eb8d-4c34-897a-0a8155900f74"
+            name="__str__"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="890f3009-b4b9-4797-a1bf-000350dff799"
+            name="delete"
             isLeaf="false"
             isStatic="false"
             isAbstract="false"
@@ -5883,16 +5886,8 @@
         </ownedAttributesInternal>
         <ownedOperationsInternal>
           <operation
-            Id="fe516bcf-2aca-4ac9-9dbe-bdaae79e9b21"
-            name="подтвердитьЗаказ"
-            isLeaf="false"
-            isStatic="false"
-            isAbstract="false"
-            concurrency="Sequential"
-            isQuery="false" />
-          <operation
-            Id="f0c5e6e2-cc07-4c71-adbd-51bb301641dc"
-            name="отменитьЗаказ"
+            Id="59cf7d18-6f0e-4ff1-b436-b595ae98b321"
+            name="__str__"
             isLeaf="false"
             isStatic="false"
             isAbstract="false"
@@ -5933,30 +5928,6 @@
             isComposite="false" />
         </ownedAttributesInternal>
       </class>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <packageMoniker
-        Id="4d5c1d1e-385a-44bf-bac7-5754d4e962f8"
-        LastKnownName="Заведения"
-        LastKnownLocation="Package3_2141.uml" />
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <packageMoniker
-        Id="c0d4a6d7-789a-4d54-a55b-d6f8ac0be18a"
-        LastKnownName="Блюда"
-        LastKnownLocation="Package2_2141.uml" />
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <packageMoniker
-        Id="2f80b865-35b9-4840-8702-f64dfe7ad685"
-        LastKnownName="Заказы"
-        LastKnownLocation="Package1_2141.uml" />
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <packageMoniker
-        Id="bb2741df-7e80-473d-99bf-ce1a0daa4b27"
-        LastKnownName="УправлениеЗаведений"
-        LastKnownLocation="Package_2141.uml" />
     </packageHasNamedElement>
     <packageHasNamedElement>
       <interaction
@@ -15758,6 +15729,24 @@
       <executionEvent
         Id="58c74cfb-706e-4316-8a52-1f51f20c20e0"
         name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="02df5724-a662-4183-91fa-0f5c421d0d31"
+        LastKnownName="Пользовательский интерфейс"
+        LastKnownLocation="Package_1919.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="b6427127-2786-4825-a255-77f759ba248f"
+        LastKnownName="Модели"
+        LastKnownLocation="Package_1921.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="ef0ab91e-ccb8-4b07-b852-43388b0964fd"
+        LastKnownName="SQlite3 database"
+        LastKnownLocation="Package_1923.uml" />
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType

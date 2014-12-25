@@ -36,6 +36,7 @@ class EmployeePage(ListView):
                 order.perform()
                 order.save(update_fields=['state'])
         context['order_list'] = employee_orders.order_by('-execute_date')
+        context['employee_user'] = Employee.objects.get(id=employees_id).user
 
         return context
 

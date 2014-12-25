@@ -178,17 +178,6 @@
             <elementDefinition Id="46d690a2-26da-4498-961e-6a2a0ebee475" />
           </property>
         </ownedAttributesInternal>
-        <ownedOperationsInternal>
-          <operation Id="7ea6b1cb-528d-413d-94a5-427a9205da3b" name="пересчитатьСвободныеСтолики" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
-            <elementDefinition Id="129e20f1-142b-48e8-96d7-3d0632494835" />
-          </operation>
-          <operation Id="89de80ee-7671-40cf-b71d-17c2d07910dd" name="забронироватьСтолик" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
-            <elementDefinition Id="c30a13ce-52eb-4702-aafd-ac31eef1499b" />
-          </operation>
-          <operation Id="11529ddd-c005-4624-968e-02d81b1c01f3" name="освободитьСтолик" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
-            <elementDefinition Id="7d82e786-7716-4fa0-a90a-feeee5936e02" />
-          </operation>
-        </ownedOperationsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
